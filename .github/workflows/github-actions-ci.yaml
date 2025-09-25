@@ -1,0 +1,42 @@
+﻿name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "releases/**" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore PosInformatique.Foundations.sln
+
+      - name: Build solution
+        run: dotnet build PosInformatique.Foundations.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: |
+          dotnet test PosInformatique.Foundations.sln \
+          --configuration Release \
+          --no-build \
+          --logger "trx;LogFileName=test_results.trx" \
+          --results-directory ./TestResults
+  
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          files: |
+            TestResults/**/*.trx

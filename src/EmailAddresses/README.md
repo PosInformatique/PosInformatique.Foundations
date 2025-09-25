@@ -1,5 +1,7 @@
 # PosInformatique.Foundations.EmailAddresses
 
+<img src="./Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="64" height="64" />
+
 [![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.svg)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.EmailAddresses.svg)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 

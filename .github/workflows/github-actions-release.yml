@@ -1,0 +1,36 @@
+﻿name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      VersionPrefix:
+        type: string
+        description: The version of the library
+        required: true
+        default: 1.0.0
+      VersionSuffix:
+        type: string
+        description: The version suffix of the library (for example rc.1)
+
+run-name: ${{ inputs.VersionSuffix && format('{0}-{1}', inputs.VersionPrefix, inputs.VersionSuffix) || inputs.VersionPrefix }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.x'
+      
+      - name: Build all the NuGet packages
+        run: dotnet pack PosInformatique.Foundations.sln \
+            --configuration Release \
+            --property:VersionPrefix=${{ github.event.inputs.VersionPrefix }} \
+            --property:VersionSuffix=${{ github.event.inputs.VersionSuffix }} \
+            --output ./artifacts
+
+      - name: Publish the package to nuget.org
+        run: dotnet nuget push "./artifacts/*.nupkg" --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json

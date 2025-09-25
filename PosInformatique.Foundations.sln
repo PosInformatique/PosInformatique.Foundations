@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
+		Icon.png = Icon.png
 		LICENSE = LICENSE
 		README.md = README.md
 		stylecop.json = stylecop.json
@@ -27,6 +28,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FAA7960F-95C1-45E2-9A42-EED477DF97F1}"
 	ProjectSection(SolutionItems) = preProject
 		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{99066C81-F6AB-4A66-9E52-9D324A840307}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CE76142F-BAA5-4D79-9CBB-9C298378FFF9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\github-actions-ci.yaml = .github\workflows\github-actions-ci.yaml
+		.github\workflows\github-actions-release.yml = .github\workflows\github-actions-release.yml
 	EndProjectSection
 EndProject
 Global
@@ -50,6 +59,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DFE1E9A1-3CB7-4FA4-B304-711772346C43} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{FAA7960F-95C1-45E2-9A42-EED477DF97F1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{99066C81-F6AB-4A66-9E52-9D324A840307} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CE76142F-BAA5-4D79-9CBB-9C298378FFF9} = {99066C81-F6AB-4A66-9E52-9D324A840307}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {344068EF-5958-4241-BD83-86403ADA68F1}

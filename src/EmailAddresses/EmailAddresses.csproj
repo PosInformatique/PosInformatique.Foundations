@@ -2,14 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a strongly-typed EmailAddress value object that ensures only valid RFC 5322 compliant email addresses can be instantiated.
+      Includes parsing, validation, comparison, and formatting features with case-insensitive handling for consistent equality checks.
+    </Description>
+    <PackageTags>email;emailaddress;valueobject;ddd;rfc5322;parsing;validation;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackageReleaseNotes>
-      1.0.0
-      - Initial version
-    </PackageReleaseNotes>
-  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MimeKitLite" />
