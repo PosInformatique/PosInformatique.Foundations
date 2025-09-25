@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAddresses", "src\EmailAddresses\EmailAddresses.csproj", "{6B43B51B-A93C-4B4F-AD4D-4B74A2E7DB3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAddresses.Tests", "tests\EmailAddresses.Tests\EmailAddresses.Tests.csproj", "{BAE006E4-4A1E-4E52-8CA1-D341BD0B26EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		LICENSE = LICENSE
+		README.md = README.md
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DFE1E9A1-3CB7-4FA4-B304-711772346C43}"
+	ProjectSection(SolutionItems) = preProject
+		tests\.editorconfig = tests\.editorconfig
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FAA7960F-95C1-45E2-9A42-EED477DF97F1}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B43B51B-A93C-4B4F-AD4D-4B74A2E7DB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B43B51B-A93C-4B4F-AD4D-4B74A2E7DB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B43B51B-A93C-4B4F-AD4D-4B74A2E7DB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B43B51B-A93C-4B4F-AD4D-4B74A2E7DB3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE006E4-4A1E-4E52-8CA1-D341BD0B26EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE006E4-4A1E-4E52-8CA1-D341BD0B26EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE006E4-4A1E-4E52-8CA1-D341BD0B26EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE006E4-4A1E-4E52-8CA1-D341BD0B26EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFE1E9A1-3CB7-4FA4-B304-711772346C43} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FAA7960F-95C1-45E2-9A42-EED477DF97F1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {344068EF-5958-4241-BD83-86403ADA68F1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,16 @@
+﻿root = true
+
+[*]
+charset = utf-8-bom
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# x.proj specific settings
+[*.{csproj,props}]
+indent_style = space
+indent_size = 2
+
+# C# specific settings
+[*.cs]
+indent_style = space
+indent_size = 4
