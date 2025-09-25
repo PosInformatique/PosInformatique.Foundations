@@ -1,8 +1,8 @@
-﻿# PosInformatique.Foundation
+﻿# PosInformatique.Foundations
 
 <img src="Icon.png" alt="PosInformatique.Foundations icon" width="64" height="64" />
 
-PosInformatique.Foundation is a collection of small, focused .NET libraries that provide **simple, reusable building blocks** for your applications.  
+PosInformatique.Foundations is a collection of small, focused .NET libraries that provide **simple, reusable building blocks** for your applications.  
 
 The goal is to avoid shipping a monolithic framework by creating **modular NuGet packages**, each addressing a single responsibility.
 
@@ -23,11 +23,11 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 
 | |Package | Description | NuGet |
 |--|---------|-------------|-------|
-|<img src="./src/EmailAddresses/Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="48" height="48" />|[**PosInformatique.Foundation.EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundation.EmailAddress)](https://www.nuget.org/packages/PosInformatique.Foundation.EmailAddress) |
+|<img src="./src/EmailAddresses/Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="48" height="48" />|[**PosInformatique.Foundations.EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses) |
 
 > Note: Each package is completely independent. You install only what you need.
 
-## 🚀 Why use PosInformatique.Foundation?
+## 🚀 Why use PosInformatique.Foundations?
 
 - Avoid reinventing common value objects and utilities.  
 - Apply standards-based implementations (RFC, E.164, ...).  

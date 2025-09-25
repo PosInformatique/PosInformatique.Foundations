@@ -1,3 +1,2 @@
-﻿## 1.0.0
-- Initial release of **PosInformatique.Foundations.EmailAddresses**
-  - Strongly-typed EmailAddress value object
+﻿1.0.0
+  - EmailAddresses: Initial release with strongly-typed EmailAddress value object

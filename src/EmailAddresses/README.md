@@ -1,9 +1,7 @@
 # PosInformatique.Foundations.EmailAddresses
 
-<img src="./Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="64" height="64" />
-
-[![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.svg)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
-[![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.EmailAddresses.svg)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
+[![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 
 ## Introduction
 This package provides a strongly-typed **EmailAddress** value object that ensures only valid email addresses (RFC 5322 compliant) can be instantiated.

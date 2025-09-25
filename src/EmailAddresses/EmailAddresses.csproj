@@ -16,11 +16,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Remove="CHANGELOG.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="CHANGELOG.md" />
+    <Content Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
