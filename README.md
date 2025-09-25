@@ -1,6 +1,6 @@
 ﻿# PosInformatique.Foundation
 
-<img src="Icon.png" alt="PosInformatique.Foundations icon" width="32" height="32" />
+<img src="Icon.png" alt="PosInformatique.Foundations icon" width="64" height="64" />
 
 PosInformatique.Foundation is a collection of small, focused .NET libraries that provide **simple, reusable building blocks** for your applications.  
 
@@ -17,11 +17,9 @@ The goal is to avoid shipping a monolithic framework by creating **modular NuGet
 ➡️ Each package has **no strong dependency** on another. You are free to pick only what you need.  
 ➡️ These libraries are **not structuring frameworks**; they are small utilities meant to fill missing gaps in your applications.  
 
-## 📦 Installation
+## 📦 Packages Overview
 
 You can install any package using the .NET CLI or NuGet Package Manager.
-
-## 📦 Packages Overview
 
 | |Package | Description | NuGet |
 |--|---------|-------------|-------|
