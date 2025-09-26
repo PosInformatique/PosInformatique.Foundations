@@ -14,6 +14,8 @@ You can install the package from NuGet:
 dotnet add package PosInformatique.Foundations.EmailAddresses.Json
 ```
 
+This package depends on the base package [PosInformatique.Foundations.EmailAddresses](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/).
+
 ## Features
 - Provides a `JsonConverter<EmailAddress>` for serialization and deserialization.
 - Ensures validation of **RFC 5322 compliant** email addresses when deserializing.
@@ -74,6 +76,6 @@ Console.WriteLine(deserialized!.Email); // "carol@myapp.com"
 ```
 
 ## Links
-- [PosInformatique.Foundations.EmailAddresses NuGet package](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
-- [PosInformatique.Foundations.EmailAddresses.Json NuGet package](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
+- [NuGet package: EmailAddresses.Json](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
+- [NuGet package: EmailAddresses (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

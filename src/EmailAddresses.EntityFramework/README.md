@@ -17,6 +17,8 @@ You can install the package from NuGet:
 dotnet add package PosInformatique.Foundations.EmailAddresses.EntityFramework
 ```
 
+This package depends on the base package [PosInformatique.Foundations.EmailAddresses](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/).
+
 ## Features
 - Provides an extension method `IsEmailAddress()` to configure EF Core properties for `EmailAddress`.
 - Maps to `VARCHAR(320)` database columns using the SQL type `EmailAddress` (you must define the SQL type `EmailAddress` mapped to `VARCHAR(320)` in your database).
@@ -68,6 +70,6 @@ This will configure the `Email` property of the `User` entity with:
 - Bi-directional conversion between `EmailAddress` and `string`
 
 ## Links
-- [PosInformatique.Foundations.EmailAddresses NuGet package](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
-- [PosInformatique.Foundations.EmailAddresses.EntityFramework NuGet package](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework/)
+- [NuGet package: EmailAddresses.EntityFramework](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework/)
+- [NuGet package: EmailAddresses (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

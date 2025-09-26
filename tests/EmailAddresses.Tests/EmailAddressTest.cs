@@ -8,22 +8,6 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
 {
     public class EmailAddressTest
     {
-        public static TheoryData<string> InvalidEmailAddresses { get; } = new()
-        {
-            "Test",
-            "test1â@test.com",
-            "test1@",
-            "@test.com",
-            "test1,()@test.com",
-        };
-
-        public static TheoryData<string> ValidEmailAddresses { get; } = new()
-        {
-            @"""Test"" <test1@test.com>",
-            "test1@test.com",
-            "TEST1@TEST.COM",
-        };
-
         [Theory]
         [InlineData(@"""Test"" <test1@test.com>", "test1@test.com", "test1", "test.com")]
         [InlineData("test1@test.com", "test1@test.com", "test1", "test.com")]
@@ -51,7 +35,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         }
 
         [Theory]
-        [MemberData(nameof(InvalidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void Parse_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var act = () => EmailAddress.Parse(invalidEmailAdddress);
@@ -89,7 +73,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         }
 
         [Theory]
-        [MemberData(nameof(InvalidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void Parse_WithFormatProvider_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -117,7 +101,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         }
 
         [Theory]
-        [MemberData(nameof(InvalidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void TryParse_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var result = EmailAddress.TryParse(invalidEmailAdddress, out var address);
@@ -145,7 +129,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         }
 
         [Theory]
-        [MemberData(nameof(InvalidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void TryParse_WithFormatProvider_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -157,14 +141,14 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         }
 
         [Theory]
-        [MemberData(nameof(ValidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.ValidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void IsValid_Valid(string emailAddress)
         {
             EmailAddress.IsValid(emailAddress).Should().BeTrue();
         }
 
         [Theory]
-        [MemberData(nameof(InvalidEmailAddresses))]
+        [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
         public void IsValid_Invalid(string invalidEmailAdddress)
         {
             EmailAddress.IsValid(invalidEmailAdddress).Should().BeFalse();
