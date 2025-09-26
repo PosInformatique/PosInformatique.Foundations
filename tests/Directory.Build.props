@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+
     <!-- Disable packaging -->
     <IsPackable>false</IsPackable>
     

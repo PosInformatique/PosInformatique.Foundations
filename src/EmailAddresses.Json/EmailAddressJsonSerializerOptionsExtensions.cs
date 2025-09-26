@@ -4,9 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.EmailAddresses.Json
+namespace System.Text.Json
 {
-    using System.Text.Json;
+    using PosInformatique.Foundations.EmailAddresses.Json;
 
     /// <summary>
     /// Contains extension methods to configure <see cref="JsonSerializerOptions"/>.

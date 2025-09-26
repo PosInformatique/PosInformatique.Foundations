@@ -4,9 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.EmailAddresses.Json.Tests
+namespace System.Text.Json.Tests
 {
-    using System.Text.Json;
+    using PosInformatique.Foundations.EmailAddresses.Json;
 
     public class EmailAddressJsonSerializerOptionsExtensionsTest
     {
