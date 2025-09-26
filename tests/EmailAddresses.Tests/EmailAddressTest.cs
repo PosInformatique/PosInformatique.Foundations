@@ -102,6 +102,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
 
         [Theory]
         [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
+        [InlineData(null)]
         public void TryParse_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var result = EmailAddress.TryParse(invalidEmailAdddress, out var address);
@@ -130,6 +131,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
 
         [Theory]
         [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
+        [InlineData(null)]
         public void TryParse_WithFormatProvider_InvalidEmailAddress(string invalidEmailAdddress)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -149,6 +151,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
 
         [Theory]
         [MemberData(nameof(EmailAddressTestData.InvalidEmailAddresses), MemberType = typeof(EmailAddressTestData))]
+        [InlineData(null)]
         public void IsValid_Invalid(string invalidEmailAdddress)
         {
             EmailAddress.IsValid(invalidEmailAdddress).Should().BeFalse();
