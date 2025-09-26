@@ -23,7 +23,8 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 
 | |Package | Description | NuGet |
 |--|---------|-------------|-------|
-|<img src="./src/EmailAddresses/Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="48" height="48" />|[**PosInformatique.Foundations.EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses) |
+|<img src="./src/EmailAddresses/Icon.png" alt="PosInformatique.Foundations.EmailAddresses icon" width="48" height="48" />|[**PosInformatique.Foundations.EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization as RFC 5322 compliant. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses) |
+|<img src="./src/EmailAddresses/Icon.png" alt="PosInformatique.Foundations.EmailAddresses.Json icon" width="48" height="48" />|[**PosInformatique.Foundations.EmailAddresses.Json**](./src/EmailAddresses.Json/README.md) | System.Text.Json converter for the EmailAddress value object, enabling seamless serialization and deserialization of RFC 5322 compliant email addresses. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.Json)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json) |
 
 > Note: Each package is completely independent. You install only what you need.
 

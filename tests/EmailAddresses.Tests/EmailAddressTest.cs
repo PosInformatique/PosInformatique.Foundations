@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Tests
+namespace PosInformatique.Foundations.EmailAddresses.Tests
 {
     public class EmailAddressTest
     {

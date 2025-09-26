@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a System.Text.Json converter for the EmailAddress value object.
+      Enables seamless serialization and deserialization of RFC 5322 compliant email addresses within JSON documents.
+      Designed to integrate smoothly with System.Text.Json options, ensuring consistent validation and parsing during JSON processing.
+    </Description>
+    <PackageTags>email;emailaddress;valueobject;ddd;json;rfc5322;parsing;validation;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" />
+    <Content Include="..\EmailAddresses\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmailAddresses\EmailAddresses.csproj" />
+  </ItemGroup>
+
+</Project>

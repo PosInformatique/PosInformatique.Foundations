@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations
+namespace PosInformatique.Foundations.EmailAddresses
 {
     using System.Diagnostics.CodeAnalysis;
     using MimeKit;
