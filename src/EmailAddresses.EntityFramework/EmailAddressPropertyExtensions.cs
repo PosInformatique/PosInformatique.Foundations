@@ -19,11 +19,19 @@ namespace Microsoft.EntityFrameworkCore
         /// Configures the specified <paramref name="property"/> to be mapped on a column with a SQL <c>EmailAddress</c> type.
         /// The <c>EmailAddress</c> type must be mapped to a <c>VARCHAR(320)</c>.
         /// </summary>
+        /// <typeparam name="T">Type of the property which must be <see cref="EmailAddress"/>.</typeparam>
         /// <param name="property">Entity property to map in the <see cref="ModelBuilder"/>.</param>
         /// <returns>The <paramref name="property"/> instance to configure the configuration of the property.</returns>
-        public static PropertyBuilder<EmailAddress> IsEmailAddress(this PropertyBuilder<EmailAddress> property)
+        /// <exception cref="ArgumentNullException">If the specified <paramref name="property"/> argument is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">If the specified <typeparamref name="T"/> generic type is not a <see cref="EmailAddress"/>.</exception>
+        public static PropertyBuilder<T> IsEmailAddress<T>(this PropertyBuilder<T> property)
         {
             ArgumentNullException.ThrowIfNull(property, nameof(property));
+
+            if (typeof(T) != typeof(EmailAddress))
+            {
+                throw new ArgumentException($"The '{nameof(IsEmailAddress)}()' method must be called on '{nameof(EmailAddress)} class.", nameof(T));
+            }
 
             return property
                 .IsUnicode(false)

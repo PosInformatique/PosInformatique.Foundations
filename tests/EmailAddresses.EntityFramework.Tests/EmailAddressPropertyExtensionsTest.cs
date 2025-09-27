@@ -21,6 +21,12 @@ namespace Microsoft.EntityFrameworkCore.Tests
             property.GetColumnType().Should().Be("EmailAddress");
             property.IsUnicode().Should().BeFalse();
             property.GetMaxLength().Should().Be(320);
+
+            property = entity.GetProperty("NullableEmailAddress");
+
+            property.GetColumnType().Should().Be("EmailAddress");
+            property.IsUnicode().Should().BeFalse();
+            property.GetMaxLength().Should().Be(320);
         }
 
         [Fact]
@@ -28,11 +34,28 @@ namespace Microsoft.EntityFrameworkCore.Tests
         {
             var act = () =>
             {
-                EmailAddressPropertyExtensions.IsEmailAddress(null);
+                EmailAddressPropertyExtensions.IsEmailAddress<object>(null);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
                 .WithParameterName("property");
+        }
+
+        [Fact]
+        public void IsEmailAddress_NotEmailAddressProperty()
+        {
+            var builder = new ModelBuilder();
+            var property = builder.Entity<EntityMock>()
+                .Property(e => e.Id);
+
+            var act = () =>
+            {
+                property.IsEmailAddress();
+            };
+
+            act.Should().ThrowExactly<ArgumentException>()
+                .WithMessage("The 'IsEmailAddress()' method must be called on 'EmailAddress class. (Parameter 'T')")
+                .WithParameterName("T");
         }
 
         [Theory]
@@ -108,6 +131,11 @@ namespace Microsoft.EntityFrameworkCore.Tests
                     .Property(e => e.EmailAddress);
 
                 property.IsEmailAddress().Should().BeSameAs(property);
+
+                var nullableProperty = modelBuilder.Entity<EntityMock>()
+                    .Property(e => e.NullableEmailAddress);
+
+                nullableProperty.IsEmailAddress().Should().BeSameAs(nullableProperty);
             }
         }
 
@@ -116,6 +144,10 @@ namespace Microsoft.EntityFrameworkCore.Tests
             public int Id { get; set; }
 
             public EmailAddress EmailAddress { get; set; }
+
+#nullable enable
+            public EmailAddress? NullableEmailAddress { get; set; }
+#nullable restore
         }
     }
 }
