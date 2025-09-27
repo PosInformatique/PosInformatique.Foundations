@@ -72,6 +72,6 @@ list.Sort(); // Sorted alphabetically
 ## Links
 - [NuGet package: EmailAddresses (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 - [NuGet package: EmailAddresses.EntityFramework](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework/)
-- [NuGet package: EmailAddresses.FluentValidations](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidations/)
+- [NuGet package: EmailAddresses.FluentValidations](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation/)
 - [NuGet package: EmailAddresses.Json](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)
