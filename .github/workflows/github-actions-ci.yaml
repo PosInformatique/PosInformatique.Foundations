@@ -24,7 +24,10 @@ jobs:
         run: dotnet restore PosInformatique.Foundations.sln
 
       - name: Build solution
-        run: dotnet build PosInformatique.Foundations.sln --configuration Release --no-restore
+        run: dotnet build PosInformatique.Foundations.sln \
+          --configuration Release \
+          --no-restore \
+          -warnaserror
 
       - name: Run tests
         run: |

@@ -35,7 +35,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CE76142F-BAA5-4D79-9CBB-9C298378FFF9}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\github-actions-ci.yaml = .github\workflows\github-actions-ci.yaml
-		.github\workflows\github-actions-release.yml = .github\workflows\github-actions-release.yml
+		.github\workflows\github-actions-release.yaml = .github\workflows\github-actions-release.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAddresses.Json", "src\EmailAddresses.Json\EmailAddresses.Json.csproj", "{C203E40E-37C1-49F0-B74C-E3559EB74DA7}"
