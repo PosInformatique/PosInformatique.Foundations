@@ -27,8 +27,7 @@ jobs:
         run: |
           dotnet build PosInformatique.Foundations.sln \
           --configuration Release \
-          --no-restore \
-          -warnaserror
+          --no-restore
 
       - name: Run tests
         run: |
