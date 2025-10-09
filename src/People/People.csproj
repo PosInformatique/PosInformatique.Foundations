@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides strongly-typed FirstName and LastName value objects to standardize person names.
+      Enforces normalization rules (title-case for first names, uppercase for last names), validation, parsing, comparison, and formatting.
+      Includes IPerson abstraction with extension methods for display name, ordering name, and initials, plus name normalization helpers.
+    </Description>
+    <PackageTags>people;person;firstname;lastname;name;valueobject;ddd;parsing;validation;normalization;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" />
+    <Content Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+</Project>
