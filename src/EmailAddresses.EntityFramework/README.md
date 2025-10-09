@@ -64,10 +64,8 @@ public class ApplicationDbContext : DbContext
 ```
 
 This will configure the `Email` property of the `User` entity with:
-- `VARCHAR(320)` column length
-- Non-Unicode
+- `VARCHAR(320)` (Non-unicode) column length
 - SQL column type `EmailAddress`
-- Bi-directional conversion between `EmailAddress` and `string`
 
 ## Links
 - [NuGet package: EmailAddresses.EntityFramework](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework/)

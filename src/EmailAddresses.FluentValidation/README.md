@@ -9,9 +9,6 @@ This package provides a [FluentValidation](https://fluentvalidation.net/) extens
 
 It ensures that only **valid RFC 5322 compliant email addresses** are accepted when validating string properties.
 
-- `null` string values are **ignored** (considered valid).  
-- To require non-null values, combine with the `NotNull()` or/and `NotEmpty()`.
-
 ## Install
 You can install the package from [NuGet](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation/):
 
@@ -22,7 +19,7 @@ dotnet add package PosInformatique.Foundations.EmailAddresses.FluentValidation
 This package depends on the base package [PosInformatique.Foundations.EmailAddresses](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/).
 
 ## Features
-- FluentValidation extension for email address validation
+- [FluentValidation](https://fluentvalidation.net/) extension for email address validation
 - Uses the same parsing and validation rules as the [EmailAddress](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/) value object
 - Clear and consistent error messages
 > `null` values are accepted (combine with `NotNull()` validator to forbid nulls)
