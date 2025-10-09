@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides FluentValidation extensions to validate first and last names
+      using the strongly-typed FirstName and LastName value objects from PosInformatique.Foundations.People.
+      Ensures inputs follow business rules (letters only, space/hyphen separators, proper casing, max length 50).
+    </Description>
+    <PackageTags>fluentvalidation;validation;firstname;lastname;people;names;ddd;valueobject;parsing;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\People\People.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" />
+    <Content Include="..\People\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+</Project>
