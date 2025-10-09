@@ -1,17 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
   <ItemGroup>
-    <Compile Include="..\EmailAddresses.Tests\EmailAddressTestData.cs" Link="EmailAddressTestData.cs" />
+    <ProjectReference Include="..\..\src\EmailAddresses.FluentValidation\EmailAddresses.FluentValidation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\EmailAddresses.FluentValidation\EmailAddresses.FluentValidation.csproj" />
+    <Compile Include="..\EmailAddresses.Tests\EmailAddressTestData.cs" Link="EmailAddressTestData.cs" />
   </ItemGroup>
 
 </Project>

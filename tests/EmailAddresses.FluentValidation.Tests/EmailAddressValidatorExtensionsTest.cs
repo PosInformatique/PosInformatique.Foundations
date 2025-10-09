@@ -21,5 +21,17 @@ namespace FluentValidation.Tests
 
             ruleBuilder.VerifyAll();
         }
+
+        [Fact]
+        public void MustBeEmailAddress_NullRuleBuilderArgument()
+        {
+            var act = () =>
+            {
+                EmailAddressValidatorExtensions.MustBeEmailAddress((IRuleBuilder<int, string>)null);
+            };
+
+            act.Should().ThrowExactly<ArgumentNullException>()
+                .WithParameterName("ruleBuilder");
+        }
     }
 }
