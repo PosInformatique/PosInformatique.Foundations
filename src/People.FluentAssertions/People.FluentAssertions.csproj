@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides FluentAssertions extensions for FirstName and LastName value objects
+      from PosInformatique.Foundations.People, resolving the Should() ambiguity and
+      enabling idiomatic assertions like Should().Be(string) on normalized values.
+    </Description>
+    <PackageTags>fluentassertions;assertions;testing;unittest;firstname;lastname;people;names;ddd;valueobject;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" />
+    <Content Include="..\People\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\People\People.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" />
+  </ItemGroup>
+
+</Project>
