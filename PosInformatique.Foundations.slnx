@@ -1,0 +1,64 @@
+<Solution>
+  <Folder Name="/00 - Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Icon.png" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="stylecop.json" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/.github/" />
+  <Folder Name="/00 - Solution Items/.github/workflows/">
+    <File Path=".github/workflows/github-actions-ci.yaml" />
+    <File Path=".github/workflows/github-actions-release.yaml" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/src/">
+    <File Path="src/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/tests/">
+    <File Path="tests/.editorconfig" />
+    <File Path="tests/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/EmailAddresses/">
+    <Project Path="src/EmailAddresses/EmailAddresses.csproj" />
+    <Project Path="tests/EmailAddresses.Tests/EmailAddresses.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/EntityFramework/">
+    <Project Path="src/EmailAddresses.EntityFramework/EmailAddresses.EntityFramework.csproj" />
+    <Project Path="tests/EmailAddresses.EntityFramework.Tests/EmailAddresses.EntityFramework.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/FluentValidation/">
+    <Project Path="src/EmailAddresses.FluentValidation/EmailAddresses.FluentValidation.csproj" />
+    <Project Path="tests/EmailAddresses.FluentValidation.Tests/EmailAddresses.FluentValidation.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/Json/">
+    <Project Path="src/EmailAddresses.Json/EmailAddresses.Json.csproj" />
+    <Project Path="tests/EmailAddresses.Json.Tests/EmailAddresses.Json.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/">
+    <Project Path="src/People/People.csproj" />
+    <Project Path="tests/People.Tests/People.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/DataAnnotations/">
+    <Project Path="src/People.DataAnnotations/People.DataAnnotations.csproj" />
+    <Project Path="tests/People.DataAnnotations.Tests/People.DataAnnotations.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/EntityFramework/">
+    <Project Path="src/People.EntityFramework/People.EntityFramework.csproj" />
+    <Project Path="tests/People.EntityFramework.Tests/People.EntityFramework.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/FluentAssertions/">
+    <Project Path="src/People.FluentAssertions/People.FluentAssertions.csproj" />
+    <Project Path="tests/People.FluentAssertions.Tests/People.FluentAssertions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/FluentValidation/">
+    <Project Path="src/People.FluentValidation/People.FluentValidation.csproj" />
+    <Project Path="tests/People.FluentValidation.Tests/People.FluentValidation.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/Json/">
+    <Project Path="src/People.Json/People.Json.csproj" />
+    <Project Path="tests/People.Json.Tests/People.Json.Tests.csproj" />
+  </Folder>
+</Solution>
