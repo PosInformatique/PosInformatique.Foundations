@@ -21,17 +21,17 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Restore dependencies
-        run: dotnet restore PosInformatique.Foundations.sln
+        run: dotnet restore PosInformatique.Foundations.slnx
 
       - name: Build solution
         run: |
-          dotnet build PosInformatique.Foundations.sln \
+          dotnet build PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-restore
 
       - name: Run tests
         run: |
-          dotnet test PosInformatique.Foundations.sln \
+          dotnet test PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
           --logger "trx;LogFileName=test_results.trx" \

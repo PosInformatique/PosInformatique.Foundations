@@ -27,7 +27,7 @@ jobs:
       
       - name: Build all the NuGet packages
         run: |
-          dotnet pack PosInformatique.Foundations.sln \
+          dotnet pack PosInformatique.Foundations.slnx \
           --configuration Release \
           --property:VersionPrefix=${{ github.event.inputs.VersionPrefix }} \
           --property:VersionSuffix=${{ github.event.inputs.VersionSuffix }} \
