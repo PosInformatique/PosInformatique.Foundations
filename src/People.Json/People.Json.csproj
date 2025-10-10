@@ -4,10 +4,10 @@
     <IsPackable>true</IsPackable>
 
     <Description>
-      Provides FluentValidation extensions to validate first and last names
-      using the strongly-typed FirstName and LastName value objects from PosInformatique.Foundations.People.
+      Provides System.Text.Json converters for the FirstName and LastName value objects.
+      Enables seamless serialization and deserialization of validated person names within JSON documents.
     </Description>
-    <PackageTags>fluentvalidation;validation;firstname;lastname;people;names;ddd;valueobject;parsing;dotnet;posinformatique</PackageTags>
+    <PackageTags>people;firstname;lastname;name;valueobject;ddd;json;validation;parsing;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
     </PackageReleaseNotes>
@@ -15,11 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\People\People.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" />
+    <None Remove="CHANGELOG.md" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,4 +23,9 @@
     <Content Include="..\People\Icon.png" Pack="true" PackagePath="" />
     <Content Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\People\People.csproj" />
+  </ItemGroup>
+
 </Project>

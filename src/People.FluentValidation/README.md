@@ -5,7 +5,7 @@
 
 ## Introduction
 This package provides [FluentValidation](https://fluentvalidation.net/) extensions for validating first names and last names using the
-`FirstName` and `LastName` value objects from `PosInformatique.Foundations.People`.
+`FirstName` and `LastName` value objects from [PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.People/).
 
 It simplifies the integration of robust name validation into your [FluentValidation](https://fluentvalidation.net/) rules,
 ensuring that string properties conform to the defined business rules for first and last names.

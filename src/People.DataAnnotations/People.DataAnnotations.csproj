@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides DataAnnotations attributes to validate first and last names
+      using the strongly-typed FirstName and LastName value objects from PosInformatique.Foundations.People.
+    </Description>
+    <PackageTags>dataannotations;validation;firstname;lastname;people;names;ddd;valueobject;parsing;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" />
+    <Content Include="..\People\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\People\People.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PeopleDataAnnotationsResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PeopleDataAnnotationsResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="PeopleDataAnnotationsResources.fr.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PeopleDataAnnotationsResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PeopleDataAnnotationsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

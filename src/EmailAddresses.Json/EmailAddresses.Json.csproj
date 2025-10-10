@@ -6,7 +6,6 @@
     <Description>
       Provides a System.Text.Json converter for the EmailAddress value object.
       Enables seamless serialization and deserialization of RFC 5322 compliant email addresses within JSON documents.
-      Designed to integrate smoothly with System.Text.Json options, ensuring consistent validation and parsing during JSON processing.
     </Description>
     <PackageTags>email;emailaddress;valueobject;ddd;json;rfc5322;parsing;validation;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
