@@ -22,7 +22,7 @@ namespace FluentAssertions
         /// <exception cref="ArgumentNullException">If the specified <paramref name="subject"/> argument is <see langword="null"/>.</exception>
         public static FirstNameAssertions Should(this FirstName subject)
         {
-            ArgumentNullException.ThrowIfNull(subject, nameof(subject));
+            ArgumentNullException.ThrowIfNull(subject);
 
             return new FirstNameAssertions(subject);
         }
@@ -36,7 +36,7 @@ namespace FluentAssertions
         /// <exception cref="ArgumentNullException">If the specified <paramref name="subject"/> argument is <see langword="null"/>.</exception>
         public static LastNameAssertions Should(this LastName subject)
         {
-            ArgumentNullException.ThrowIfNull(subject, nameof(subject));
+            ArgumentNullException.ThrowIfNull(subject);
 
             return new LastNameAssertions(subject);
         }

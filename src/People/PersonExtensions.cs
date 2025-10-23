@@ -20,7 +20,7 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If the specified <paramref name="person"/> argument is <see langword="null"/>.</exception>
         public static string GetFullNameForDisplay(this IPerson person)
         {
-            ArgumentNullException.ThrowIfNull(person, nameof(person));
+            ArgumentNullException.ThrowIfNull(person);
 
             return NameNormalizer.GetFullNameForDisplay(person.FirstName, person.LastName);
         }
@@ -35,7 +35,7 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If the specified <paramref name="person"/> argument is <see langword="null"/>.</exception>
         public static string GetFullNameForOrder(this IPerson person)
         {
-            ArgumentNullException.ThrowIfNull(person, nameof(person));
+            ArgumentNullException.ThrowIfNull(person);
 
             return NameNormalizer.GetFullNameForOrder(person.FirstName, person.LastName);
         }
@@ -50,7 +50,7 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If the specified <paramref name="person"/> argument is <see langword="null"/>.</exception>
         public static string GetInitials(this IPerson person)
         {
-            ArgumentNullException.ThrowIfNull(person, nameof(person));
+            ArgumentNullException.ThrowIfNull(person);
 
             return $"{person.FirstName[0]}{person.LastName[0]}";
         }

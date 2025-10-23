@@ -27,7 +27,7 @@ namespace FluentValidation
         /// <exception cref="ArgumentNullException">If the specified <paramref name="ruleBuilder"/> argument is <see langword="null"/>.</exception>
         public static IRuleBuilderOptions<T, string> MustBeEmailAddress<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
-            ArgumentNullException.ThrowIfNull(ruleBuilder, nameof(ruleBuilder));
+            ArgumentNullException.ThrowIfNull(ruleBuilder);
 
             return ruleBuilder.SetValidator(new EmailAddressValidator<T>());
         }

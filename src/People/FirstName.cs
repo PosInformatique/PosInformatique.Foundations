@@ -80,7 +80,7 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If <paramref name="firstName"/> is <see langword="null"/>.</exception>
         public static implicit operator string(FirstName firstName)
         {
-            ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
+            ArgumentNullException.ThrowIfNull(firstName);
 
             return firstName.ToString();
         }

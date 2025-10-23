@@ -273,7 +273,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var act = () =>
             {
-                string toStringValue = (EmailAddress)null;
+                string _ = (EmailAddress)null;
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
@@ -298,7 +298,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var act = () =>
             {
-                EmailAddress toStringValue = (string)null;
+                EmailAddress _ = (string)null;
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()

@@ -26,11 +26,11 @@ namespace Microsoft.EntityFrameworkCore
         /// <exception cref="ArgumentException">If the specified <typeparamref name="T"/> generic type is not a <see cref="EmailAddress"/>.</exception>
         public static PropertyBuilder<T> IsEmailAddress<T>(this PropertyBuilder<T> property)
         {
-            ArgumentNullException.ThrowIfNull(property, nameof(property));
+            ArgumentNullException.ThrowIfNull(property);
 
             if (typeof(T) != typeof(EmailAddress))
             {
-                throw new ArgumentException($"The '{nameof(IsEmailAddress)}()' method must be called on '{nameof(EmailAddress)} class.", nameof(T));
+                throw new ArgumentException($"The '{nameof(IsEmailAddress)}()' method must be called on '{nameof(EmailAddress)} class.", nameof(property));
             }
 
             return property

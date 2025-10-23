@@ -22,9 +22,9 @@ namespace System.Text.Json
         /// <exception cref="ArgumentNullException">If the specified <paramref name="options"/> argument is <see langword="null"/>.</exception>
         public static JsonSerializerOptions AddEmailAddressesConverters(this JsonSerializerOptions options)
         {
-            ArgumentNullException.ThrowIfNull(options, nameof(options));
+            ArgumentNullException.ThrowIfNull(options);
 
-            if (!options.Converters.Any(c => c.GetType() == typeof(EmailAddressJsonConverter)))
+            if (!options.Converters.Any(c => c is EmailAddressJsonConverter))
             {
                 options.Converters.Add(new EmailAddressJsonConverter());
             }

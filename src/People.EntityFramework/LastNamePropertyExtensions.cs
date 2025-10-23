@@ -25,7 +25,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <exception cref="ArgumentNullException">If the specified <paramref name="property"/> argument is <see langword="null"/>.</exception>
         public static PropertyBuilder<LastName> IsLastName(this PropertyBuilder<LastName> property)
         {
-            ArgumentNullException.ThrowIfNull(property, nameof(property));
+            ArgumentNullException.ThrowIfNull(property);
 
             return property
                 .IsUnicode(true)

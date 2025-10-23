@@ -22,8 +22,8 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If the specified <paramref name="lastName"/> argument is <see langword="null"/>.</exception>
         public static string GetFullNameForDisplay(FirstName firstName, LastName lastName)
         {
-            ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
-            ArgumentNullException.ThrowIfNull(lastName, nameof(lastName));
+            ArgumentNullException.ThrowIfNull(firstName);
+            ArgumentNullException.ThrowIfNull(lastName);
 
             return $"{firstName} {lastName}";
         }
@@ -39,8 +39,8 @@ namespace PosInformatique.Foundations.People
         /// <exception cref="ArgumentNullException">If the specified <paramref name="lastName"/> argument is <see langword="null"/>.</exception>
         public static string GetFullNameForOrder(FirstName firstName, LastName lastName)
         {
-            ArgumentNullException.ThrowIfNull(firstName, nameof(firstName));
-            ArgumentNullException.ThrowIfNull(lastName, nameof(lastName));
+            ArgumentNullException.ThrowIfNull(firstName);
+            ArgumentNullException.ThrowIfNull(lastName);
 
             return $"{lastName} {firstName}";
         }

@@ -54,8 +54,8 @@ namespace Microsoft.EntityFrameworkCore.Tests
             };
 
             act.Should().ThrowExactly<ArgumentException>()
-                .WithMessage("The 'IsEmailAddress()' method must be called on 'EmailAddress class. (Parameter 'T')")
-                .WithParameterName("T");
+                .WithMessage("The 'IsEmailAddress()' method must be called on 'EmailAddress class. (Parameter 'property')")
+                .WithParameterName("property");
         }
 
         [Theory]

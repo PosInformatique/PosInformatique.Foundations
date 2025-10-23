@@ -22,14 +22,14 @@ namespace System.Text.Json
         /// <exception cref="ArgumentNullException">If the specified <paramref name="options"/> argument is <see langword="null"/>.</exception>
         public static JsonSerializerOptions AddPeopleConverters(this JsonSerializerOptions options)
         {
-            ArgumentNullException.ThrowIfNull(options, nameof(options));
+            ArgumentNullException.ThrowIfNull(options);
 
-            if (!options.Converters.Any(c => c.GetType() == typeof(FirstNameJsonConverter)))
+            if (!options.Converters.Any(c => c is FirstNameJsonConverter))
             {
                 options.Converters.Add(new FirstNameJsonConverter());
             }
 
-            if (!options.Converters.Any(c => c.GetType() == typeof(LastNameJsonConverter)))
+            if (!options.Converters.Any(c => c is LastNameJsonConverter))
             {
                 options.Converters.Add(new LastNameJsonConverter());
             }

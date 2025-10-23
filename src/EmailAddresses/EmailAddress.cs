@@ -66,7 +66,7 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="emailAddress"/> argument is <see langword="null"/>.</exception>
         public static implicit operator string(EmailAddress emailAddress)
         {
-            ArgumentNullException.ThrowIfNull(emailAddress, nameof(emailAddress));
+            ArgumentNullException.ThrowIfNull(emailAddress);
 
             return emailAddress.value;
         }
@@ -80,7 +80,7 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="emailAddress"/> argument is <see langword="null"/>.</exception>
         public static implicit operator EmailAddress(string emailAddress)
         {
-            ArgumentNullException.ThrowIfNull(emailAddress, nameof(emailAddress));
+            ArgumentNullException.ThrowIfNull(emailAddress);
 
             return Parse(emailAddress, null);
         }
@@ -160,7 +160,7 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <exception cref="FormatException">Thrown when the string is not a valid email address.</exception>
         public static EmailAddress Parse(string s)
         {
-            ArgumentNullException.ThrowIfNull(s, nameof(s));
+            ArgumentNullException.ThrowIfNull(s);
 
             return Parse(s, null);
         }
@@ -175,7 +175,7 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <exception cref="FormatException">Thrown when the string is not a valid email address.</exception>
         public static EmailAddress Parse(string s, IFormatProvider? provider)
         {
-            ArgumentNullException.ThrowIfNull(s, nameof(s));
+            ArgumentNullException.ThrowIfNull(s);
 
             if (!TryParse(s, out var result))
             {
