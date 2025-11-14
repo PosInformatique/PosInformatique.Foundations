@@ -1,4 +1,4 @@
-# PosInformatique.Foundations.EmailAddresses.Json
+﻿# PosInformatique.Foundations.EmailAddresses.Json
 
 [![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.Json)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.EmailAddresses.Json)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
@@ -33,7 +33,8 @@ This package depends on the base package [PosInformatique.Foundations.EmailAddre
 ```csharp
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PosInformatique.Foundations;
+using PosInformatique.Foundations.EmailAddresses;
+using PosInformatique.Foundations.EmailAddresses.Json;
 
 public class UserDto
 {
@@ -55,7 +56,7 @@ Console.WriteLine(deserialized!.Email); // "alice@company.org"
 ### Example 2: Use extension method without attributes
 ```csharp
 using System.Text.Json;
-using PosInformatique.Foundations;
+using PosInformatique.Foundations.EmailAddresses;
 
 public class CustomerDto
 {

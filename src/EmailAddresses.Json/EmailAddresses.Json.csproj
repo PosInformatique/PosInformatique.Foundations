@@ -4,10 +4,10 @@
     <IsPackable>true</IsPackable>
 
     <Description>
-      Provides a System.Text.Json converter for the EmailAddress value object.
-      Enables seamless serialization and deserialization of RFC 5322 compliant email addresses within JSON documents.
+      Provides a System.Text.Json converter for the MimeType value object.
+      Enables seamless serialization and deserialization of MIME types within JSON documents.
     </Description>
-    <PackageTags>email;emailaddress;valueobject;ddd;json;rfc5322;parsing;validation;dotnet;posinformatique</PackageTags>
+    <PackageTags>mimetype;mediatype;contenttype;valueobject;ddd;json;parsing;validation;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
     </PackageReleaseNotes>
