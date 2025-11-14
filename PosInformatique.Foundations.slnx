@@ -37,6 +37,10 @@
     <Project Path="src/EmailAddresses.Json/EmailAddresses.Json.csproj" />
     <Project Path="tests/EmailAddresses.Json.Tests/EmailAddresses.Json.Tests.csproj" />
   </Folder>
+  <Folder Name="/MediaTypes/">
+    <Project Path="src/MediaTypes/MediaTypes.csproj" Id="31039dbf-ee6f-414c-8345-b92a6bc3e60a" />
+    <Project Path="tests/MediaTypes.Tests/MediaTypes.Tests.csproj" Id="1cee2c26-ceb5-43c8-a5c9-98ced675385c" />
+  </Folder>
   <Folder Name="/People/">
     <Project Path="src/People/People.csproj" />
     <Project Path="tests/People.Tests/People.Tests.csproj" />
