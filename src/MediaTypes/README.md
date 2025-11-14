@@ -95,6 +95,12 @@ if (image.IsImage())
 {
     Console.WriteLine("This is an image type.");
 }
+
+var drawing = MimeTypes.Image.Dwg;
+if (drawing.IsAutoCad())
+{
+    Console.WriteLine("This is an AutoCAD drawing type.");
+}
 ```
 
 ## API overview
@@ -118,21 +124,24 @@ if (image.IsImage())
 Provides common media types and mapping helpers.
 
 - `MimeTypes.Application`
-  - `MimeType OctetStream` (`application/octet-stream`)
-  - `MimeType Pdf` (`application/pdf`)
-  - `MimeType Docx` (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`)
+  - `OctetStream` (`application/octet-stream`)
+  - `Pdf` (`application/pdf`)
+  - `Docx` (`application/vnd.openxmlformats-officedocument.wordprocessingml.document`)
 
 - `MimeTypes.Image`
-  - `MimeType Bmp` (`image/bmp`)
-  - `MimeType Jpeg` (`image/jpeg`)
-  - `MimeType Png` (`image/png`)
-  - `MimeType Tiff` (`image/tiff`)
-  - `MimeType WebP` (`image/webp`)
+  - `Bmp` (`image/bmp`)
+  - `Dxf` (`image/x-dxf`)
+  - `Dwg` (`image/x-dwg`)
+  - `Jpeg` (`image/jpeg`)
+  - `Png` (`image/png`)
+  - `Tiff` (`image/tiff`)
+  - `WebP` (`image/webp`)
 
 ### MimeTypeExtensions
 
-- `bool IsPdf(this MimeType mimeType)`
+- `bool IsAutoCad(this MimeType mimeType)`
 - `bool IsImage(this MimeType mimeType)`
+- `bool IsPdf(this MimeType mimeType)`
 
 ## Links
 

@@ -17,6 +17,8 @@ namespace PosInformatique.Foundations.MediaTypes
             { "pdf", Application.Pdf },
             { "docx", Application.Docx },
             { "bmp", Image.Bmp },
+            { "dxf", Image.Dxf },
+            { "dwg", Image.Dwg },
             { "jpg", Image.Jpeg },
             { "jpeg", Image.Jpeg },
             { "png", Image.Png },
@@ -30,6 +32,8 @@ namespace PosInformatique.Foundations.MediaTypes
             { Application.Pdf, "pdf" },
             { Application.Docx, "docx" },
             { Image.Bmp, "bmp" },
+            { Image.Dxf, "dxf" },
+            { Image.Dwg, "dwg" },
             { Image.Jpeg, "jpg" },
             { Image.Png, "png" },
             { Image.Tiff, "tiff" },
@@ -93,6 +97,16 @@ namespace PosInformatique.Foundations.MediaTypes
             /// Gets the media type <c>image/bmp</c>.
             /// </summary>
             public static MimeType Bmp { get; } = MimeType.Parse("image/bmp", null);
+
+            /// <summary>
+            /// Gets the media type <c>image/x-dxf</c>.
+            /// </summary>
+            public static MimeType Dxf { get; } = MimeType.Parse("image/x-dxf");
+
+            /// <summary>
+            /// Gets the media type <c>image/x-dwg</c>.
+            /// </summary>
+            public static MimeType Dwg { get; } = MimeType.Parse("image/x-dwg");
 
             /// <summary>
             /// Gets the media type <c>image/jpeg</c>.

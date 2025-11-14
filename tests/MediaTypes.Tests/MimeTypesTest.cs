@@ -54,6 +54,24 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Fact]
+        public void Image_Dxf()
+        {
+            MimeTypes.Image.Dxf.Should().BeSameAs(MimeTypes.Image.Dxf);
+
+            MimeTypes.Image.Dxf.Type.Should().Be("image");
+            MimeTypes.Image.Dxf.Subtype.Should().Be("x-dxf");
+        }
+
+        [Fact]
+        public void Image_Dwg()
+        {
+            MimeTypes.Image.Dwg.Should().BeSameAs(MimeTypes.Image.Dwg);
+
+            MimeTypes.Image.Dwg.Type.Should().Be("image");
+            MimeTypes.Image.Dwg.Subtype.Should().Be("x-dwg");
+        }
+
+        [Fact]
         public void Image_Png()
         {
             MimeTypes.Image.Png.Should().BeSameAs(MimeTypes.Image.Png);

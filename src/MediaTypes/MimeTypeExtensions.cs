@@ -12,6 +12,29 @@ namespace PosInformatique.Foundations.MediaTypes
     public static class MimeTypeExtensions
     {
         /// <summary>
+        /// Determines whether the specified media type represents an AutoCAD drawing.
+        /// </summary>
+        /// <param name="mimeType">The media type to check.</param>
+        /// <returns><see langword="true" /> if the media type is <c>image/x-dxf</c> or <c>image/x-dwg</c>; otherwise, <see langword="false" />.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the <paramref name="mimeType"/> argument is <see langword="null"/>.</exception>
+        public static bool IsAutoCad(this MimeType mimeType)
+        {
+            ArgumentNullException.ThrowIfNull(mimeType);
+
+            if (mimeType == MimeTypes.Image.Dxf)
+            {
+                return true;
+            }
+
+            if (mimeType == MimeTypes.Image.Dwg)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Determines whether the specified media type represents a PDF document.
         /// </summary>
         /// <param name="mimeType">The media type to check.</param>
@@ -25,7 +48,7 @@ namespace PosInformatique.Foundations.MediaTypes
         }
 
         /// <summary>
-        /// Determines whether the specified media type represents an image media type.
+        /// Determines whether the specified media type represents an image media type (the AutoCAD drawing are excluded).
         /// </summary>
         /// <param name="mimeType">The media type to check.</param>
         /// <returns><see langword="true" /> if the media type is in the image/* family; otherwise, <see langword="false" />.</returns>
@@ -34,7 +57,7 @@ namespace PosInformatique.Foundations.MediaTypes
         {
             ArgumentNullException.ThrowIfNull(mimeType);
 
-            return mimeType.Type == "image";
+            return mimeType.Type == "image" && !IsAutoCad(mimeType);
         }
     }
 }
