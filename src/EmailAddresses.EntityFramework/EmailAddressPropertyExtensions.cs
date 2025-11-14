@@ -11,7 +11,7 @@ namespace Microsoft.EntityFrameworkCore
     using PosInformatique.Foundations.EmailAddresses;
 
     /// <summary>
-    /// Contains extension method to map a <see cref="EmailAddress"/> to a string column.
+    /// Contains extension methods to map a <see cref="EmailAddress"/> to a string column.
     /// </summary>
     public static class EmailAddressPropertyExtensions
     {

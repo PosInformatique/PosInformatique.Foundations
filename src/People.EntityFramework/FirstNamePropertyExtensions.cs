@@ -12,7 +12,7 @@ namespace Microsoft.EntityFrameworkCore
     using PosInformatique.Foundations.People;
 
     /// <summary>
-    /// Contains extension method to map a <see cref="FirstName"/> to a string column.
+    /// Contains extension methods to map a <see cref="FirstName"/> to a string column.
     /// </summary>
     public static class FirstNamePropertyExtensions
     {

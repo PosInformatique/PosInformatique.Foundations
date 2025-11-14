@@ -41,6 +41,10 @@
     <Project Path="src/MediaTypes/MediaTypes.csproj" Id="31039dbf-ee6f-414c-8345-b92a6bc3e60a" />
     <Project Path="tests/MediaTypes.Tests/MediaTypes.Tests.csproj" Id="1cee2c26-ceb5-43c8-a5c9-98ced675385c" />
   </Folder>
+  <Folder Name="/MediaTypes/EntityFramework/">
+    <Project Path="src/MediaTypes.EntityFramework/MediaTypes.EntityFramework.csproj" />
+    <Project Path="tests/MediaTypes.EntityFramework.Tests/MediaTypes.EntityFramework.Tests.csproj" Id="2b9a0a27-fe1b-4126-adb8-d631b0d2f871" />
+  </Folder>
   <Folder Name="/MediaTypes/Json/">
     <Project Path="src/MediaTypes.Json/MediaTypes.Json.csproj" Id="c229cdff-764d-4899-b763-e6b7a866dc2c" />
     <Project Path="tests/MediaTypes.Json.Tests/MediaTypes.Json.Tests.csproj" Id="b74c878a-ad2f-470b-82c9-7fe79ecc9ff1" />
