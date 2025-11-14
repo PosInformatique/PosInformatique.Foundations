@@ -1,5 +1,10 @@
 ﻿[*.cs]
 
+#### Code Analysis ####
+
+# CA1806: Do not ignore method results
+dotnet_diagnostic.CA1806.severity = none
+
 #### Sonar Analyzers ####
 
 # S1144: Unused private types or members should be removed
@@ -18,3 +23,8 @@ dotnet_diagnostic.SA1312.severity = none
 
 # SA1600: Elements should be documented
 dotnet_diagnostic.SA1600.severity = none
+
+#### Visual Studio ####
+
+# IDE0017: Simplify object initialization
+dotnet_diagnostic.IDE0017.severity = none

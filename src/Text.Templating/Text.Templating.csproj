@@ -4,10 +4,11 @@
     <IsPackable>true</IsPackable>
 
     <Description>
-      Provides a lightweight and immutable MimeType value object to represent media types (MIME types) in .NET.
-      Includes parsing, safe parsing, well-known application/* and image/* media types, and helpers to map between file extensions and media types.
+      Provides foundational abstractions for text templating, including the TextTemplate&lt;TModel&gt; base class
+      and ITextTemplateRenderContext interface, to be used by templating engine implementations
+      such as Razor-based text templates.
     </Description>
-    <PackageTags>mimetype;media-type;content-type;file-extension;valueobject;ddd;dotnet;posinformatique</PackageTags>
+    <PackageTags>text;templating;template;foundation;razor;abstraction;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
     </PackageReleaseNotes>

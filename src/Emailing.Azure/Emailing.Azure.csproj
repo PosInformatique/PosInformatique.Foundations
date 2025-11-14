@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides an IEmailProvider implementation for PosInformatique.Foundations.Emailing using Azure Communication Service.
+      Uses Azure.Communication.Email.EmailClient to send templated emails and can be configured via AddEmailing().UseAzureCommunicationService(), including EmailClient and EmailClientOptions customization.
+    </Description>
+    <PackageTags>email;emailing;azure;azurecommunicationservice;communication;emailclient;provider;dotnet;dependencyinjection;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Communication.Email" />
+    <PackageReference Include="Microsoft.Extensions.Azure" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Emailing\Emailing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\Emailing\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
