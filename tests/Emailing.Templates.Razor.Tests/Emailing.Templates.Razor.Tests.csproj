@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Emailing.Templates.Razor\Emailing.Templates.Razor.csproj" />
+  </ItemGroup>
+
+</Project>

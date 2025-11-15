@@ -157,6 +157,7 @@ As long as `IDateTimeProvider` and `IMyFormatter` are registered in the `IServic
 
 ## Links
 
+- [NuGet package: Emailing.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Templates.Razor/)
 - [NuGet package: Text.Templating (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
 - [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)
