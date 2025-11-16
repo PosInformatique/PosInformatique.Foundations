@@ -82,7 +82,7 @@ namespace PosInformatique.Foundations.EmailAddresses
         {
             ArgumentNullException.ThrowIfNull(emailAddress);
 
-            return Parse(emailAddress, null);
+            return Parse(emailAddress);
         }
 
         /// <summary>
@@ -162,7 +162,12 @@ namespace PosInformatique.Foundations.EmailAddresses
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            return Parse(s, null);
+            if (!TryParse(s, out var result))
+            {
+                throw new FormatException($"'{s}' is not a valid email address.");
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -173,16 +178,11 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <returns>An <see cref="EmailAddress"/> instance.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="s"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="FormatException">Thrown when the string is not a valid email address.</exception>
-        public static EmailAddress Parse(string s, IFormatProvider? provider)
+        static EmailAddress IParsable<EmailAddress>.Parse(string s, IFormatProvider? provider)
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            if (!TryParse(s, out var result))
-            {
-                throw new FormatException($"'{s}' is not a valid email address.");
-            }
-
-            return result;
+            return Parse(s);
         }
 
         /// <summary>
@@ -192,18 +192,6 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// <param name="result">When this method returns, contains the parsed <see cref="EmailAddress"/> if the parsing succeeded, or <see langword="null"/> if it failed.</param>
         /// <returns><see langword="true"/> if the parsing succeeded; otherwise, <see langword="false"/>.</returns>
         public static bool TryParse([NotNullWhen(true)] string? s, [MaybeNullWhen(false)][NotNullWhen(true)] out EmailAddress? result)
-        {
-            return TryParse(s, null, out result);
-        }
-
-        /// <summary>
-        /// Tries to parse a string representation of an email address using the specified format provider.
-        /// </summary>
-        /// <param name="s">The string to parse.</param>
-        /// <param name="provider">The format provider (not used in this implementation).</param>
-        /// <param name="result">When this method returns, contains the parsed <see cref="EmailAddress"/> if the parsing succeeded, or <see langword="null"/> if it failed.</param>
-        /// <returns><see langword="true"/> if the parsing succeeded; otherwise, <see langword="false"/>.</returns>
-        public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)][NotNullWhen(true)] out EmailAddress? result)
         {
             var emailAddress = TryParse(s);
 
@@ -215,6 +203,18 @@ namespace PosInformatique.Foundations.EmailAddresses
 
             result = new EmailAddress(emailAddress);
             return true;
+        }
+
+        /// <summary>
+        /// Tries to parse a string representation of an email address using the specified format provider.
+        /// </summary>
+        /// <param name="s">The string to parse.</param>
+        /// <param name="provider">The format provider (not used in this implementation).</param>
+        /// <param name="result">When this method returns, contains the parsed <see cref="EmailAddress"/> if the parsing succeeded, or <see langword="null"/> if it failed.</param>
+        /// <returns><see langword="true"/> if the parsing succeeded; otherwise, <see langword="false"/>.</returns>
+        static bool IParsable<EmailAddress>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)][NotNullWhen(true)] out EmailAddress? result)
+        {
+            return TryParse(s, out result);
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            var address = EmailAddress.Parse(emailAddress, formatProvider);
+            var address = CallParse<EmailAddress>(emailAddress, formatProvider);
 
             address.ToString().Should().Be(expectedEmailAddress);
             address.As<IFormattable>().ToString(null, null).Should().Be(expectedEmailAddress);
@@ -65,7 +65,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var act = () =>
             {
-                EmailAddress.Parse(null, default);
+                CallParse<EmailAddress>(null, default);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
@@ -78,7 +78,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            var act = () => EmailAddress.Parse(invalidEmailAdddress, formatProvider);
+            var act = () => CallParse<EmailAddress>(invalidEmailAdddress, formatProvider);
 
             act.Should().ThrowExactly<FormatException>()
                 .WithMessage($"'{invalidEmailAdddress}' is not a valid email address.");
@@ -119,7 +119,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            var result = EmailAddress.TryParse(emailAddress, formatProvider, out var address);
+            var result = CallTryParse<EmailAddress>(emailAddress, formatProvider, out var address);
 
             result.Should().BeTrue();
 
@@ -136,7 +136,7 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            var result = EmailAddress.TryParse(invalidEmailAdddress, formatProvider, out var address);
+            var result = CallTryParse<EmailAddress>(invalidEmailAdddress, formatProvider, out var address);
 
             result.Should().BeFalse();
             address.Should().BeNull();
@@ -362,6 +362,18 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         public void Operator_GreaterThanOrEqual(string emailAddress1, string emailAddress2, bool expectedResult)
         {
             ((emailAddress1 is not null ? EmailAddress.Parse(emailAddress1) : null) >= (emailAddress2 is not null ? EmailAddress.Parse(emailAddress2) : null)).Should().Be(expectedResult);
+        }
+
+        private static T CallParse<T>(string s, IFormatProvider formatProvider)
+            where T : IParsable<T>
+        {
+            return T.Parse(s, formatProvider);
+        }
+
+        private static bool CallTryParse<T>(string s, IFormatProvider formatProvider, out T result)
+            where T : IParsable<T>
+        {
+            return T.TryParse(s, formatProvider, out result);
         }
     }
 }
