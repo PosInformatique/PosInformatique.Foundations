@@ -1,5 +1,10 @@
 ﻿[*.cs]
 
+#### Blazor ####
+
+# BL0005: Component parameter should not be set outside of its component.
+dotnet_diagnostic.BL0005.severity = none
+
 #### Code Analysis ####
 
 # CA1806: Do not ignore method results
