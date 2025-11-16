@@ -264,6 +264,14 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
             mimeType.ToString().Should().Be("text/plain");
         }
 
+        [Fact]
+        public void ToString_IFormattable_Test()
+        {
+            var mimeType = MimeType.Parse("text/plain");
+
+            mimeType.As<IFormattable>().ToString(null, null).Should().Be("text/plain");
+        }
+
         private static MimeType GetMimeTypeFromPath(string path)
         {
             var properties = path.Split(".");

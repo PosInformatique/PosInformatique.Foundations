@@ -22,6 +22,7 @@ dotnet add package PosInformatique.Foundations.MediaTypes
 
 - Immutable `MimeType` value object (`type/subtype`, e.g. `application/json`, `image/png`).
 - Parsing and safe parsing from `string` (`Parse` / `TryParse`).
+- Provides `IFormattable` and `IParsable<T>` for seamless integration with .NET APIs
 - Resolve a `MimeType` from a file extension (with or without leading dot).
 - Resolve a default file extension from a `MimeType`.
 - Set of common `application/*` and `image/*` media types.

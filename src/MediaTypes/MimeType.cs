@@ -12,7 +12,7 @@ namespace PosInformatique.Foundations.MediaTypes
     /// Represents an immutable media type (formerly known as MIME type),
     /// composed of a type and a subtype, such as <c>application/json</c> or <c>image/png</c>.
     /// </summary>
-    public sealed class MimeType : IEquatable<MimeType>, IParsable<MimeType>
+    public sealed class MimeType : IEquatable<MimeType>, IFormattable, IParsable<MimeType>
     {
         private MimeType(string type, string subtype)
         {
@@ -188,6 +188,12 @@ namespace PosInformatique.Foundations.MediaTypes
         public override string ToString()
         {
             return $"{this.Type}/{this.Subtype}";
+        }
+
+        /// <inheritdoc />
+        string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return this.ToString();
         }
 
         /// <summary>
