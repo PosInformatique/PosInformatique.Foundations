@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a strongly-typed PhoneNumber value object that represents phone numbers in the E.164 format.
+      Includes parsing (with optional region for local numbers), validation, comparison, and formatting helpers for international and national representations.
+    </Description>
+    <PackageTags>phone;phonenumber;valueobject;ddd;e164;parsing;validation;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="libphonenumber-csharp" />
+  </ItemGroup>
+
+</Project>

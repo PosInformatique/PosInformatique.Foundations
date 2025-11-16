@@ -86,6 +86,10 @@
     <Project Path="src/People.Json/People.Json.csproj" />
     <Project Path="tests/People.Json.Tests/People.Json.Tests.csproj" />
   </Folder>
+  <Folder Name="/PhoneNumbers/">
+    <Project Path="src/PhoneNumbers/PhoneNumbers.csproj" Id="fc8fcbb7-9dab-4175-afb5-d09a8cdd5c0b" />
+    <Project Path="tests/PhoneNumbers.Tests/PhoneNumbers.Tests.csproj" Id="b087193b-59b0-4b67-a7cd-34784ccffa1b" />
+  </Folder>
   <Folder Name="/Text/" />
   <Folder Name="/Text/Templating/">
     <Project Path="src/Text.Templating/Text.Templating.csproj" Id="25d9a572-5f28-4e35-9836-8f8d70617e0d" />

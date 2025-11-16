@@ -76,8 +76,8 @@ namespace PosInformatique.Foundations.EmailAddresses
         /// </summary>
         /// <param name="emailAddress">The string to convert to an email address.</param>
         /// <returns>An <see cref="EmailAddress"/> instance.</returns>
-        /// <exception cref="FormatException">Thrown when the string is not a valid email address.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="emailAddress"/> argument is <see langword="null"/>.</exception>
+        /// <exception cref="FormatException">Thrown when the string is not a valid email address.</exception>
         public static implicit operator EmailAddress(string emailAddress)
         {
             ArgumentNullException.ThrowIfNull(emailAddress);
