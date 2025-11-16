@@ -37,8 +37,6 @@ dotnet add package PosInformatique.Foundations.Emailing.Azure
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
 using PosInformatique.Foundations.EmailAddresses;
-using PosInformatique.Foundations.Emailing;
-using PosInformatique.Foundations.Emailing.Azure;
 
 var services = new ServiceCollection();
 
@@ -66,8 +64,6 @@ using Azure.Communication.Email;
 using Azure.Identity;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
-using PosInformatique.Foundations.Emailing;
-using PosInformatique.Foundations.Emailing.Azure;
 
 var services = new ServiceCollection();
 

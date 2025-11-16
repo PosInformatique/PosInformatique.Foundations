@@ -4,10 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Emailing
+namespace Microsoft.Extensions.DependencyInjection
 {
-    using Microsoft.Extensions.DependencyInjection;
-
     /// <summary>
     /// Used to configure e-mailing feature.
     /// </summary>

@@ -4,12 +4,14 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Emailing.Azure
+namespace Microsoft.Extensions.DependencyInjection
 {
     using global::Azure.Communication.Email;
     using global::Azure.Core.Extensions;
     using Microsoft.Extensions.Azure;
     using Microsoft.Extensions.DependencyInjection.Extensions;
+    using PosInformatique.Foundations.Emailing;
+    using PosInformatique.Foundations.Emailing.Azure;
 
     /// <summary>
     /// Extension methods to configure the <c>Azure Communication Service</c> provider

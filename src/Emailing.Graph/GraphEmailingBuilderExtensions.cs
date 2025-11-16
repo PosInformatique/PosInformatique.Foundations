@@ -4,11 +4,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Emailing.Graph
+namespace Microsoft.Extensions.DependencyInjection
 {
     using Azure.Core;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Graph;
+    using PosInformatique.Foundations.Emailing;
+    using PosInformatique.Foundations.Emailing.Graph;
 
     /// <summary>
     /// Extension methods to configure the <c>Azure Communication Service</c> provider
