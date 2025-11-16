@@ -24,7 +24,7 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="PosInformatique.FluentAssertions.Json" Version="1.6.0" />
-    <PackageVersion Include="PosInformatique.Moq.Analyzers" Version="2.0.1-rc.2" />
+    <PackageVersion Include="PosInformatique.Moq.Analyzers" Version="2.0.1" />
     <PackageVersion Include="Scriban" Version="6.5.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
