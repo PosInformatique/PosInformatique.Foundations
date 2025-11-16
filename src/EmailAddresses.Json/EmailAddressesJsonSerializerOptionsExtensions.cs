@@ -1,17 +1,19 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailAddressJsonSerializerOptionsExtensions.cs" company="P.O.S Informatique">
+// <copyright file="EmailAddressesJsonSerializerOptionsExtensions.cs" company="P.O.S Informatique">
 //     Copyright (c) P.O.S Informatique. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
 namespace System.Text.Json
 {
+    using PosInformatique.Foundations.EmailAddresses;
     using PosInformatique.Foundations.EmailAddresses.Json;
 
     /// <summary>
-    /// Contains extension methods to configure <see cref="JsonSerializerOptions"/>.
+    /// Contains extension methods to configure <see cref="JsonSerializerOptions"/> for <see cref="EmailAddress"/>
+    /// JSON serialization.
     /// </summary>
-    public static class EmailAddressJsonSerializerOptionsExtensions
+    public static class EmailAddressesJsonSerializerOptionsExtensions
     {
         /// <summary>
         /// Registers the <see cref="EmailAddressJsonConverter"/> to the <paramref name="options"/>.

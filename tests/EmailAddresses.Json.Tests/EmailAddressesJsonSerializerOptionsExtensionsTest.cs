@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailAddressJsonSerializerOptionsExtensionsTest.cs" company="P.O.S Informatique">
+// <copyright file="EmailAddressesJsonSerializerOptionsExtensionsTest.cs" company="P.O.S Informatique">
 //     Copyright (c) P.O.S Informatique. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -8,7 +8,7 @@ namespace System.Text.Json.Tests
 {
     using PosInformatique.Foundations.EmailAddresses.Json;
 
-    public class EmailAddressJsonSerializerOptionsExtensionsTest
+    public class EmailAddressesJsonSerializerOptionsExtensionsTest
     {
         [Fact]
         public void AddEmailAddressesConverters()
@@ -32,7 +32,7 @@ namespace System.Text.Json.Tests
         {
             var act = () =>
             {
-                EmailAddressJsonSerializerOptionsExtensions.AddEmailAddressesConverters(null);
+                EmailAddressesJsonSerializerOptionsExtensions.AddEmailAddressesConverters(null);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
