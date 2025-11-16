@@ -90,6 +90,10 @@
     <Project Path="src/PhoneNumbers/PhoneNumbers.csproj" Id="fc8fcbb7-9dab-4175-afb5-d09a8cdd5c0b" />
     <Project Path="tests/PhoneNumbers.Tests/PhoneNumbers.Tests.csproj" Id="b087193b-59b0-4b67-a7cd-34784ccffa1b" />
   </Folder>
+  <Folder Name="/PhoneNumbers/Json/">
+    <Project Path="src/PhoneNumbers.Json/PhoneNumbers.Json.csproj" Id="ba6614aa-3b78-4bc6-a22d-9389bfa6e133" />
+    <Project Path="tests/PhoneNumbers.Json.Tests/PhoneNumbers.Json.Tests.csproj" Id="65c8dd1e-6f18-4ad6-a261-3bc8dd96d00a" />
+  </Folder>
   <Folder Name="/Text/" />
   <Folder Name="/Text/Templating/">
     <Project Path="src/Text.Templating/Text.Templating.csproj" Id="25d9a572-5f28-4e35-9836-8f8d70617e0d" />

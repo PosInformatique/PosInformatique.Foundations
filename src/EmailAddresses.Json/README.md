@@ -5,7 +5,8 @@
 
 ## Introduction
 Provides a **System.Text.Json** converter for the `EmailAddress` value object from
-[PosInformatique.Foundations.EmailAddresses](../EmailAddresses/README.md). Enables seamless serialization and deserialization of **RFC 5322 compliant** email addresses within JSON documents.
+[PosInformatique.Foundations.EmailAddresses](../EmailAddresses/README.md). Enables seamless serialization and deserialization
+of **RFC 5322 compliant** email addresses within JSON documents.
 
 ## Install
 You can install the package from NuGet:

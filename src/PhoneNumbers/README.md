@@ -154,5 +154,6 @@ Console.WriteLine(formatted); // "+33123456789"
 
 ## Links
 
-- [NuGet package](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers/)
+- [NuGet package (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers/)
+- [NuGet package: PhoneNumbers.Json](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers.Json/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)
