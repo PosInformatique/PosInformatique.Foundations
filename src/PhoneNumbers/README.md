@@ -156,5 +156,6 @@ Console.WriteLine(formatted); // "+33123456789"
 
 - [NuGet package (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers/)
 - [NuGet package: PhoneNumbers.EntityFramework](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers.EntityFramework/)
+- [NuGet package: PhoneNumbers.FluentValidation](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers.FluentValidation/)
 - [NuGet package: PhoneNumbers.Json](https://www.nuget.org/packages/PosInformatique.Foundations.PhoneNumbers.Json/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

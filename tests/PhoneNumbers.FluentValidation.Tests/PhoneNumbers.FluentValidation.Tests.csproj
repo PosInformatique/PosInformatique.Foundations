@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Compile Include="..\PhoneNumbers.Tests\PhoneNumberTestData.cs" Link="PhoneNumberTestData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PhoneNumbers.FluentValidation\PhoneNumbers.FluentValidation.csproj" />
+  </ItemGroup>
+
+</Project>
