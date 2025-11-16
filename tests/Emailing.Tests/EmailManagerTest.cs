@@ -174,14 +174,14 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Fact]
-        public void SendAsync_WithNullIdentifier()
+        public async Task SendAsync_WithNullIdentifier()
         {
             var options = new EmailingOptions();
             options.SenderEmailAddress = EmailAddress.Parse("sender@domain.com");
 
             var manager = new EmailManager(Options.Create(options), default, default);
 
-            manager.Invoking(m => m.SendAsync<Model>(null, default))
+            await manager.Invoking(m => m.SendAsync<Model>(null, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("template");
         }

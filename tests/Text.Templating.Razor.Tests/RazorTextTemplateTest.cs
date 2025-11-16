@@ -57,36 +57,36 @@ namespace PosInformatique.Foundations.Text.Templating.Razor.Tests
         }
 
         [Fact]
-        public void RenderAsync_WithModelArgumentNull()
+        public async Task RenderAsync_WithModelArgumentNull()
         {
             var template = new RazorTextTemplate<Model>(typeof(string));
 
-            template.Invoking(t => t.RenderAsync(null, default, default, default))
+            await template.Invoking(t => t.RenderAsync(null, default, default, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("model");
         }
 
         [Fact]
-        public void RenderAsync_WithOutputArgumentNull()
+        public async Task RenderAsync_WithOutputArgumentNull()
         {
             var model = new Model();
 
             var template = new RazorTextTemplate<Model>(typeof(string));
 
-            template.Invoking(t => t.RenderAsync(model, default, default, default))
+            await template.Invoking(t => t.RenderAsync(model, default, default, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("output");
         }
 
         [Fact]
-        public void RenderAsync_WithContextArgumentNull()
+        public async Task RenderAsync_WithContextArgumentNull()
         {
             var model = new Model();
             var output = new StringWriter();
 
             var template = new RazorTextTemplate<Model>(typeof(string));
 
-            template.Invoking(t => t.RenderAsync(model, output, null, default))
+            await template.Invoking(t => t.RenderAsync(model, output, null, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("context");
         }
