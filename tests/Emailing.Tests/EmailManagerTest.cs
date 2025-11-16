@@ -183,7 +183,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             await manager.Invoking(m => m.SendAsync<Model>(null, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
-                .WithParameterName("template");
+                .WithParameterName("email");
         }
 
         internal sealed class Model : EmailModel
