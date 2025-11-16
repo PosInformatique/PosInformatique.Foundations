@@ -25,9 +25,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder"><see cref="EmailingBuilder"/> which to configure.</param>
         /// <param name="uri">Uri to the the <c>Azure Communication Service</c> instance.</param>
         /// <param name="clientBuilder">Allows to configure the <see cref="EmailClient"/> used by the provider.</param>
+        /// <returns>The <paramref name="builder"/> instance to continue the configuration of the emailing feature.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="builder"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="uri"/> argument is <see langword="null"/>.</exception>
-        public static void UseAzureCommunicationService(this EmailingBuilder builder, Uri uri, Action<IAzureClientBuilder<EmailClient, EmailClientOptions>>? clientBuilder = null)
+        public static EmailingBuilder UseAzureCommunicationService(this EmailingBuilder builder, Uri uri, Action<IAzureClientBuilder<EmailClient, EmailClientOptions>>? clientBuilder = null)
         {
             ArgumentNullException.ThrowIfNull(builder);
             ArgumentNullException.ThrowIfNull(uri);
@@ -43,6 +44,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     clientBuilder(emailClientBuilder);
                 }
             });
+
+            return builder;
         }
 
         /// <summary>
@@ -51,9 +54,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder"><see cref="EmailingBuilder"/> which to configure.</param>
         /// <param name="connectionString">Connection string to the <c>Azure Communication Service</c> instance.</param>
         /// <param name="clientBuilder">Allows to configure the <see cref="EmailClient"/> used by the provider.</param>
+        /// <returns>The <paramref name="builder"/> instance to continue the configuration of the emailing feature.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="builder"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="connectionString"/> argument is <see langword="null"/>.</exception>
-        public static void UseAzureCommunicationService(this EmailingBuilder builder, string connectionString, Action<IAzureClientBuilder<EmailClient, EmailClientOptions>>? clientBuilder = null)
+        public static EmailingBuilder UseAzureCommunicationService(this EmailingBuilder builder, string connectionString, Action<IAzureClientBuilder<EmailClient, EmailClientOptions>>? clientBuilder = null)
         {
             ArgumentNullException.ThrowIfNull(builder);
             ArgumentNullException.ThrowIfNull(connectionString);
@@ -69,6 +73,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     clientBuilder(emailClientBuilder);
                 }
             });
+
+            return builder;
         }
     }
 }

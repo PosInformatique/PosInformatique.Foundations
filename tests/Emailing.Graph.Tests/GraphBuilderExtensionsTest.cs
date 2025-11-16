@@ -24,7 +24,8 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
 
             var credential = Mock.Of<TokenCredential>(MockBehavior.Strict);
 
-            builder.UseGraph(credential, baseUrl);
+            builder.UseGraph(credential, baseUrl)
+                .Should().BeSameAs(builder);
 
             var sp = builder.Services.BuildServiceProvider();
 

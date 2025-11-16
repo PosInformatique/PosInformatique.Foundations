@@ -24,9 +24,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="builder"><see cref="EmailingBuilder"/> which to configure.</param>
         /// <param name="tokenCredential">The <see cref="TokenCredential"/> for authenticating to Microsoft Graph API.</param>
         /// <param name="baseUrl">The base service URL of the API Graph. If not specified the <c>https://graph.microsoft.com/v1.0</c> will be use.</param>
+        /// <returns>The <paramref name="builder"/> instance to continue the configuration of the emailing feature.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="builder"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="tokenCredential"/> argument is <see langword="null"/>.</exception>
-        public static void UseGraph(this EmailingBuilder builder, TokenCredential tokenCredential, string? baseUrl = null)
+        public static EmailingBuilder UseGraph(this EmailingBuilder builder, TokenCredential tokenCredential, string? baseUrl = null)
         {
             ArgumentNullException.ThrowIfNull(builder);
             ArgumentNullException.ThrowIfNull(tokenCredential);
@@ -37,6 +38,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 return new GraphEmailProvider(serviceClient);
             });
+
+            return builder;
         }
     }
 }

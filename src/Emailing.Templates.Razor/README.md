@@ -10,8 +10,8 @@ provides helpers to create `EmailTemplate<TModel>` instances using Razor compone
 
 It is built on top of:
 
-- [PosInformatique.Foundations.Emailing](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Templates.Razor/)
-- [PosInformatique.Foundations.Text.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Templates.Razor/)
+- [PosInformatique.Foundations.Emailing](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)
+- [PosInformatique.Foundations.Text.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
 
 This allows you to design your email content with Blazor-style Razor components, benefiting from layout reuse, strongly-typed models, and familiar Razor syntax.
 
@@ -33,10 +33,30 @@ You also need a Blazor-compatible environment for compiling/executing Razor comp
   - `RazorEmailTemplateBody<TModel>` for email HTML body.
 - Strongly-typed model support via the `Model` parameter.
 - Supports Razor layout features for the email body (reuse consistent layout across multiple templates).
+- `UseRazorEmailTemplates()` extension method to enable Razor-based email templates in the emailing configuration.
 
-## Creating Razor components for subject and body
+## Configuring emailing with Razor email templates
 
-### 1. Define the email model
+### 1. Configure emailing services
+
+Use `AddEmailing(...)` and then `UseRazorEmailTemplates()`.
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+
+var services = new ServiceCollection();
+
+var emailingBuilder = services.AddEmailing(options =>
+{
+    // Configure emailing options here and register the templates
+})
+UseRazorEmailTemplates();.
+```
+
+- `AddEmailing(...)` registers the core emailing services and the templates.
+- `UseRazorEmailTemplates()` enables Razor-based text templating for emailing.
+
+### 2. Define the email model
 
 Example model used by the templates:
 
@@ -50,7 +70,7 @@ public sealed class InvitationEmailTemplateModel
 }
 ```
 
-### 2. Subject component
+### 3. Subject component
 
 Create a Razor component for the subject that inherits from `RazorEmailTemplateSubject<TModel>` and uses the `Model` parameter.
 
@@ -69,7 +89,7 @@ This component:
 - Renders a single line of text.
 - Uses the strongly-typed `Model` to build the subject.
 
-### 3. Body component with layout
+### 4. Body component with layout
 
 You can define a layout component that centralizes common HTML structure (header, footer, styles, etc.),
 then reuse it across different email bodies.
@@ -85,33 +105,33 @@ then reuse it across different email bodies.
     <meta charset="utf-8" />
     <title>@Title</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
 
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
-        .email-header {
-            background-color: #1f2937;
-            color: #ffffff;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .email-header {
+        background-color: #1f2937;
+        color: #ffffff;
+        padding: 16px;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-        .email-content {
-            padding: 16px;
-        }
+    .email-content {
+        padding: 16px;
+    }
 
-        .email-footer {
-            padding: 16px;
-            font-size: 12px;
-            color: #6b7280;
-        }
+    .email-footer {
+        padding: 16px;
+        font-size: 12px;
+        color: #6b7280;
+    }
     </style>
 </head>
 <body>

@@ -18,7 +18,8 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             var serviceCollection = new ServiceCollection();
             var builder = new EmailingBuilder(serviceCollection);
 
-            builder.UseAzureCommunicationService("endpoint=https://my-acs-resource.communication.azure.com/;accesskey=2x3Yz==");
+            builder.UseAzureCommunicationService("endpoint=https://my-acs-resource.communication.azure.com/;accesskey=2x3Yz==")
+                .Should().BeSameAs(builder);
 
             var sp = builder.Services.BuildServiceProvider();
 
@@ -44,7 +45,8 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             builder.UseAzureCommunicationService("endpoint=https://my-acs-resource.communication.azure.com/;accesskey=2x3Yz==", clientBuilder =>
             {
                 clientBuilderCalled = true;
-            });
+            })
+            .Should().BeSameAs(builder);
 
             var sp = builder.Services.BuildServiceProvider();
 
@@ -93,7 +95,8 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             var serviceCollection = new ServiceCollection();
             var builder = new EmailingBuilder(serviceCollection);
 
-            builder.UseAzureCommunicationService(new Uri("https://my-acs-resource.communication.azure.com/"));
+            builder.UseAzureCommunicationService(new Uri("https://my-acs-resource.communication.azure.com/"))
+                .Should().BeSameAs(builder);
 
             var sp = builder.Services.BuildServiceProvider();
 
@@ -119,7 +122,8 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             builder.UseAzureCommunicationService(new Uri("https://my-acs-resource.communication.azure.com/"), clientBuilder =>
             {
                 clientBuilderCalled = true;
-            });
+            })
+            .Should().BeSameAs(builder);
 
             var sp = builder.Services.BuildServiceProvider();
 
