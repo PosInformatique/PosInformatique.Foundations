@@ -1,12 +1,12 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailAddressValidatorExtensionsTest.cs" company="P.O.S Informatique">
+// <copyright file="EmailAddressesValidatorExtensionsTest.cs" company="P.O.S Informatique">
 //     Copyright (c) P.O.S Informatique. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
 namespace FluentValidation.Tests
 {
-    public class EmailAddressValidatorExtensionsTest
+    public class EmailAddressesValidatorExtensionsTest
     {
         [Fact]
         public void MustBeEmailAddress()
@@ -27,7 +27,7 @@ namespace FluentValidation.Tests
         {
             var act = () =>
             {
-                EmailAddressValidatorExtensions.MustBeEmailAddress((IRuleBuilder<int, string>)null);
+                EmailAddressesValidatorExtensions.MustBeEmailAddress((IRuleBuilder<int, string>)null);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()

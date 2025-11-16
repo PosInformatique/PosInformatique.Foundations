@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="EmailAddressValidatorExtensions.cs" company="P.O.S Informatique">
+// <copyright file="EmailAddressesValidatorExtensions.cs" company="P.O.S Informatique">
 //     Copyright (c) P.O.S Informatique. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -11,7 +11,7 @@ namespace FluentValidation
     /// <summary>
     /// Contains extension methods for <c>FluentValidation</c> to validate e-mail addresses.
     /// </summary>
-    public static class EmailAddressValidatorExtensions
+    public static class EmailAddressesValidatorExtensions
     {
         /// <summary>
         /// Defines a validator that checks if a <see cref="string"/> property is a valid e-mail address
