@@ -230,5 +230,7 @@ The typical flow is:
 ## Links
 
 - [NuGet package: Emailing (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)
-- [NuGet package: Emailing.Azure (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+- [NuGet package: Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+- [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [NuGet package: Text.Templating.Scriban](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

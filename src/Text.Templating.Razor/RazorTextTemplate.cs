@@ -9,7 +9,7 @@ namespace PosInformatique.Foundations.Text.Templating.Razor
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
-    /// Implementation of the <see cref="TextTemplate{TModel}"/> which generates using a Razor component.
+    /// Implementation of the <see cref="TextTemplate{TModel}"/> which generates text using a Razor component as text template.
     /// </summary>
     /// <typeparam name="TModel">Type of the data model to inject to the Razor component.</typeparam>
     public class RazorTextTemplate<TModel> : TextTemplate<TModel>

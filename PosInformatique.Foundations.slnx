@@ -110,4 +110,8 @@
     <Project Path="src/Text.Templating.Razor/Text.Templating.Razor.csproj" Id="aab32a1c-3774-4216-8558-76073bc8ac1f" />
     <Project Path="tests/Text.Templating.Razor.Tests/Text.Templating.Razor.Tests.csproj" Id="c6778dd0-32fa-4725-9416-6f6d6862c988" />
   </Folder>
+  <Folder Name="/Text/Templating/Scriban/">
+    <Project Path="src/Text.Templating.Scriban/Text.Templating.Scriban.csproj" Id="2a99a660-d100-4fc9-b90e-e48df2acec19" />
+    <Project Path="tests/Text.Templating.Scriban.Tests/Text.Templating.Scriban.Tests.csproj" Id="50408388-38e3-4121-b00c-18e0c735d829" />
+  </Folder>
 </Solution>

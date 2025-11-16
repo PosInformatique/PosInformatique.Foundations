@@ -11,6 +11,7 @@ It defines the `TextTemplate<TModel>` base class and the `ITextTemplateRenderCon
 
 Currently only the following text engine implementation are provided in [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations):
 - [PosInformatique.Foundations.Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [PosInformatique.Foundations.Text.Templating.Scriban](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban/)
 
 ## Install
 
@@ -33,9 +34,11 @@ This package only provides the abstraction (base classes and interfaces).
 To actually render templates using Razor components, use one of the dedicated implementation package:
 
 - [PosInformatique.Foundations.Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [PosInformatique.Foundations.Text.Templating.Scriban](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban/)
 
 ## Links
 
-- [NuGet package (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
-- [NuGet package (Text.Templating.Razor)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [NuGet package: Text.Templating (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
+- [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [NuGet package: Text.Templating.Scriban](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)
