@@ -55,5 +55,19 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
 
             azureClient.VerifyAll();
         }
+
+        [Fact]
+        public async Task SendSync_WithMessageArgumentNull()
+        {
+            var azureClient = new Mock<global::Azure.Communication.Email.EmailClient>(MockBehavior.Strict);
+
+            var provider = new AzureEmailProvider(azureClient.Object);
+
+            await provider.Invoking(p => p.SendAsync(null, default))
+                .Should().ThrowExactlyAsync<ArgumentNullException>()
+                .WithParameterName("message");
+
+            azureClient.VerifyAll();
+        }
     }
 }

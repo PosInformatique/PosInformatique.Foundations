@@ -13,9 +13,10 @@ It allows you to:
 - Instantiate emails from registered templates via an `IEmailManager`.
 - Generate and send templated emails for each recipient through an `IEmailProvider` implementation.
 
-The actual transport (SMTP, Azure Communication Service, etc.) is delegated to a provider implementation.
+The actual transport (SMTP, Azure Communication Service, Graph API, etc.) is delegated to a provider implementation.
 Existing implementation are available in the following packages:
 - Azure Communication Service: [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/).
+- Microsoft Graph API: [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/).
 
 ## Install
 
@@ -133,14 +134,17 @@ services.AddEmailing(options =>
 The `AddEmailing()` method returns an `EmailingBuilder` that can be used to continue configuring the emailing infrastructure
 (for example, provider registration in other packages).
 
-### Email provider
+### Email providers
 
 `IEmailProvider` is responsible for sending the final `EmailMessage`.
 This package only defines the abstraction. A typical provider implementation is located in another package, such as:
 
 - [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/).
+- [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/).
 
-See the [PosInformatique.Foundations.Emailing.Azure](../Emailing.Azure/README.md) documentation for an example of provider registration.
+See the [PosInformatique.Foundations.Emailing.Azure](../Emailing.Azure/README.md)
+or [PosInformatique.Foundations.Emailing.Graph](../Emailing.Graph/README.md)
+documentation for an example of provider registration.
 
 ## Usage
 
@@ -231,6 +235,7 @@ The typical flow is:
 
 - [NuGet package: Emailing (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)
 - [NuGet package: Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+- [NuGet package: Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/)
 - [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
 - [NuGet package: Text.Templating.Scriban](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

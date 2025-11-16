@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides an IEmailProvider implementation for PosInformatique.Foundations.Emailing using Microsoft Graph API.
+      Uses Microsoft.Graph.GraphServiceClient to send templated emails through Microsoft 365 mailboxes with Azure AD authentication via TokenCredential.
+    </Description>
+    <PackageTags>
+      email;emailing;graph;microsoftgraph;microsoft365;azure;azuread;tokencredential;provider;dotnet;dependencyinjection;posinformatique
+    </PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Graph" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Emailing\Emailing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\Emailing\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

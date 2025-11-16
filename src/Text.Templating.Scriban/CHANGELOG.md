@@ -1,2 +1,2 @@
 ﻿1.0.0
-  - Initial release with the Razor Text Templating feature.
+  - Initial release with the Scriban Text Templating feature.
