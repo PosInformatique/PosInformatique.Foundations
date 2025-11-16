@@ -131,6 +131,12 @@ services.AddEmailing(options =>
 });
 ```
 
+> **Important:**
+> The `AddEmailing()` method registers a scoped implementation of `IEmailManager`.
+> This is required because email templates (for example Razor-based templates) may depend on scoped services
+> that are tied to the currently authenticated user.
+> As a consequence, every service that depends on `IEmailManager` must also be registered with a scoped lifetime.
+
 The `AddEmailing()` method returns an `EmailingBuilder` that can be used to continue configuring the emailing infrastructure
 (for example, provider registration in other packages).
 
