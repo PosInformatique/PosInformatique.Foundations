@@ -19,7 +19,7 @@ namespace PosInformatique.Foundations.Emailing.Templates.Razor.Tests
             template.Subject.Should().BeOfType<RazorTextTemplate<Model>>();
         }
 
-        private sealed class Model : EmailModel
+        private sealed class Model
         {
         }
 

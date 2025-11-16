@@ -14,7 +14,6 @@ namespace PosInformatique.Foundations.Emailing
     /// </summary>
     /// <typeparam name="TModel">Data model injected to the <see cref="EmailTemplate{TModel}"/> to generate the e-mail for each recipient.</typeparam>
     public class EmailRecipientCollection<TModel> : Collection<EmailRecipient<TModel>>
-        where TModel : EmailModel
     {
         /// <summary>
         /// Creates and add new <see cref="EmailRecipient{TModel}"/> in the <see cref="EmailRecipientCollection{TModel}"/>.

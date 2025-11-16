@@ -38,9 +38,9 @@ and one of its concrete implementations (for example
 
 - Registration of email templates through `AddEmailing(...)` and `EmailingOptions.RegisterTemplate(...)`.
 - Strongly-typed template identifiers via `EmailTemplateIdentifier<TModel>`.
-- Data models for templates based on an abstract `EmailModel` base class.
+- Data models for templates based on any custom class.
 - Template-based subject and HTML body using `TextTemplate<TModel>` (e.g. Razor or Scriban).
-- Per-recipient data injection using a `EmailModel` with `EmailRecipient<TModel>`.
+- Per-recipient data injection using a model with `EmailRecipient<TModel>`.
 - Central `IEmailManager` to create and send emails.
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
 
@@ -48,17 +48,17 @@ and one of its concrete implementations (for example
 
 ### Email models
 
-Each email template is associated with a data model that derives from `EmailModel`.
+Each email template is associated with a data model.
 This model is injected into the subject and HTML body templates when generating the email content for a recipient.
 
 ```csharp
-public sealed class InvitationEmailTemplateModel : EmailModel
+public sealed class InvitationEmailTemplateModel
 {
     public string FirstName { get; set; } = string.Empty;
     public string InvitationLink { get; set; } = string.Empty;
 }
 
-public sealed class AccountDeletionEmailTemplateModel : EmailModel
+public sealed class AccountDeletionEmailTemplateModel
 {
     public string FirstName { get; set; } = string.Empty;
     public DateTime DeletionDate { get; set; }
@@ -226,7 +226,7 @@ The typical flow is:
    - Register templates and sender via `AddEmailing(...)`.
    - Register an `IEmailProvider` implementation.
 2. Define and centralize template identifiers using `EmailTemplateIdentifier<TModel>`.
-3. Define data models by inheriting from `EmailModel`.
+3. Define data models by creating custom data class.
 4. At runtime, use `IEmailManager.Create(...)` to instantiate a strongly-typed email.
 5. Add recipients and models through `EmailRecipientCollection<TModel>`.
 6. Call `IEmailManager.SendAsync()` to generate and send emails through the `IEmailProvider`.

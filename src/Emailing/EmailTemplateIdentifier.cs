@@ -11,7 +11,6 @@ namespace PosInformatique.Foundations.Emailing
     /// </summary>
     /// <typeparam name="TModel">Data model injected to the <see cref="EmailTemplate{TModel}"/> to generate the e-mail.</typeparam>
     public sealed class EmailTemplateIdentifier<TModel>
-        where TModel : EmailModel
     {
         private EmailTemplateIdentifier()
         {

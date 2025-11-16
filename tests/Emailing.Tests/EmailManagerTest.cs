@@ -186,7 +186,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 .WithParameterName("email");
         }
 
-        internal sealed class Model : EmailModel
+        internal sealed class Model
         {
         }
     }

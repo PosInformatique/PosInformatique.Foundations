@@ -43,7 +43,7 @@ Example model used by the templates:
 ```csharp
 using PosInformatique.Foundations.Emailing;
 
-public sealed class InvitationEmailTemplateModel : EmailModel
+public sealed class InvitationEmailTemplateModel
 {
     public string FirstName { get; set; } = string.Empty;
     public string InvitationLink { get; set; } = string.Empty;

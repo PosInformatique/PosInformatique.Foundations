@@ -25,8 +25,7 @@ namespace PosInformatique.Foundations.Emailing
         /// associated to the <paramref name="identifier"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="identifier"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown if no <see cref="EmailTemplate{TModel}"/> has been registered with the specified <paramref name="identifier"/>.</exception>
-        Email<TModel> Create<TModel>(EmailTemplateIdentifier<TModel> identifier)
-            where TModel : EmailModel;
+        Email<TModel> Create<TModel>(EmailTemplateIdentifier<TModel> identifier);
 
         /// <summary>
         /// Sends the specified <paramref name="email"/>.
@@ -36,7 +35,6 @@ namespace PosInformatique.Foundations.Emailing
         /// <param name="cancellationToken"><see cref="CancellationToken"/> which allows to cancel the send process.</param>
         /// <returns>An instance of the <see cref="Task"/> class which represents the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="email"/> argument is <see langword="null"/>.</exception>
-        Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default)
-            where TModel : EmailModel;
+        Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default);
     }
 }

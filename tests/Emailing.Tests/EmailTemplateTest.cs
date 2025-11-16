@@ -48,7 +48,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 .WithParameterName("htmlBody");
         }
 
-        internal sealed class Model : EmailModel
+        internal sealed class Model
         {
         }
     }

@@ -30,7 +30,6 @@ namespace PosInformatique.Foundations.Emailing
         }
 
         public Email<TModel> Create<TModel>(EmailTemplateIdentifier<TModel> identifier)
-            where TModel : EmailModel
         {
             ArgumentNullException.ThrowIfNull(identifier);
 
@@ -45,7 +44,6 @@ namespace PosInformatique.Foundations.Emailing
         }
 
         public async Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default)
-            where TModel : EmailModel
         {
             ArgumentNullException.ThrowIfNull(email);
 

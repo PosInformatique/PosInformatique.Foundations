@@ -13,7 +13,6 @@ namespace PosInformatique.Foundations.Emailing.Templates.Razor
     /// </summary>
     /// <typeparam name="TModel">Type of the <see cref="Model"/> used to generate the body of the e-mail.</typeparam>
     public abstract class RazorEmailTemplateBody<TModel> : ComponentBase
-        where TModel : EmailModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RazorEmailTemplateBody{TModel}"/> class.

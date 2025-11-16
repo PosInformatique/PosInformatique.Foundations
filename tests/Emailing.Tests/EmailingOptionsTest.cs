@@ -92,7 +92,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
             options.GetTemplate(identifier).Should().BeNull();
         }
 
-        public sealed class Model : EmailModel
+        public sealed class Model
         {
         }
     }

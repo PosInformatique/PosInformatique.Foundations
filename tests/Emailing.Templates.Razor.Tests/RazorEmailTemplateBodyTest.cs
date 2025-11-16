@@ -20,7 +20,7 @@ namespace PosInformatique.Foundations.Emailing.Templates.Razor.Tests
             template.Model.Should().BeSameAs(model);
         }
 
-        internal sealed class Model : EmailModel
+        internal sealed class Model
         {
         }
     }

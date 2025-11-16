@@ -68,7 +68,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 .WithParameterName("model");
         }
 
-        private sealed class Model : EmailModel
+        private sealed class Model
         {
         }
     }

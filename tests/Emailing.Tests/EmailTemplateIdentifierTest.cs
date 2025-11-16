@@ -17,7 +17,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
             identifier.Should().NotBeSameAs(otherIdentifier);
         }
 
-        private sealed class Model : EmailModel
+        private sealed class Model
         {
         }
     }

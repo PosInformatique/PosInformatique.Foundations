@@ -38,7 +38,6 @@ namespace PosInformatique.Foundations.Emailing
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="template"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">If a <see cref="EmailTemplate{TModel}"/> has already been registered with the specified <paramref name="identifier"/>.</exception>
         public void RegisterTemplate<TModel>(EmailTemplateIdentifier<TModel> identifier, EmailTemplate<TModel> template)
-            where TModel : EmailModel
         {
             ArgumentNullException.ThrowIfNull(identifier);
             ArgumentNullException.ThrowIfNull(template);
@@ -52,7 +51,6 @@ namespace PosInformatique.Foundations.Emailing
         }
 
         internal EmailTemplate<TModel>? GetTemplate<TModel>(EmailTemplateIdentifier<TModel> identifier)
-            where TModel : EmailModel
         {
             if (!this.templates.TryGetValue(identifier, out var templateFound))
             {
