@@ -68,7 +68,12 @@ namespace PosInformatique.Foundations.MediaTypes
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            return Parse(s, null);
+            if (TryParse(s, out var result))
+            {
+                return result;
+            }
+
+            throw new FormatException("Invalid MIME type format.");
         }
 
         /// <summary>
@@ -79,16 +84,11 @@ namespace PosInformatique.Foundations.MediaTypes
         /// <returns>A new <see cref="MimeType"/> instance representing the specified media type.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="s"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="FormatException">Thrown when the string is not a valid media type.</exception>
-        public static MimeType Parse(string s, IFormatProvider? provider)
+        static MimeType IParsable<MimeType>.Parse(string s, IFormatProvider? provider)
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            if (TryParse(s, out var result))
-            {
-                return result;
-            }
-
-            throw new FormatException("Invalid MIME type format.");
+            return Parse(s);
         }
 
         /// <summary>
@@ -98,18 +98,6 @@ namespace PosInformatique.Foundations.MediaTypes
         /// <param name="result">When this method returns, contains the parsed <see cref="MimeType"/> if the operation succeeded; otherwise, <see langword="null"/>.</param>
         /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
         public static bool TryParse([NotNullWhen(true)] string? s, [MaybeNullWhen(false)][NotNullWhen(true)] out MimeType? result)
-        {
-            return TryParse(s, null, out result);
-        }
-
-        /// <summary>
-        /// Tries to parse the specified string into a <see cref="MimeType"/> instance using the given format provider.
-        /// </summary>
-        /// <param name="s">The string that contains the media type, for example "application/json".</param>
-        /// <param name="provider">An optional format provider. This parameter is not used.</param>
-        /// <param name="result">When this method returns, contains the parsed <see cref="MimeType"/> if the operation succeeded; otherwise, <see langword="null"/>.</param>
-        /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
-        public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)][NotNullWhen(true)] out MimeType? result)
         {
             result = null;
 
@@ -134,6 +122,18 @@ namespace PosInformatique.Foundations.MediaTypes
 
             result = new MimeType(type, subtype);
             return true;
+        }
+
+        /// <summary>
+        /// Tries to parse the specified string into a <see cref="MimeType"/> instance using the given format provider.
+        /// </summary>
+        /// <param name="s">The string that contains the media type, for example "application/json".</param>
+        /// <param name="provider">An optional format provider. This parameter is not used.</param>
+        /// <param name="result">When this method returns, contains the parsed <see cref="MimeType"/> if the operation succeeded; otherwise, <see langword="null"/>.</param>
+        /// <returns><see langword="true"/> if the string was successfully parsed; otherwise, <see langword="false"/>.</returns>
+        static bool IParsable<MimeType>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)][NotNullWhen(true)] out MimeType? result)
+        {
+            return TryParse(s, out result);
         }
 
         /// <summary>

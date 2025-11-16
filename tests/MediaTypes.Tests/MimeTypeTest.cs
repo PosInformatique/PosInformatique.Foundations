@@ -56,7 +56,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            var mimeType = MimeType.Parse(input, formatProvider);
+            var mimeType = CallParse<MimeType>(input, formatProvider);
 
             mimeType.Type.Should().Be(expectedType);
             mimeType.Subtype.Should().Be(expectedSubtype);
@@ -67,7 +67,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         {
             var act = () =>
             {
-                MimeType.Parse(null, default);
+                CallParse<MimeType>(null, default);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
@@ -87,7 +87,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
 
             var act = () =>
             {
-                MimeType.Parse(input, formatProvider);
+                CallParse<MimeType>(input, formatProvider);
             };
 
             act.Should().ThrowExactly<FormatException>()
@@ -127,7 +127,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            MimeType.TryParse(input, formatProvider, out var mimeType).Should().BeTrue();
+            CallTryParse<MimeType>(input, formatProvider, out var mimeType).Should().BeTrue();
 
             mimeType.Type.Should().Be(expectedType);
             mimeType.Subtype.Should().Be(expectedSubtype);
@@ -145,7 +145,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
 
-            MimeType.TryParse(input, formatProvider, out var mimeType).Should().BeFalse();
+            CallTryParse<MimeType>(input, formatProvider, out var mimeType).Should().BeFalse();
 
             mimeType.Should().BeNull();
         }
@@ -272,6 +272,18 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
             var propertySubType = type.GetProperty(properties[1]);
 
             return (MimeType)propertySubType.GetValue(null);
+        }
+
+        private static T CallParse<T>(string s, IFormatProvider formatProvider)
+            where T : IParsable<T>
+        {
+            return T.Parse(s, formatProvider);
+        }
+
+        private static bool CallTryParse<T>(string s, IFormatProvider formatProvider, out T result)
+            where T : IParsable<T>
+        {
+            return T.TryParse(s, formatProvider, out result);
         }
     }
 }

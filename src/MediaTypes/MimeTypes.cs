@@ -12,7 +12,7 @@ namespace PosInformatique.Foundations.MediaTypes
     /// </summary>
     public static class MimeTypes
     {
-        private static readonly Dictionary<string, MimeType> FromExtensions = new Dictionary<string, MimeType>()
+        private static readonly Dictionary<string, MimeType> FromExtensions = new()
         {
             { "pdf", Application.Pdf },
             { "docx", Application.Docx },
@@ -27,7 +27,7 @@ namespace PosInformatique.Foundations.MediaTypes
             { "webp", Image.WebP },
         };
 
-        private static readonly Dictionary<MimeType, string> ToExtensions = new Dictionary<MimeType, string>()
+        private static readonly Dictionary<MimeType, string> ToExtensions = new()
         {
             { Application.Pdf, "pdf" },
             { Application.Docx, "docx" },
@@ -75,17 +75,17 @@ namespace PosInformatique.Foundations.MediaTypes
             /// <summary>
             /// Gets the media type <c>application/octet-stream</c>.
             /// </summary>
-            public static MimeType OctetStream { get; } = MimeType.Parse("application/octet-stream", null);
+            public static MimeType OctetStream { get; } = MimeType.Parse("application/octet-stream");
 
             /// <summary>
             /// Gets the media type <c>application/pdf</c>.
             /// </summary>
-            public static MimeType Pdf { get; } = MimeType.Parse("application/pdf", null);
+            public static MimeType Pdf { get; } = MimeType.Parse("application/pdf");
 
             /// <summary>
             /// Gets the media type <c>application/vnd.openxmlformats-officedocument.wordprocessingml.document</c>.
             /// </summary>
-            public static MimeType Docx { get; } = MimeType.Parse("application/vnd.openxmlformats-officedocument.wordprocessingml.document", null);
+            public static MimeType Docx { get; } = MimeType.Parse("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace PosInformatique.Foundations.MediaTypes
             /// <summary>
             /// Gets the media type <c>image/bmp</c>.
             /// </summary>
-            public static MimeType Bmp { get; } = MimeType.Parse("image/bmp", null);
+            public static MimeType Bmp { get; } = MimeType.Parse("image/bmp");
 
             /// <summary>
             /// Gets the media type <c>image/x-dxf</c>.
@@ -111,22 +111,22 @@ namespace PosInformatique.Foundations.MediaTypes
             /// <summary>
             /// Gets the media type <c>image/jpeg</c>.
             /// </summary>
-            public static MimeType Jpeg { get; } = MimeType.Parse("image/jpeg", null);
+            public static MimeType Jpeg { get; } = MimeType.Parse("image/jpeg");
 
             /// <summary>
             /// Gets the media type <c>image/png</c>.
             /// </summary>
-            public static MimeType Png { get; } = MimeType.Parse("image/png", null);
+            public static MimeType Png { get; } = MimeType.Parse("image/png");
 
             /// <summary>
             /// Gets the media type <c>image/tiff</c>.
             /// </summary>
-            public static MimeType Tiff { get; } = MimeType.Parse("image/tiff", null);
+            public static MimeType Tiff { get; } = MimeType.Parse("image/tiff");
 
             /// <summary>
             /// Gets the media type <c>image/webp</c>.
             /// </summary>
-            public static MimeType WebP { get; } = MimeType.Parse("image/webp", null);
+            public static MimeType WebP { get; } = MimeType.Parse("image/webp");
         }
     }
 }
