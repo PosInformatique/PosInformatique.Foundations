@@ -128,6 +128,7 @@ namespace PosInformatique.Foundations.PhoneNumbers.Tests
 
         [Theory]
         [MemberData(nameof(PhoneNumberTestData.InvalidPhoneNumbers), MemberType = typeof(PhoneNumberTestData))]
+        [InlineData(null)]
         public void TryParse_InvalidPhoneNumber(string invalidPhoneNumber)
         {
             var result = PhoneNumber.TryParse(invalidPhoneNumber, out var number);
@@ -149,6 +150,7 @@ namespace PosInformatique.Foundations.PhoneNumbers.Tests
 
         [Theory]
         [MemberData(nameof(PhoneNumberTestData.InvalidPhoneNumbers), MemberType = typeof(PhoneNumberTestData))]
+        [InlineData(null)]
         public void TryParse_IParsable_InvalidPhoneNumber(string invalidPhoneNumber)
         {
             var result = CallTryParse<PhoneNumber>(invalidPhoneNumber, null, out var number);
