@@ -9,9 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       checks: write
       pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -29,13 +31,25 @@ jobs:
           --configuration Release \
           --no-restore
 
-      - name: Run tests
+      - name: Run tests (.NET 8.0)
         run: |
           dotnet test PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
           --logger "trx;LogFileName=test_results.trx" \
-          --results-directory ./TestResults
+          --results-directory ./TestResults \
+          --collect "XPlat Code Coverage" \
+          --framework net8.0
+
+      - name: Run tests (.NET 9.0)
+        run: |
+          dotnet test PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-build \
+          --logger "trx;LogFileName=test_results.trx" \
+          --results-directory ./TestResults \
+          --collect "XPlat Code Coverage" \
+          --framework net9.0
   
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
