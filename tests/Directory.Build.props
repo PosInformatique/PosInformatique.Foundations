@@ -26,6 +26,9 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
 
+    <!-- Same code coverage configuration for all the test projects -->
+    <RunSettingsFilePath>$(SolutionDir)\CodeCoverage.runsettings</RunSettingsFilePath>
+
     <!-- Disable packaging -->
     <IsPackable>false</IsPackable>
     
