@@ -36,7 +36,7 @@ jobs:
           dotnet test PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
-          --logger "trx;LogFileName=test_results.trx" \
+          --logger "trx" \
           --results-directory ./TestResults \
           --collect "XPlat Code Coverage" \
           --framework net8.0
@@ -46,7 +46,7 @@ jobs:
           dotnet test PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
-          --logger "trx;LogFileName=test_results.trx" \
+          --logger "trx" \
           --results-directory ./TestResults \
           --collect "XPlat Code Coverage" \
           --framework net9.0
