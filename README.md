@@ -75,7 +75,7 @@ for more details.
 ### Example with Microsoft.Graph
 
 The [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/)
-package depends on [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.35.0**
+package depends on [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.89.0**
 for backward compatibility with a wide range of existing projects.
 
 If your application requires a newer version, you can simply add an explicit reference in your project, for example:
