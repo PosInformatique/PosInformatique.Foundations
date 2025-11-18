@@ -56,7 +56,41 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 - Apply standards-based implementations (RFC, E.164, ...).  
 - Improve consistency across your projects.  
 - Get lightweight, modular libraries tailored to single responsibilities.  
-- Add missing building blocks to your projects without introducing a heavyweight framework.  
+- Add missing building blocks to your projects without introducing a heavyweight framework.
+
+## 📌 .NET and dependency compatibility
+
+All [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages are designed to be compatible with **.NET 8.0**, **.NET 9.0** and **.NET 10.0**.
+
+To maximize backward compatibility with existing projects, dependencies on external libraries (such as `Microsoft.Graph`, etc.)
+intentionally target **relatively old versions**. This avoids forcing you to update your entire solution to the
+latest versions used internally by PosInformatique.Foundations.
+
+> Important: It is the responsibility of the application developer to explicitly reference and update
+any **transitive dependencies** in their own project if they want to use newer versions.
+> See [NuGet dependency resolution](https://learn.microsoft.com/en-us/nuget/concepts/dependency-resolution)
+and [transitive dependencies in Visual Studio](https://devblogs.microsoft.com/dotnet/introducing-transitive-dependencies-in-visual-studio/)
+for more details.
+
+### Example with Microsoft.Graph
+
+The [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/)
+package depends on [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.35.0**
+for backward compatibility with a wide range of existing projects.
+
+If your application requires a newer version, you can simply add an explicit reference in your project, for example:
+
+```xml
+<ItemGroup>
+  <PackageReference Include="PosInformatique.Foundations.Emailing.Graph" Version="x.y.z" />
+  <PackageReference Include="Microsoft.Graph" Version="5.96.0" />
+</ItemGroup>
+```
+
+In this case, your project will use [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.96.0**
+while still consuming
+[PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/).
+This is **recommended**, especially to benefit from the latest security updates and bug fixes of the underlying dependencies.
 
 ## 📄 License
 
