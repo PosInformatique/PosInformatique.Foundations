@@ -20,9 +20,13 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 from,
                 to,
                 "The subject",
-                "HTML content");
+                "HTML content")
+            {
+                Importance = EmailImportance.High,
+            };
 
             emailMessage.From.Should().Be(from);
+            emailMessage.Importance.Should().Be(EmailImportance.High);
             emailMessage.HtmlContent.Should().Be("HTML content");
             emailMessage.Subject.Should().Be("The subject");
             emailMessage.To.Should().Be(to);
@@ -82,6 +86,23 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             act.Should().ThrowExactly<ArgumentNullException>()
                 .WithParameterName("htmlContent");
+        }
+
+        [Fact]
+        public void Importance_ValueChanged()
+        {
+            var from = new EmailContact(EmailAddress.Parse("from@domain.com"), "From");
+            var to = new EmailContact(EmailAddress.Parse("to@domain.com"), "To");
+
+            var emailMessage = new EmailMessage(
+                from,
+                to,
+                "The subject",
+                "HTML content");
+
+            emailMessage.Importance = EmailImportance.High;
+
+            emailMessage.Importance.Should().Be(EmailImportance.High);
         }
     }
 }

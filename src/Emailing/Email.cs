@@ -24,8 +24,14 @@ namespace PosInformatique.Foundations.Emailing
 
             this.Template = template;
 
-            this.Recipients = new EmailRecipientCollection<TModel>();
+            this.Importance = EmailImportance.Normal;
+            this.Recipients = [];
         }
+
+        /// <summary>
+        /// Gets or sets the importance of the e-mail.
+        /// </summary>
+        public EmailImportance Importance { get; set; }
 
         /// <summary>
         /// Gets the collection of the recipients which the e-mail have to be send.

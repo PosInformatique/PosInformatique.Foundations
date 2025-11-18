@@ -54,5 +54,10 @@ namespace PosInformatique.Foundations.Emailing
         /// Gets the HTML content of the e-mail message.
         /// </summary>
         public string HtmlContent { get; }
+
+        /// <summary>
+        /// Gets or sets the importance of the e-mail message.
+        /// </summary>
+        public EmailImportance Importance { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var email = new Email<Model>(template);
 
+            email.Importance.Should().Be(EmailImportance.Normal);
             email.Recipients.Should().BeEmpty();
             email.Template.Should().BeSameAs(template);
         }
@@ -34,6 +35,21 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             act.Should().ThrowExactly<ArgumentNullException>()
                 .WithParameterName("template");
+        }
+
+        [Fact]
+        public void Importance_ValueChanged()
+        {
+            var subject = Mock.Of<TextTemplate<Model>>(MockBehavior.Strict);
+            var htmlContent = Mock.Of<TextTemplate<Model>>(MockBehavior.Strict);
+
+            var template = new EmailTemplate<Model>(subject, htmlContent);
+
+            var email = new Email<Model>(template);
+
+            email.Importance = EmailImportance.High;
+
+            email.Importance.Should().Be(EmailImportance.High);
         }
 
         internal sealed class Model

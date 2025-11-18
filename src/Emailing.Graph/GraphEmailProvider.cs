@@ -37,6 +37,13 @@ namespace PosInformatique.Foundations.Emailing.Graph
         {
             ArgumentNullException.ThrowIfNull(message);
 
+            var importance = message.Importance switch
+            {
+                EmailImportance.Low => Importance.Low,
+                EmailImportance.High => Importance.High,
+                _ => Importance.Normal,
+            };
+
             var graphMessage = new Message()
             {
                 Body = new ItemBody
@@ -44,9 +51,10 @@ namespace PosInformatique.Foundations.Emailing.Graph
                     ContentType = BodyType.Html,
                     Content = message.HtmlContent,
                 },
+                Importance = importance,
                 Subject = message.Subject,
-                ToRecipients = new List<Recipient>
-                {
+                ToRecipients =
+                [
                     new()
                     {
                         EmailAddress = new EmailAddress
@@ -55,7 +63,7 @@ namespace PosInformatique.Foundations.Emailing.Graph
                             Name = message.To.DisplayName,
                         },
                     },
-                },
+                ],
             };
 
             var body = new SendMailPostRequestBody()

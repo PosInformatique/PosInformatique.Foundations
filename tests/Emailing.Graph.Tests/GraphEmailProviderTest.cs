@@ -27,8 +27,11 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                 .WithParameterName("serviceClient");
         }
 
-        [Fact]
-        public async Task SendAsync()
+        [Theory]
+        [InlineData(EmailImportance.Low, Importance.Low)]
+        [InlineData(EmailImportance.Normal, Importance.Normal)]
+        [InlineData(EmailImportance.High, Importance.High)]
+        public async Task SendAsync(EmailImportance importance, Importance expectedImportance)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -55,6 +58,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.Body.ContentType.Should().Be(BodyType.Html);
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
+                    jsonMessage.Message.Importance.Should().Be(expectedImportance);
                     jsonMessage.Message.ToRecipients.Should().HaveCount(1);
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
@@ -69,7 +73,10 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
             var from = new EmailContact(EmailAddresses.EmailAddress.Parse("sender@domain.com"), "The sender");
             var to = new EmailContact(EmailAddresses.EmailAddress.Parse("recipient@domain.com"), "The recipient");
 
-            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+            var message = new EmailMessage(from, to, "The subject", "The HTML content")
+            {
+                Importance = importance,
+            };
 
             await client.SendAsync(message, cancellationToken);
 

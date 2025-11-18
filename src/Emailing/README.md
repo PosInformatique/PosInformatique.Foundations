@@ -43,6 +43,7 @@ and one of its concrete implementations (for example
 - Per-recipient data injection using a model with `EmailRecipient<TModel>`.
 - Central `IEmailManager` to create and send emails.
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
+- Support of the *Importance* of the e-mails (**Low, Normal and High).
 
 ## Basic concepts
 
@@ -165,12 +166,15 @@ var emailManager = serviceProvider.GetRequiredService<IEmailManager>();
 
 // Create an email based on the "Invitation" template
 var invitationEmail = emailManager.Create(EmailTemplateIdentifiers.Invitation);
+
+invitationEmail.Importance = EmailImportance.High;
 ```
 
 At this stage:
 
 - The `Email<TModel>` is linked to the `EmailTemplate<TModel>` previously registered in `EmailingOptions`.
 - No recipient has been added yet.
+- The importance of the e-mail is defined to `EmailImportance.High`.
 
 ### 2. Add recipients and models
 

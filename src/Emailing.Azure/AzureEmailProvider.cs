@@ -6,6 +6,8 @@
 
 namespace PosInformatique.Foundations.Emailing.Azure
 {
+    using System.Globalization;
+
     /// <summary>
     /// Implementation of the <see cref="IEmailProvider"/> to send the e-mail using
     /// <c>Azure Communication Service</c>.
@@ -46,7 +48,14 @@ namespace PosInformatique.Foundations.Emailing.Azure
                 Html = message.HtmlContent,
             };
 
-            var azureMessage = new global::Azure.Communication.Email.EmailMessage(message.From.Email, receipients, content);
+            var azureMessage = new global::Azure.Communication.Email.EmailMessage(message.From.Email, receipients, content)
+            {
+                Headers =
+                {
+                    { "X-Priority", Convert.ToString(Convert.ToInt32(message.Importance, CultureInfo.InvariantCulture), CultureInfo.InvariantCulture) },
+                    { "Importance", Convert.ToString(message.Importance, CultureInfo.InvariantCulture) },
+                },
+            };
 
             await this.client.SendAsync(global::Azure.WaitUntil.Started, azureMessage, cancellationToken);
         }
