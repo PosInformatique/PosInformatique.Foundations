@@ -33,6 +33,8 @@ namespace PosInformatique.Foundations.Emailing
             this.To = to;
             this.Subject = subject;
             this.HtmlContent = htmlContent;
+
+            this.Importance = EmailImportance.Normal;
         }
 
         /// <summary>

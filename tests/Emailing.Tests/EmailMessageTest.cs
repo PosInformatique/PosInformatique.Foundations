@@ -20,13 +20,10 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 from,
                 to,
                 "The subject",
-                "HTML content")
-            {
-                Importance = EmailImportance.High,
-            };
+                "HTML content");
 
             emailMessage.From.Should().Be(from);
-            emailMessage.Importance.Should().Be(EmailImportance.High);
+            emailMessage.Importance.Should().Be(EmailImportance.Normal);
             emailMessage.HtmlContent.Should().Be("HTML content");
             emailMessage.Subject.Should().Be("The subject");
             emailMessage.To.Should().Be(to);

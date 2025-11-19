@@ -44,6 +44,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var email = manager.Create(identifier);
 
+            email.Importance.Should().Be(EmailImportance.Normal);
             email.Recipients.Should().BeEmpty();
             email.Template.Should().BeSameAs(template);
         }
@@ -130,6 +131,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var email = new Email<Model>(template)
             {
+                Importance = EmailImportance.High,
                 Recipients =
                 {
                     new EmailRecipient<Model>(emailAddressRecipient1, "The display name 1", model1),
@@ -148,6 +150,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 {
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
+                    m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 1");
                     m.HtmlContent.Should().Be("HTML Content 1");
                     m.To.DisplayName.Should().Be("The display name 1");
@@ -158,6 +161,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 {
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
+                    m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 2");
                     m.HtmlContent.Should().Be("HTML Content 2");
                     m.To.DisplayName.Should().Be("The display name 2");

@@ -73,7 +73,10 @@ namespace PosInformatique.Foundations.Emailing
                     new EmailContact(senderEmailAddress, string.Empty),
                     new EmailContact(recipient.Address, recipient.DisplayName),
                     subject,
-                    htmlContent);
+                    htmlContent)
+                {
+                    Importance = email.Importance,
+                };
 
                 await this.provider.SendAsync(message, cancellationToken);
             }
