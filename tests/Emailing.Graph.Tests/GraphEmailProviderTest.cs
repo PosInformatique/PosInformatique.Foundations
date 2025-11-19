@@ -51,7 +51,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     requestInfo.HttpMethod.Should().Be(Method.POST);
                     requestInfo.URI.Should().Be("http://base/url/users/sender%40domain.com/sendMail");
 
-                    var jsonMessage = KiotaJsonSerializer.Deserialize<SendMailPostRequestBody>(requestInfo.Content);
+                    var jsonMessage = KiotaJsonSerializer.DeserializeAsync<SendMailPostRequestBody>(requestInfo.Content).GetAwaiter().GetResult();
 
                     jsonMessage.Message.Attachments.Should().BeNull();
                     jsonMessage.Message.Body.Content.Should().Be("The HTML content");
