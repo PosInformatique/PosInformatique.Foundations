@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EmailAddresses.FluentValidation\EmailAddresses.FluentValidation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\EmailAddresses.Tests\EmailAddressTestData.cs" Link="EmailAddressTestData.cs" />
+  </ItemGroup>
+
+</Project>

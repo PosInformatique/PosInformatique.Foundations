@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="PosInformatique.FluentAssertions.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EmailAddresses.Json\EmailAddresses.Json.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\People.FluentValidation\People.FluentValidation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\People.Tests\NameTestData.cs" Link="NameTestData.cs" />
+  </ItemGroup>
+
+</Project>

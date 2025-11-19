@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a lightweight and immutable MimeType value object to represent media types (MIME types) in .NET.
+      Includes parsing, safe parsing, well-known application/* and image/* media types, and helpers to map between file extensions and media types.
+    </Description>
+    <PackageTags>mimetype;media-type;content-type;file-extension;valueobject;ddd;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\MediaTypes\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MediaTypes\MediaTypes.csproj" />
+  </ItemGroup>
+
+</Project>

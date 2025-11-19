@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\People\People.csproj" />
+    <ProjectReference Include="..\..\src\Text.Templating.Scriban\Text.Templating.Scriban.csproj" />
+  </ItemGroup>
+
+</Project>

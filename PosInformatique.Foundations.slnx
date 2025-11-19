@@ -1,0 +1,122 @@
+<Solution>
+  <Folder Name="/00 - Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="CodeCoverage.runsettings" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Icon.png" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="stylecop.json" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/.github/" />
+  <Folder Name="/00 - Solution Items/.github/workflows/">
+    <File Path=".github/workflows/github-actions-ci.yaml" />
+    <File Path=".github/workflows/github-actions-release.yaml" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/src/">
+    <File Path="src/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/00 - Solution Items/tests/">
+    <File Path="tests/.editorconfig" />
+    <File Path="tests/Directory.Build.props" />
+  </Folder>
+  <Folder Name="/EmailAddresses/">
+    <Project Path="src/EmailAddresses/EmailAddresses.csproj" />
+    <Project Path="tests/EmailAddresses.Tests/EmailAddresses.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/EntityFramework/">
+    <Project Path="src/EmailAddresses.EntityFramework/EmailAddresses.EntityFramework.csproj" />
+    <Project Path="tests/EmailAddresses.EntityFramework.Tests/EmailAddresses.EntityFramework.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/FluentValidation/">
+    <Project Path="src/EmailAddresses.FluentValidation/EmailAddresses.FluentValidation.csproj" />
+    <Project Path="tests/EmailAddresses.FluentValidation.Tests/EmailAddresses.FluentValidation.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EmailAddresses/Json/">
+    <Project Path="src/EmailAddresses.Json/EmailAddresses.Json.csproj" />
+    <Project Path="tests/EmailAddresses.Json.Tests/EmailAddresses.Json.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Emailing/">
+    <Project Path="src/Emailing/Emailing.csproj" Id="bc2b6c86-880a-46ab-b7d2-f0e0b1b93c7b" />
+    <Project Path="tests/Emailing.Tests/Emailing.Tests.csproj" Id="0a3bb727-7b61-47cc-bdf1-76e3659b3e5b" />
+  </Folder>
+  <Folder Name="/Emailing/Azure/">
+    <Project Path="src/Emailing.Azure/Emailing.Azure.csproj" Id="3bcc0cf7-a90d-4d85-b540-58bf6c11eeee" />
+    <Project Path="tests/Emailing.Azure.Tests/Emailing.Azure.Tests.csproj" Id="d782c2a5-8434-4cdb-8f53-ed20cdbc546d" />
+  </Folder>
+  <Folder Name="/Emailing/Graph/">
+    <Project Path="src/Emailing.Graph/Emailing.Graph.csproj" Id="5874e6da-a783-4e2d-8317-0e783a6ee511" />
+    <Project Path="tests/Emailing.Graph.Tests/Emailing.Graph.Tests.csproj" Id="3cace78b-a3ac-4a7a-b1f3-92dce29c5544" />
+  </Folder>
+  <Folder Name="/Emailing/Templates/" />
+  <Folder Name="/Emailing/Templates/Razor/">
+    <Project Path="src/Emailing.Templates.Razor/Emailing.Templates.Razor.csproj" Id="2d0078a9-305d-43ad-aaa9-9f35f62f0873" />
+    <Project Path="tests/Emailing.Templates.Razor.Tests/Emailing.Templates.Razor.Tests.csproj" Id="cb6212b5-270e-4ec9-bf07-6f7b8a3b8187" />
+  </Folder>
+  <Folder Name="/MediaTypes/">
+    <Project Path="src/MediaTypes/MediaTypes.csproj" Id="31039dbf-ee6f-414c-8345-b92a6bc3e60a" />
+    <Project Path="tests/MediaTypes.Tests/MediaTypes.Tests.csproj" Id="1cee2c26-ceb5-43c8-a5c9-98ced675385c" />
+  </Folder>
+  <Folder Name="/MediaTypes/EntityFramework/">
+    <Project Path="src/MediaTypes.EntityFramework/MediaTypes.EntityFramework.csproj" />
+    <Project Path="tests/MediaTypes.EntityFramework.Tests/MediaTypes.EntityFramework.Tests.csproj" Id="2b9a0a27-fe1b-4126-adb8-d631b0d2f871" />
+  </Folder>
+  <Folder Name="/MediaTypes/Json/">
+    <Project Path="src/MediaTypes.Json/MediaTypes.Json.csproj" Id="c229cdff-764d-4899-b763-e6b7a866dc2c" />
+    <Project Path="tests/MediaTypes.Json.Tests/MediaTypes.Json.Tests.csproj" Id="b74c878a-ad2f-470b-82c9-7fe79ecc9ff1" />
+  </Folder>
+  <Folder Name="/People/">
+    <Project Path="src/People/People.csproj" />
+    <Project Path="tests/People.Tests/People.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/DataAnnotations/">
+    <Project Path="src/People.DataAnnotations/People.DataAnnotations.csproj" />
+    <Project Path="tests/People.DataAnnotations.Tests/People.DataAnnotations.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/EntityFramework/">
+    <Project Path="src/People.EntityFramework/People.EntityFramework.csproj" />
+    <Project Path="tests/People.EntityFramework.Tests/People.EntityFramework.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/FluentAssertions/">
+    <Project Path="src/People.FluentAssertions/People.FluentAssertions.csproj" />
+    <Project Path="tests/People.FluentAssertions.Tests/People.FluentAssertions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/FluentValidation/">
+    <Project Path="src/People.FluentValidation/People.FluentValidation.csproj" />
+    <Project Path="tests/People.FluentValidation.Tests/People.FluentValidation.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/Json/">
+    <Project Path="src/People.Json/People.Json.csproj" />
+    <Project Path="tests/People.Json.Tests/People.Json.Tests.csproj" />
+  </Folder>
+  <Folder Name="/PhoneNumbers/">
+    <Project Path="src/PhoneNumbers/PhoneNumbers.csproj" Id="fc8fcbb7-9dab-4175-afb5-d09a8cdd5c0b" />
+    <Project Path="tests/PhoneNumbers.Tests/PhoneNumbers.Tests.csproj" Id="b087193b-59b0-4b67-a7cd-34784ccffa1b" />
+  </Folder>
+  <Folder Name="/PhoneNumbers/EntityFramework/">
+    <Project Path="src/PhoneNumbers.EntityFramework/PhoneNumbers.EntityFramework.csproj" Id="3d06c72c-2346-4b36-9373-a58de44d2a76" />
+    <Project Path="tests/PhoneNumbers.EntityFramework.Tests/PhoneNumbers.EntityFramework.Tests.csproj" Id="65c0d0fb-0427-4f37-aecf-e857e9c4317d" />
+  </Folder>
+  <Folder Name="/PhoneNumbers/FluentValidation/">
+    <Project Path="src/PhoneNumbers.FluentValidation/PhoneNumbers.FluentValidation.csproj" Id="ed3262e3-700b-4c71-a8dc-b3984e786b0f" />
+    <Project Path="tests/PhoneNumbers.FluentValidation.Tests/PhoneNumbers.FluentValidation.Tests.csproj" Id="773a710f-bea4-4044-ae15-ee09a9786ff0" />
+  </Folder>
+  <Folder Name="/PhoneNumbers/Json/">
+    <Project Path="src/PhoneNumbers.Json/PhoneNumbers.Json.csproj" Id="ba6614aa-3b78-4bc6-a22d-9389bfa6e133" />
+    <Project Path="tests/PhoneNumbers.Json.Tests/PhoneNumbers.Json.Tests.csproj" Id="65c8dd1e-6f18-4ad6-a261-3bc8dd96d00a" />
+  </Folder>
+  <Folder Name="/Text/" />
+  <Folder Name="/Text/Templating/">
+    <Project Path="src/Text.Templating/Text.Templating.csproj" Id="25d9a572-5f28-4e35-9836-8f8d70617e0d" />
+  </Folder>
+  <Folder Name="/Text/Templating/Razor/">
+    <Project Path="src/Text.Templating.Razor/Text.Templating.Razor.csproj" Id="aab32a1c-3774-4216-8558-76073bc8ac1f" />
+    <Project Path="tests/Text.Templating.Razor.Tests/Text.Templating.Razor.Tests.csproj" Id="c6778dd0-32fa-4725-9416-6f6d6862c988" />
+  </Folder>
+  <Folder Name="/Text/Templating/Scriban/">
+    <Project Path="src/Text.Templating.Scriban/Text.Templating.Scriban.csproj" Id="2a99a660-d100-4fc9-b90e-e48df2acec19" />
+    <Project Path="tests/Text.Templating.Scriban.Tests/Text.Templating.Scriban.Tests.csproj" Id="50408388-38e3-4121-b00c-18e0c735d829" />
+  </Folder>
+</Solution>

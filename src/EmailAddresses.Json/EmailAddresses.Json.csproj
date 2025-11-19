@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a System.Text.Json converter for the MimeType value object.
+      Enables seamless serialization and deserialization of MIME types within JSON documents.
+    </Description>
+    <PackageTags>mimetype;mediatype;contenttype;valueobject;ddd;json;parsing;validation;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\EmailAddresses\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmailAddresses\EmailAddresses.csproj" />
+  </ItemGroup>
+
+</Project>

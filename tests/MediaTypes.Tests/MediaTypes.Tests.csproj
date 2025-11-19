@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MediaTypes\MediaTypes.csproj" />
+  </ItemGroup>
+
+</Project>

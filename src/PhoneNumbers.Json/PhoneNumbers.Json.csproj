@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      System.Text.Json converter for the PhoneNumber value object, enabling seamless serialization and deserialization of phone numbers in E.164 format.
+    </Description>
+    <PackageTags>phone;phonenumber;json;serialization;systemtextjson;converter;e164;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\PhoneNumbers\Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneNumbers\PhoneNumbers.csproj" />
+  </ItemGroup>
+
+</Project>

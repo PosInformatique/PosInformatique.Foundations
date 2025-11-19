@@ -1,0 +1,59 @@
+﻿name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "releases/**" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore PosInformatique.Foundations.slnx
+
+      - name: Build solution
+        run: |
+          dotnet build PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-restore
+
+      - name: Run tests (.NET 8.0)
+        run: |
+          dotnet test PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-build \
+          --logger "trx" \
+          --results-directory ./TestResults \
+          --collect "XPlat Code Coverage" \
+          --framework net8.0
+
+      - name: Run tests (.NET 9.0)
+        run: |
+          dotnet test PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-build \
+          --logger "trx" \
+          --results-directory ./TestResults \
+          --collect "XPlat Code Coverage" \
+          --framework net9.0
+  
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          files: |
+            TestResults/**/*.trx
