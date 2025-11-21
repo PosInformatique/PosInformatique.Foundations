@@ -155,6 +155,20 @@ Formatted data: @this.Formatter.Format(Model)
 
 As long as `IDateTimeProvider` and `IMyFormatter` are registered in the `IServiceCollection`, they are available during template rendering.
 
+## HTML rendering and character encoding
+
+The output of Razor templates is standard HTML. This means that special characters (including accents)
+are HTML-encoded by default when using expressions like `@Model.Name`.
+
+If you need to output already-encoded or raw HTML content from your model, you must explicitly disable HTML
+encoding in your Razor template, for example:
+
+```razor
+@Html.Raw(Model.Name)
+```
+
+Use this only when you are sure that the content is safe (to avoid XSS vulnerabilities).
+
 ## Links
 
 - [NuGet package: Emailing.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Templates.Razor/)
