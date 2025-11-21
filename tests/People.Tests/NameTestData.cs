@@ -27,6 +27,7 @@ namespace PosInformatique
             "$$Jean",
             "Jean@$+Patrick",
             "Jean-Patrick.",
+            "Jean-Patrick1234",
             string.Empty,
             "    ",
             "                                                            ",
@@ -49,6 +50,7 @@ namespace PosInformatique
             "$$Dupont",
             "Du@$+Pont",
             "Du-pont.",
+            "Dupont1234",
             string.Empty,
             "   ",
         };
