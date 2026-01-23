@@ -60,6 +60,10 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 - Get lightweight, modular libraries tailored to single responsibilities.  
 - Add missing building blocks to your projects without introducing a heavyweight framework.
 
+## 📜 Changelog
+Each package maintains its own changelog in its respective `CHANGELOG.md` file located in the package's source directory, but
+for your convenience, we also provide a consolidated [changelog here](./CHANGELOG.md).
+
 ## 📌 .NET and dependency compatibility
 
 All [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages are designed to be compatible with **.NET 8.0**, **.NET 9.0** and **.NET 10.0**.
