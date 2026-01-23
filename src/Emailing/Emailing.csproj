@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmailAddresses\EmailAddresses.csproj" />
+    <ProjectReference Include="..\MediaTypes\MediaTypes.csproj" />
     <ProjectReference Include="..\Text.Templating\Text.Templating.csproj" />
   </ItemGroup>
 

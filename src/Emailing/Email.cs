@@ -24,9 +24,15 @@ namespace PosInformatique.Foundations.Emailing
 
             this.Template = template;
 
+            this.Attachments = [];
             this.Importance = EmailImportance.Normal;
             this.Recipients = [];
         }
+
+        /// <summary>
+        /// Gets the collection of attachments included with the email message.
+        /// </summary>
+        public Collection<EmailAttachment> Attachments { get; }
 
         /// <summary>
         /// Gets or sets the importance of the e-mail.

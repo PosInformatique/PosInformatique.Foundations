@@ -78,6 +78,11 @@ namespace PosInformatique.Foundations.Emailing
                     Importance = email.Importance,
                 };
 
+                foreach (var attachment in email.Attachments)
+                {
+                    message.Attachments.Add(attachment);
+                }
+
                 await this.provider.SendAsync(message, cancellationToken);
             }
         }

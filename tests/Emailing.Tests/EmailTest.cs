@@ -20,6 +20,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var email = new Email<Model>(template);
 
+            email.Attachments.Should().BeEmpty();
             email.Importance.Should().Be(EmailImportance.Normal);
             email.Recipients.Should().BeEmpty();
             email.Template.Should().BeSameAs(template);

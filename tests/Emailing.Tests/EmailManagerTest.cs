@@ -8,6 +8,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
 {
     using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.EmailAddresses;
+    using PosInformatique.Foundations.MediaTypes;
     using PosInformatique.Foundations.Text.Templating;
 
     public class EmailManagerTest
@@ -129,8 +130,24 @@ namespace PosInformatique.Foundations.Emailing.Tests
             var emailAddressRecipient1 = EmailAddress.Parse("email1@domain.com");
             var emailAddressRecipient2 = EmailAddress.Parse("email2@domain.com");
 
+            var content1 = new Mock<Stream>(MockBehavior.Strict);
+            content1.Setup(c => c.CanRead)
+                .Returns(true);
+
+            var content2 = new Mock<Stream>(MockBehavior.Strict);
+            content2.Setup(c => c.CanRead)
+                .Returns(true);
+
+            var attachment1 = new EmailAttachment("Attachment1", MimeTypes.Application.Pdf, content1.Object);
+            var attachment2 = new EmailAttachment("Attachment2", MimeTypes.Application.Docx, content2.Object);
+
             var email = new Email<Model>(template)
             {
+                Attachments =
+                {
+                    attachment1,
+                    attachment2,
+                },
                 Importance = EmailImportance.High,
                 Recipients =
                 {
@@ -148,6 +165,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
             provider.Setup(p => p.SendAsync(It.Is<EmailMessage>(m => m.To.Email == emailAddressRecipient1), cancellationToken))
                 .Callback((EmailMessage m, CancellationToken _) =>
                 {
+                    m.Attachments.Should().Equal(attachment1, attachment2);
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
                     m.Importance.Should().Be(EmailImportance.High);
@@ -159,6 +177,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
             provider.Setup(p => p.SendAsync(It.Is<EmailMessage>(m => m.To.Email == emailAddressRecipient2), cancellationToken))
                 .Callback((EmailMessage m, CancellationToken _) =>
                 {
+                    m.Attachments.Should().Equal(attachment1, attachment2);
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
                     m.Importance.Should().Be(EmailImportance.High);
@@ -172,6 +191,8 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             await manager.SendAsync(email, cancellationToken);
 
+            content1.VerifyAll();
+            content2.VerifyAll();
             htmlBody.VerifyAll();
             provider.VerifyAll();
             subject.VerifyAll();

@@ -6,7 +6,9 @@
 
 namespace PosInformatique.Foundations.Emailing.Azure.Tests
 {
+    using System.Reflection;
     using PosInformatique.Foundations.EmailAddresses;
+    using PosInformatique.Foundations.MediaTypes;
 
     public class AzureEmailProviderTest
     {
@@ -33,8 +35,16 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
             var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
 
+            var attachment1 = new EmailAttachment("Attachment1", MimeTypes.Application.Pdf, new MemoryStream([1, 2]));
+            var attachment2 = new EmailAttachment("Attachment2", MimeTypes.Application.Docx, new MemoryStream([3, 4]));
+
             var message = new EmailMessage(from, to, "The subject", "The HTML content")
             {
+                Attachments =
+                {
+                    attachment1,
+                    attachment2,
+                },
                 Importance = importance,
             };
 
@@ -42,7 +52,13 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             azureClient.Setup(c => c.SendAsync(global::Azure.WaitUntil.Started, It.IsAny<global::Azure.Communication.Email.EmailMessage>(), cancellationToken))
                 .Callback((global::Azure.WaitUntil _, global::Azure.Communication.Email.EmailMessage m, CancellationToken _) =>
                 {
-                    m.Attachments.Should().BeEmpty();
+                    m.Attachments.Should().HaveCount(2);
+                    m.Attachments[0].Content.ToArray().Should().BeEquivalentTo(new byte[] { 1, 2 });
+                    m.Attachments[0].ContentType.Should().Be("application/pdf");
+                    m.Attachments[0].Name.Should().Be("Attachment1");
+                    m.Attachments[1].Content.ToArray().Should().BeEquivalentTo(new byte[] { 3, 4 });
+                    m.Attachments[1].ContentType.Should().Be("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+                    m.Attachments[1].Name.Should().Be("Attachment2");
                     m.Headers.Should().HaveCount(2);
                     m.Headers["X-Priority"].Should().Be(expectedXPriority);
                     m.Headers["Importance"].Should().Be(expectedImportance);
@@ -63,6 +79,9 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             await provider.SendAsync(message, cancellationToken);
 
             azureClient.VerifyAll();
+
+            IsOpen(attachment1.Content).Should().BeTrue();
+            IsOpen(attachment2.Content).Should().BeTrue();
         }
 
         [Fact]
@@ -77,6 +96,13 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                 .WithParameterName("message");
 
             azureClient.VerifyAll();
+        }
+
+        private static bool IsOpen(Stream stream)
+        {
+            var fieldIsOpen = typeof(MemoryStream).GetField("_isOpen", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            return (bool)fieldIsOpen.GetValue(stream);
         }
     }
 }

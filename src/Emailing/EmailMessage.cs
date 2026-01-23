@@ -34,8 +34,14 @@ namespace PosInformatique.Foundations.Emailing
             this.Subject = subject;
             this.HtmlContent = htmlContent;
 
+            this.Attachments = [];
             this.Importance = EmailImportance.Normal;
         }
+
+        /// <summary>
+        /// Gets the collection of attachments included with the email message.
+        /// </summary>
+        public Collection<EmailAttachment> Attachments { get; }
 
         /// <summary>
         /// Gets the sender of the e-mail message.

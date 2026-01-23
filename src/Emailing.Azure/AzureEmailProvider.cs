@@ -57,6 +57,16 @@ namespace PosInformatique.Foundations.Emailing.Azure
                 },
             };
 
+            foreach (var attachment in message.Attachments)
+            {
+                var attachmentContent = await BinaryData.FromStreamAsync(attachment.Content, cancellationToken);
+
+                azureMessage.Attachments.Add(new global::Azure.Communication.Email.EmailAttachment(
+                    attachment.FileName,
+                    attachment.ContentType.ToString(),
+                    attachmentContent));
+            }
+
             await this.client.SendAsync(global::Azure.WaitUntil.Started, azureMessage, cancellationToken);
         }
     }
