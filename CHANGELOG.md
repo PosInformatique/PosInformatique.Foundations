@@ -6,6 +6,7 @@
 
 #### PosInformatique.Foundations.Emailing
 - Add the support to send emails with attachments.
+- Add a new overload method `EmailRecipientCollection<TModel>.Add(EmailAddress, TModel)`.
 
 #### PosInformatique.Foundations.Emailing.Azure
 - Add the support to send emails with attachments.
