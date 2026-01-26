@@ -25,6 +25,44 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var collection = new EmailRecipientCollection<Model>();
 
+            var result = collection.Add(EmailAddress.Parse("name@domain.com"), model);
+
+            collection.Should().Equal(result);
+
+            result.Address.Should().Be(EmailAddress.Parse("name@domain.com"));
+            result.DisplayName.Should().BeEmpty();
+            result.Model.Should().BeSameAs(model);
+        }
+
+        [Fact]
+        public void Add_WithNullAddress()
+        {
+            var collection = new EmailRecipientCollection<Model>();
+
+            collection.Invoking(c => c.Add(null, default))
+                .Should().ThrowExactly<ArgumentNullException>()
+                .WithParameterName("address");
+        }
+
+        [Fact]
+        public void Add_WithNullModel()
+        {
+            var address = EmailAddress.Parse("email@domain.com");
+
+            var collection = new EmailRecipientCollection<Model>();
+
+            collection.Invoking(c => c.Add(address, null))
+                .Should().ThrowExactly<ArgumentNullException>()
+                .WithParameterName("model");
+        }
+
+        [Fact]
+        public void Add_WithDisplayName()
+        {
+            var model = new Model();
+
+            var collection = new EmailRecipientCollection<Model>();
+
             var result = collection.Add(EmailAddress.Parse("name@domain.com"), "The display name", model);
 
             collection.Should().Equal(result);
@@ -35,7 +73,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Fact]
-        public void Add_WithNullAddress()
+        public void Add_WithDisplayName_WithNullAddress()
         {
             var collection = new EmailRecipientCollection<Model>();
 
@@ -45,7 +83,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Fact]
-        public void Add_WithNullDisplayName()
+        public void Add_WithDisplayName_WithNullDisplayName()
         {
             var address = EmailAddress.Parse("email@domain.com");
 
@@ -57,7 +95,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Fact]
-        public void Add_WithNullModel()
+        public void Add_WithDisplayName_WithNullModel()
         {
             var address = EmailAddress.Parse("email@domain.com");
 
