@@ -4,7 +4,7 @@
 
 ### 1.1.0
 
-- Add the support of .NET 10.0
+- Add the support of .NET 10.0 for all the packages.
 
 #### PosInformatique.Foundations.Emailing
 - Add the support to send emails with attachments.
@@ -15,6 +15,9 @@
 
 #### PosInformatique.Foundations.Emailing.Graph
 - Add the support to send emails with attachments.
+
+#### PosInformatique.Foundations.Text.Templating.Scriban
+- Upgrade the Scriban dependency to version 7.0.0 to fix security vulnerabilities.
 
 ### 1.0.0
 - Initial version of the following packages:
