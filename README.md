@@ -70,7 +70,7 @@ All [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformat
 
 To maximize backward compatibility with existing projects, dependencies on external libraries (such as `Microsoft.Graph`, etc.)
 intentionally target **relatively old versions**. This avoids forcing you to update your entire solution to the
-latest versions used internally by PosInformatique.Foundations.
+latest versions used internally by [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations).
 
 > Important: It is the responsibility of the application developer to explicitly reference and update
 any **transitive dependencies** in their own project if they want to use newer versions.
@@ -97,6 +97,10 @@ In this case, your project will use [Microsoft.Graph](https://www.nuget.org/pack
 while still consuming
 [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/).
 This is **recommended**, especially to benefit from the latest security updates and bug fixes of the underlying dependencies.
+
+> The next versions of [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages
+> will updated their dependencies to newer versions, if there is security vulnerabilities reported by NuGet or GitHub advisories.
+> This to force also developers to avoid using vulnerable versions of the dependencies when upgrading to the new versions of the packages.
 
 ## 📄 License
 
