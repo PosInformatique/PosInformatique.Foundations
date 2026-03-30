@@ -66,6 +66,27 @@ namespace PosInformatique.Foundations.Emailing.Graph
                 ],
             };
 
+            if (message.Attachments.Count > 0)
+            {
+                graphMessage.Attachments = new List<Attachment>();
+
+                foreach (var attachment in message.Attachments)
+                {
+                    using var attachmentContent = new MemoryStream();
+
+                    await attachment.Content.CopyToAsync(attachmentContent, cancellationToken);
+
+                    var graphAttachment = new FileAttachment()
+                    {
+                        Name = attachment.FileName,
+                        ContentBytes = attachmentContent.ToArray(),
+                        ContentType = attachment.ContentType.ToString(),
+                    };
+
+                    graphMessage.Attachments.Add(graphAttachment);
+                }
+            }
+
             var body = new SendMailPostRequestBody()
             {
                 Message = graphMessage,

@@ -4,31 +4,34 @@
     <!-- Versions of the packages -->
     <DotNetVersion Condition="'$(TargetFramework)' == 'net8.0'">8.0.0</DotNetVersion>
     <DotNetVersion Condition="'$(TargetFramework)' == 'net9.0'">9.0.0</DotNetVersion>
+    <DotNetVersion Condition="'$(TargetFramework)' == 'net10.0'">10.0.0</DotNetVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Azure.Communication.Email" Version="1.0.0" />
-    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="coverlet.collector" Version="8.0.1" />
     <PackageVersion Include="FluentAssertions" Version="7.2.0" />
     <PackageVersion Include="FluentValidation" Version="12.0.0" />
     <PackageVersion Include="libphonenumber-csharp" Version="9.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Azure" Version="1.7.2" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" Condition="'$(TargetFramework)' == 'net8.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Azure" Version="1.13.1" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" Condition="'$(TargetFramework)' == 'net8.0'" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Options" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Graph" Version="5.89.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
-    <PackageVersion Include="PosInformatique.FluentAssertions.Json" Version="1.6.0" />
+    <PackageVersion Include="PosInformatique.FluentAssertions.Json" Version="1.7.0" />
     <PackageVersion Include="PosInformatique.Moq.Analyzers" Version="2.0.1" />
-    <PackageVersion Include="Scriban" Version="6.5.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
+    <PackageVersion Include="Scriban" Version="7.0.0" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.22.0.136894" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
-    <PackageVersion Include="xunit.v3" Version="3.2.0" />
+    <PackageVersion Include="xunit.v3" Version="3.2.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
 </Project>

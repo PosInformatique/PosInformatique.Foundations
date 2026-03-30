@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 
     <!-- Same code coverage configuration for all the test projects -->
     <RunSettingsFilePath>$(SolutionDir)\CodeCoverage.runsettings</RunSettingsFilePath>
@@ -33,7 +33,7 @@
     <IsPackable>false</IsPackable>
     
     <!-- Disable the StyleCop 'XML comment analysis is disabled due to project configuration' warning. -->
-    <NoWarn>$(NoWarn);SA0001</NoWarn>
+    <NoWarn>$(NoWarn);SA0001;EnableGenerateDocumentationFile</NoWarn>
   </PropertyGroup>
 
   <!-- Add the default using directive for all tests code -->

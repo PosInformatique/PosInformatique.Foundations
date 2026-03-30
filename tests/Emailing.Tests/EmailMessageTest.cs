@@ -22,6 +22,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 "The subject",
                 "HTML content");
 
+            emailMessage.Attachments.Should().BeEmpty();
             emailMessage.From.Should().Be(from);
             emailMessage.Importance.Should().Be(EmailImportance.Normal);
             emailMessage.HtmlContent.Should().Be("HTML content");

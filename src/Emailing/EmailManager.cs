@@ -49,36 +49,70 @@ namespace PosInformatique.Foundations.Emailing
 
             var senderEmailAddress = this.options.Value.SenderEmailAddress!;
 
-            foreach (var recipient in email.Recipients)
+            // Copy the attachments in memory.
+            var attachmentsContent = new List<MemoryStream>(email.Attachments.Count);
+
+            foreach (var attachment in email.Attachments)
             {
-                // Render the subject
-                using var subjectOutputWriter = new StringWriter();
+                var attachementStream = new MemoryStream();
 
-                var textTemplateRenderContext = new TextTemplateRenderContext(this.serviceProvider);
+                await attachment.Content.CopyToAsync(attachementStream, cancellationToken);
 
-                await email.Template.Subject.RenderAsync(recipient.Model, subjectOutputWriter, textTemplateRenderContext, cancellationToken);
+                attachementStream.Position = 0;
 
-                var subject = subjectOutputWriter.ToString();
+                attachmentsContent.Add(attachementStream);
+            }
 
-                // Render the HTML content
-                using var htmlContentOutputWriter = new StringWriter();
-
-                textTemplateRenderContext = new TextTemplateRenderContext(this.serviceProvider);
-
-                await email.Template.HtmlBody.RenderAsync(recipient.Model, htmlContentOutputWriter, textTemplateRenderContext, cancellationToken);
-
-                var htmlContent = htmlContentOutputWriter.ToString();
-
-                var message = new EmailMessage(
-                    new EmailContact(senderEmailAddress, string.Empty),
-                    new EmailContact(recipient.Address, recipient.DisplayName),
-                    subject,
-                    htmlContent)
+            try
+            {
+                foreach (var recipient in email.Recipients)
                 {
-                    Importance = email.Importance,
-                };
+                    // Render the subject
+                    using var subjectOutputWriter = new StringWriter();
 
-                await this.provider.SendAsync(message, cancellationToken);
+                    var textTemplateRenderContext = new TextTemplateRenderContext(this.serviceProvider);
+
+                    await email.Template.Subject.RenderAsync(recipient.Model, subjectOutputWriter, textTemplateRenderContext, cancellationToken);
+
+                    var subject = subjectOutputWriter.ToString();
+
+                    // Render the HTML content
+                    using var htmlContentOutputWriter = new StringWriter();
+
+                    textTemplateRenderContext = new TextTemplateRenderContext(this.serviceProvider);
+
+                    await email.Template.HtmlBody.RenderAsync(recipient.Model, htmlContentOutputWriter, textTemplateRenderContext, cancellationToken);
+
+                    var htmlContent = htmlContentOutputWriter.ToString();
+
+                    var message = new EmailMessage(
+                        new EmailContact(senderEmailAddress, string.Empty),
+                        new EmailContact(recipient.Address, recipient.DisplayName),
+                        subject,
+                        htmlContent)
+                    {
+                        Importance = email.Importance,
+                    };
+
+                    for (int i = 0; i < email.Attachments.Count; i++)
+                    {
+                        attachmentsContent[i].Position = 0;
+
+                        var emailAttachement = email.Attachments[i];
+                        var newEmailAttachement = new EmailAttachment(emailAttachement.FileName, emailAttachement.ContentType, attachmentsContent[i]);
+
+                        message.Attachments.Add(newEmailAttachement);
+                    }
+
+                    await this.provider.SendAsync(message, cancellationToken);
+                }
+            }
+            finally
+            {
+                foreach (var attachmentContent in attachmentsContent)
+                {
+                    await attachmentContent.DisposeAsync();
+                }
             }
         }
 

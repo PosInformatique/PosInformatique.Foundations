@@ -6,8 +6,10 @@
 
 namespace PosInformatique.Foundations.Emailing.Tests
 {
+    using System.Reflection;
     using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.EmailAddresses;
+    using PosInformatique.Foundations.MediaTypes;
     using PosInformatique.Foundations.Text.Templating;
 
     public class EmailManagerTest
@@ -129,8 +131,19 @@ namespace PosInformatique.Foundations.Emailing.Tests
             var emailAddressRecipient1 = EmailAddress.Parse("email1@domain.com");
             var emailAddressRecipient2 = EmailAddress.Parse("email2@domain.com");
 
+            var content1 = new MemoryStream([1, 2]);
+            var content2 = new MemoryStream([3, 4]);
+
+            var attachment1 = new EmailAttachment("Attachment1", MimeTypes.Application.Pdf, content1);
+            var attachment2 = new EmailAttachment("Attachment2", MimeTypes.Application.Docx, content2);
+
             var email = new Email<Model>(template)
             {
+                Attachments =
+                {
+                    attachment1,
+                    attachment2,
+                },
                 Importance = EmailImportance.High,
                 Recipients =
                 {
@@ -144,33 +157,65 @@ namespace PosInformatique.Foundations.Emailing.Tests
             var options = new EmailingOptions();
             options.SenderEmailAddress = sender;
 
+            var contentStreams = new List<Stream>();
+
             var provider = new Mock<IEmailProvider>(MockBehavior.Strict);
             provider.Setup(p => p.SendAsync(It.Is<EmailMessage>(m => m.To.Email == emailAddressRecipient1), cancellationToken))
                 .Callback((EmailMessage m, CancellationToken _) =>
                 {
+                    m.Attachments[0].Content.As<MemoryStream>().Position.Should().Be(0);
+                    m.Attachments[0].Content.As<MemoryStream>().ToArray().Should().Equal(1, 2);
+                    m.Attachments[0].ContentType.Should().Be(MimeTypes.Application.Pdf);
+                    m.Attachments[0].FileName.Should().Be("Attachment1");
+                    m.Attachments[1].Content.As<MemoryStream>().Position.Should().Be(0);
+                    m.Attachments[1].Content.As<MemoryStream>().ToArray().Should().Equal(3, 4);
+                    m.Attachments[1].ContentType.Should().Be(MimeTypes.Application.Docx);
+                    m.Attachments[1].FileName.Should().Be("Attachment2");
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
                     m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 1");
                     m.HtmlContent.Should().Be("HTML Content 1");
                     m.To.DisplayName.Should().Be("The display name 1");
+
+                    contentStreams.Add(m.Attachments[0].Content);
+                    contentStreams.Add(m.Attachments[1].Content);
                 })
                 .Returns(Task.CompletedTask);
             provider.Setup(p => p.SendAsync(It.Is<EmailMessage>(m => m.To.Email == emailAddressRecipient2), cancellationToken))
                 .Callback((EmailMessage m, CancellationToken _) =>
                 {
+                    m.Attachments[0].Content.As<MemoryStream>().Position.Should().Be(0);
+                    m.Attachments[0].Content.As<MemoryStream>().ToArray().Should().Equal(1, 2);
+                    m.Attachments[0].ContentType.Should().Be(MimeTypes.Application.Pdf);
+                    m.Attachments[0].FileName.Should().Be("Attachment1");
+                    m.Attachments[1].Content.As<MemoryStream>().Position.Should().Be(0);
+                    m.Attachments[1].Content.As<MemoryStream>().ToArray().Should().Equal(3, 4);
+                    m.Attachments[1].ContentType.Should().Be(MimeTypes.Application.Docx);
+                    m.Attachments[1].FileName.Should().Be("Attachment2");
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().BeEmpty();
                     m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 2");
                     m.HtmlContent.Should().Be("HTML Content 2");
                     m.To.DisplayName.Should().Be("The display name 2");
+
+                    contentStreams.Add(m.Attachments[0].Content);
+                    contentStreams.Add(m.Attachments[1].Content);
                 })
                 .Returns(Task.CompletedTask);
 
             var manager = new EmailManager(Options.Create(options), provider.Object, serviceProvider);
 
             await manager.SendAsync(email, cancellationToken);
+
+            foreach (var contentStream in contentStreams)
+            {
+                IsOpen(contentStream).Should().BeFalse();
+            }
+
+            IsOpen(email.Attachments[0].Content).Should().BeTrue();
+            IsOpen(email.Attachments[1].Content).Should().BeTrue();
 
             htmlBody.VerifyAll();
             provider.VerifyAll();
@@ -188,6 +233,13 @@ namespace PosInformatique.Foundations.Emailing.Tests
             await manager.Invoking(m => m.SendAsync<Model>(null, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("email");
+        }
+
+        private static bool IsOpen(Stream stream)
+        {
+            var fieldIsOpen = typeof(MemoryStream).GetField("_isOpen", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            return (bool)fieldIsOpen.GetValue(stream);
         }
 
         internal sealed class Model

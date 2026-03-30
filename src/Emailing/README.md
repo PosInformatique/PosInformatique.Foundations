@@ -44,6 +44,7 @@ and one of its concrete implementations (for example
 - Central `IEmailManager` to create and send emails.
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
 - Support of the *Importance* of the e-mails (**Low, Normal and High).
+- Support for sending emails with attachments.
 
 ## Basic concepts
 
@@ -206,7 +207,22 @@ invitationEmail.Recipients.Add(
     });
 ```
 
-### 3. Send the email
+### 3. Add attachments (optional)
+
+You can add attachments to the email by using the `Attachments` collection
+of the `EmailMessage` class:
+
+```csharp
+using var fileContent = File.OpenRead("document.pdf");
+
+invitationEmail.Attachments.Add(new EmailAttachment("MyFile.pdf", "MimeTypes.Pdf", fileContent));
+```
+
+> **Note:** The `IEmailManager.SendAsync()` method will read the content of the attachment stream
+> but will not dispose of it. Make sure to manage the `Stream` lifetime appropriately
+> by calling the `Dispose()` method on the `Stream` instance after the email has been sent.
+
+### 4. Send the email
 
 Once the email and its recipients are configured, you ask the `IEmailManager` to send it:
 
@@ -224,6 +240,8 @@ Under the hood:
    - The configured sender (`EmailingOptions.SenderEmailAddress`).
    - The recipient address and display name.
    - The generated subject and HTML content.
+   - The importance.
+   - The associated attachments.
 4. It calls `IEmailProvider.SendAsync(...)` to actually send the message.
 
 The provider implementation is responsible for the technical details (SMTP, Azure Communication Service, etc.).

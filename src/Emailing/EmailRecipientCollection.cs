@@ -19,6 +19,19 @@ namespace PosInformatique.Foundations.Emailing
         /// Creates and add new <see cref="EmailRecipient{TModel}"/> in the <see cref="EmailRecipientCollection{TModel}"/>.
         /// </summary>
         /// <param name="address">E-mail address of the recipient.</param>
+        /// <param name="model">Data model to apply on the <see cref="Email{TModel}.Template"/> to generate the e-mail for the recipient.</param>
+        /// <returns>The <see cref="EmailRecipientCollection{TModel}"/> created and added.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the <paramref name="address"/> argument is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the <paramref name="model"/> argument is <see langword="null"/>.</exception>
+        public EmailRecipient<TModel> Add(EmailAddress address, TModel model)
+        {
+            return this.Add(address, string.Empty, model);
+        }
+
+        /// <summary>
+        /// Creates and add new <see cref="EmailRecipient{TModel}"/> in the <see cref="EmailRecipientCollection{TModel}"/>.
+        /// </summary>
+        /// <param name="address">E-mail address of the recipient.</param>
         /// <param name="displayName">Display name of the recipient (can be empty).</param>
         /// <param name="model">Data model to apply on the <see cref="Email{TModel}.Template"/> to generate the e-mail for the recipient.</param>
         /// <returns>The <see cref="EmailRecipientCollection{TModel}"/> created and added.</returns>

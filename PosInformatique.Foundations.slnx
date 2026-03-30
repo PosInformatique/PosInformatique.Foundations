@@ -2,9 +2,11 @@
   <Folder Name="/00 - Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="CHANGELOG.md" />
     <File Path="CodeCoverage.runsettings" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
     <File Path="Icon.png" />
     <File Path="LICENSE" />
     <File Path="README.md" />
