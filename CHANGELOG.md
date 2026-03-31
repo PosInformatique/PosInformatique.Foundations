@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### 1.2.0
+
+#### PosInformatique.Foundations.People.AwesomeAssertions
+- Add the support with AwesomeAssertions to assert the FirstName and LastName value objects.
+
 ### 1.1.0
 
 - Add the support of .NET 10.0 for all the packages.

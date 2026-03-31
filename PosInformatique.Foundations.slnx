@@ -73,6 +73,10 @@
     <Project Path="src/People/People.csproj" />
     <Project Path="tests/People.Tests/People.Tests.csproj" />
   </Folder>
+  <Folder Name="/People/AwesomeAssertions/">
+    <Project Path="src/People.AwesomeAssertions/People.AwesomeAssertions.csproj" />
+    <Project Path="tests/People.AwesomeAssertions.Tests/People.AwesomeAssertions.Tests.csproj" />
+  </Folder>
   <Folder Name="/People/DataAnnotations/">
     <Project Path="src/People.DataAnnotations/People.DataAnnotations.csproj" />
     <Project Path="tests/People.DataAnnotations.Tests/People.DataAnnotations.Tests.csproj" />
