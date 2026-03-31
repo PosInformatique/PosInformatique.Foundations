@@ -5,11 +5,11 @@
   
   <!-- Common NuGet packages -->
   <ItemGroup>
+    <PackageReference Include="AwesomeAssertions" />
     <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq"/>
     <PackageReference Include="PosInformatique.Moq.Analyzers">
@@ -38,7 +38,7 @@
 
   <!-- Add the default using directive for all tests code -->
   <ItemGroup>
-    <Using Include="FluentAssertions" />
+    <Using Include="AwesomeAssertions" />
     <Using Include="Moq" />
     <Using Include="Xunit" />
   </ItemGroup>

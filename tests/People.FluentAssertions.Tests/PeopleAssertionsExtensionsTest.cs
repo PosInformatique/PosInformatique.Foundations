@@ -6,6 +6,7 @@
 
 namespace PosInformatique.Foundations.People.FluentAssertions.Tests
 {
+    using global::FluentAssertions;
     using Xunit.Sdk;
 
     public class PeopleAssertionsExtensionsTest

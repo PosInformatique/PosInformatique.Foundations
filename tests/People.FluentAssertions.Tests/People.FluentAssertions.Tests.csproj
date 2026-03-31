@@ -3,5 +3,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\People.FluentAssertions\People.FluentAssertions.csproj" />
   </ItemGroup>
+  
+  <!-- Removes the default using directive AwesomeAssertions to avoid conflicts with FluentAssertions -->
+  <ItemGroup>
+    <Using Remove="AwesomeAssertions" />
+  </ItemGroup>
 
 </Project>
