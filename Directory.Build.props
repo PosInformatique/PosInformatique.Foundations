@@ -21,6 +21,12 @@
     <!-- Enforce .editorconfig style on build -->
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
+    <!-- Force to have explicit NuGet package lock file and check vulnerabilities -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <RestoreEnablePackagePruning>true</RestoreEnablePackagePruning>
+
     <!-- By default prefix all the assemblies name with ChantierConnect -->
     <AssemblyName>PosInformatique.Foundations.$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>PosInformatique.Foundations.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
