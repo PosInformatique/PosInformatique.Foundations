@@ -4,10 +4,10 @@
     <IsPackable>true</IsPackable>
 
     <Description>
-      Provides a lightweight and immutable MimeType value object to represent media types (MIME types) in .NET.
-      Includes parsing, safe parsing, well-known application/* and image/* media types, and helpers to map between file extensions and media types.
+      Provides extension methods for the Entity Framework Core MigrationBuilder to simplify common migration operations,
+      such as renaming foreign key and primary key constraints.
     </Description>
-    <PackageTags>mimetype;media-type;content-type;file-extension;valueobject;ddd;dotnet;posinformatique</PackageTags>
+    <PackageTags>entityframeworkcore;ef-core;migrations;migrationbuilder;sqlserver;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
     </PackageReleaseNotes>
