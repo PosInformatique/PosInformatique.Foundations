@@ -6,7 +6,7 @@
 
 namespace PosInformatique.Foundations.People.AwesomeAssertions.Tests
 {
-    using Xunit.Sdk;
+    using global::AwesomeAssertions.Execution;
 
     public class PeopleAssertionsExtensionsTest
     {
@@ -29,7 +29,7 @@ namespace PosInformatique.Foundations.People.AwesomeAssertions.Tests
             var firstName = FirstName.Create("John");
 
             firstName.Should().Invoking(f => f.Be("john", because, becauseArgs))
-                .Should().ThrowExactly<XunitException>()
+                .Should().ThrowExactly<AssertionFailedException>()
                 .WithMessage(expectedMessage);
         }
 
@@ -52,7 +52,7 @@ namespace PosInformatique.Foundations.People.AwesomeAssertions.Tests
             var lastName = LastName.Create("Doe");
 
             lastName.Should().Invoking(f => f.Be("doe", because, becauseArgs))
-                .Should().ThrowExactly<XunitException>()
+                .Should().ThrowExactly<AssertionFailedException>()
                 .WithMessage(expectedMessage);
         }
     }
