@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\People.Json\People.Json.csproj" />
+    <PackageReference Include="PosInformatique.AwesomeAssertions.Json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PosInformatique.FluentAssertions.Json" />
+    <ProjectReference Include="..\..\src\People.Json\People.Json.csproj" />
   </ItemGroup>
 
 </Project>

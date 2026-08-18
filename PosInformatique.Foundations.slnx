@@ -57,6 +57,11 @@
     <Project Path="src/Emailing.Templates.Razor/Emailing.Templates.Razor.csproj" Id="2d0078a9-305d-43ad-aaa9-9f35f62f0873" />
     <Project Path="tests/Emailing.Templates.Razor.Tests/Emailing.Templates.Razor.Tests.csproj" Id="cb6212b5-270e-4ec9-bf07-6f7b8a3b8187" />
   </Folder>
+  <Folder Name="/EntityFramework/" />
+  <Folder Name="/EntityFramework/Migrations/">
+    <Project Path="src/EntityFramework.Migrations/EntityFramework.Migrations.csproj" Id="f0d64c1b-fa34-4d7a-a377-1a6b4c9e8dd4" />
+    <Project Path="tests/EntityFramework.Migrations.Tests/EntityFramework.Migrations.Tests.csproj" Id="ac049bd6-65d3-491b-9b7f-9ed639918b49" />
+  </Folder>
   <Folder Name="/MediaTypes/">
     <Project Path="src/MediaTypes/MediaTypes.csproj" Id="31039dbf-ee6f-414c-8345-b92a6bc3e60a" />
     <Project Path="tests/MediaTypes.Tests/MediaTypes.Tests.csproj" Id="1cee2c26-ceb5-43c8-a5c9-98ced675385c" />
@@ -72,6 +77,10 @@
   <Folder Name="/People/">
     <Project Path="src/People/People.csproj" />
     <Project Path="tests/People.Tests/People.Tests.csproj" />
+  </Folder>
+  <Folder Name="/People/AwesomeAssertions/">
+    <Project Path="src/People.AwesomeAssertions/People.AwesomeAssertions.csproj" />
+    <Project Path="tests/People.AwesomeAssertions.Tests/People.AwesomeAssertions.Tests.csproj" />
   </Folder>
   <Folder Name="/People/DataAnnotations/">
     <Project Path="src/People.DataAnnotations/People.DataAnnotations.csproj" />

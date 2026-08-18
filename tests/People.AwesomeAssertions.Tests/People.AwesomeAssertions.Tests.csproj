@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\People.AwesomeAssertions\People.AwesomeAssertions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -7,7 +7,7 @@ on:
         type: string
         description: The version of the library
         required: true
-        default: 1.1.0
+        default: 1.2.0
       VersionSuffix:
         type: string
         description: The version suffix of the library (for example rc.1)
@@ -17,13 +17,16 @@ run-name: ${{ inputs.VersionSuffix && format('{0}-{1}', inputs.VersionPrefix, in
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '9.x'
+          dotnet-version: 10.0.x
       
       - name: Build all the NuGet packages
         run: |
@@ -33,9 +36,15 @@ jobs:
           --property:VersionSuffix=${{ github.event.inputs.VersionSuffix }} \
           --output ./artifacts
 
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: nuget_login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
       - name: Publish the package to nuget.org
         run: |
           dotnet nuget push "./artifacts/*.nupkg" \
-          --api-key "${{ secrets.NUGET_APIKEY }}" \
+          --api-key "${{steps.nuget_login.outputs.NUGET_API_KEY}}" \
           --source https://api.nuget.org/v3/index.json \
           --skip-duplicate

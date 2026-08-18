@@ -15,12 +15,12 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore dependencies
         run: dotnet restore PosInformatique.Foundations.slnx
@@ -33,23 +33,42 @@ jobs:
 
       - name: Run tests (.NET 8.0)
         run: |
-          dotnet test PosInformatique.Foundations.slnx \
+          dotnet test \
+          --solution PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
-          --logger "trx" \
+          --coverage \
+          --coverage-output-format cobertura \
+          --coverage-settings CodeCoverage.runsettings \
+          --report-trx \
           --results-directory ./TestResults \
-          --collect "XPlat Code Coverage" \
           --framework net8.0
 
       - name: Run tests (.NET 9.0)
         run: |
-          dotnet test PosInformatique.Foundations.slnx \
+          dotnet test \
+          --solution PosInformatique.Foundations.slnx \
           --configuration Release \
           --no-build \
-          --logger "trx" \
+          --coverage \
+          --coverage-output-format cobertura \
+          --coverage-settings CodeCoverage.runsettings \
+          --report-trx \
           --results-directory ./TestResults \
-          --collect "XPlat Code Coverage" \
           --framework net9.0
+
+      - name: Run tests (.NET 10.0)
+        run: |
+          dotnet test \
+          --solution PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-build \
+          --coverage \
+          --coverage-output-format cobertura \
+          --coverage-settings CodeCoverage.runsettings \
+          --report-trx \
+          --results-directory ./TestResults \
+          --framework net10.0
   
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2

@@ -5,26 +5,24 @@
   
   <!-- Common NuGet packages -->
   <ItemGroup>
-    <PackageReference Include="coverlet.collector">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage"/>
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport"/>
     <PackageReference Include="Moq"/>
     <PackageReference Include="PosInformatique.Moq.Analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="xunit.runner.visualstudio">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.v3.core.mtp-v2" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    
+    <!-- Required by XUnit v3 -->
+    <OutputType>Exe</OutputType>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <EnableVSTestRunner>false</EnableVSTestRunner>
 
     <!-- Same code coverage configuration for all the test projects -->
     <RunSettingsFilePath>$(SolutionDir)\CodeCoverage.runsettings</RunSettingsFilePath>
@@ -38,7 +36,7 @@
 
   <!-- Add the default using directive for all tests code -->
   <ItemGroup>
-    <Using Include="FluentAssertions" />
+    <Using Include="AwesomeAssertions" />
     <Using Include="Moq" />
     <Using Include="Xunit" />
   </ItemGroup>
