@@ -19,6 +19,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
             MimeTypes.Image.Dxf.IsAutoCad().Should().BeTrue();
             MimeTypes.Image.Jpeg.IsAutoCad().Should().BeFalse();
             MimeTypes.Image.Png.IsAutoCad().Should().BeFalse();
+            MimeTypes.Image.Svg.IsAutoCad().Should().BeFalse();
             MimeTypes.Image.Tiff.IsAutoCad().Should().BeFalse();
             MimeTypes.Image.WebP.IsAutoCad().Should().BeFalse();
         }
@@ -46,6 +47,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
             MimeTypes.Image.Dwg.IsImage().Should().BeFalse();
             MimeTypes.Image.Dxf.IsImage().Should().BeFalse();
             MimeTypes.Image.Png.IsImage().Should().BeTrue();
+            MimeTypes.Image.Svg.IsImage().Should().BeTrue();
             MimeTypes.Image.Tiff.IsImage().Should().BeTrue();
             MimeTypes.Image.WebP.IsImage().Should().BeTrue();
         }
@@ -73,6 +75,7 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
             MimeTypes.Image.Dxf.IsPdf().Should().BeFalse();
             MimeTypes.Image.Jpeg.IsPdf().Should().BeFalse();
             MimeTypes.Image.Png.IsPdf().Should().BeFalse();
+            MimeTypes.Image.Svg.IsPdf().Should().BeFalse();
             MimeTypes.Image.Tiff.IsPdf().Should().BeFalse();
             MimeTypes.Image.WebP.IsPdf().Should().BeFalse();
         }

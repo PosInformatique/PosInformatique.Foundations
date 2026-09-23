@@ -2,28 +2,33 @@
 
 ## Changelog
 
+### 1.3.0
+
+#### PosInformatique.Foundations.MediaTypes
+- Added support for SVG image MIME type.
+
 ### 1.2.0
 
 #### PosInformatique.Foundations.People.AwesomeAssertions
-- Add the support with AwesomeAssertions to assert the FirstName and LastName value objects.
+- Added support with AwesomeAssertions to assert the FirstName and LastName value objects.
 
 ### 1.1.0
 
-- Add the support of .NET 10.0 for all the packages.
+- Added support of .NET 10.0 for all the packages.
 
 #### PosInformatique.Foundations.Emailing
-- Add the support to send emails with attachments.
-- Add a new overload method `EmailRecipientCollection<TModel>.Add(EmailAddress, TModel)`.
+- Added support to send emails with attachments.
+- Added a new overload method `EmailRecipientCollection<TModel>.Add(EmailAddress, TModel)`.
 
 #### PosInformatique.Foundations.Emailing.Azure
-- Add the support to send emails with attachments.
-- Upgrade the [Microsoft.Extensions.Azure](https://www.nuget.org/packages/Microsoft.Extensions.Azure) dependency to version 1.13.1 to fix security vulnerabilities.
+- Added support to send emails with attachments.
+- Upgraded the [Microsoft.Extensions.Azure](https://www.nuget.org/packages/Microsoft.Extensions.Azure) dependency to version 1.13.1 to fix security vulnerabilities.
 
 #### PosInformatique.Foundations.Emailing.Graph
-- Add the support to send emails with attachments.
+- Added support to send emails with attachments.
 
 #### PosInformatique.Foundations.Text.Templating.Scriban
-- Upgrade the [Scriban](https://www.nuget.org/packages/Scriban) dependency to version 7.0.0 to fix security vulnerabilities.
+- Upgraded the [Scriban](https://www.nuget.org/packages/Scriban) dependency to version 7.0.0 to fix security vulnerabilities.
 
 ### 1.0.0
 - Initial version of the following packages:

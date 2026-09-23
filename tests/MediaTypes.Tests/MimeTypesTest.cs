@@ -81,6 +81,15 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Fact]
+        public void Image_Svg()
+        {
+            MimeTypes.Image.Svg.Should().BeSameAs(MimeTypes.Image.Svg);
+
+            MimeTypes.Image.Svg.Type.Should().Be("image");
+            MimeTypes.Image.Svg.Subtype.Should().Be("svg+xml");
+        }
+
+        [Fact]
         public void Image_Tiff()
         {
             MimeTypes.Image.Tiff.Should().BeSameAs(MimeTypes.Image.Tiff);
