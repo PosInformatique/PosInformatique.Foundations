@@ -6,7 +6,6 @@
 
 namespace PosInformatique.Foundations.Emailing.Tests
 {
-    using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.EmailAddresses;
 
     public class EmailingOptionsValidatorTest

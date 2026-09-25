@@ -17,7 +17,7 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
         {
             var act = () =>
             {
-                _ = new AzureEmailProvider(null!);
+                _ = new AzureEmailProvider(null);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()
