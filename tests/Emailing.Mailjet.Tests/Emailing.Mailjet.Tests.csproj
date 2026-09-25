@@ -1,11 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\Emailing.Mailjet\Emailing.Mailjet.csproj" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <None Remove="MailjetEmailingIntegrationTests.local.settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MailjetEmailingIntegrationTests.local.settings.json" Condition="Exists('MailjetEmailingIntegrationTests.local.settings.json')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Emailing.Tests\IntegrationTests\EmailingIntegrationTests.cs" Link="IntegrationTests\EmailingIntegrationTests.cs" />
+    <Compile Include="..\Emailing.Tests\IntegrationTests\EmailingIntegrationTestsConfiguration.cs" Link="IntegrationTests\EmailingIntegrationTestsConfiguration.cs" />
+  </ItemGroup>
+
 </Project>

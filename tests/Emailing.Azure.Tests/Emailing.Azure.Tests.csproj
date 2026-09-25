@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
 
@@ -8,4 +9,18 @@
     <ProjectReference Include="..\..\src\Emailing.Azure\Emailing.Azure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="AzureEmailingIntegrationTests.local.settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AzureEmailingIntegrationTests.local.settings.json" Condition="Exists('AzureEmailingIntegrationTests.local.settings.json')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Emailing.Tests\IntegrationTests\EmailingIntegrationTests.cs" Link="IntegrationTests\EmailingIntegrationTests.cs" />
+    <Compile Include="..\Emailing.Tests\IntegrationTests\EmailingIntegrationTestsConfiguration.cs" Link="IntegrationTests\EmailingIntegrationTestsConfiguration.cs" />
+  </ItemGroup>
 </Project>
