@@ -20,7 +20,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
         {
             var act = () =>
             {
-                _ = new MailjetEmailProvider(null!);
+                _ = new MailjetEmailProvider(null);
             };
 
             act.Should().ThrowExactly<ArgumentNullException>()

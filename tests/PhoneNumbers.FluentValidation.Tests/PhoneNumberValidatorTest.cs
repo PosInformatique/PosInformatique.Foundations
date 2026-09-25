@@ -43,7 +43,7 @@ namespace FluentValidation.Tests
         {
             var validator = new PhoneNumberValidator<object>();
 
-            validator.IsValid(default!, null!).Should().BeTrue();
+            validator.IsValid(default, null).Should().BeTrue();
         }
 
         [Theory]

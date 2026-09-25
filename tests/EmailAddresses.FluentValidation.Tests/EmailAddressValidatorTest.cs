@@ -33,7 +33,7 @@ namespace FluentValidation.Tests
         {
             var validator = new EmailAddressValidator<object>();
 
-            validator.IsValid(default!, emailAddress).Should().BeTrue();
+            validator.IsValid(default, emailAddress).Should().BeTrue();
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace FluentValidation.Tests
         {
             var validator = new EmailAddressValidator<object>();
 
-            validator.IsValid(default!, null!).Should().BeTrue();
+            validator.IsValid(default, null).Should().BeTrue();
         }
 
         [Theory]
@@ -50,7 +50,7 @@ namespace FluentValidation.Tests
         {
             var validator = new EmailAddressValidator<object>();
 
-            validator.IsValid(default!, emailAddress).Should().BeFalse();
+            validator.IsValid(default, emailAddress).Should().BeFalse();
         }
     }
 }

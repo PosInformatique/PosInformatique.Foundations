@@ -33,7 +33,7 @@ namespace PosInformatique.Foundations.PhoneNumbers.Json
                 return null;
             }
 
-            return PhoneNumber.Parse(input!);
+            return PhoneNumber.Parse(input);
         }
 
         /// <inheritdoc />

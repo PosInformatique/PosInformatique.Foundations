@@ -29,7 +29,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
             sp.GetRequiredService<IEmailProvider>().Should().BeSameAs(provider);
 
             var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
-            var httpClient = httpClientFactory.CreateClient(typeof(global::Mailjet.Client.MailjetClient).Namespace!);
+            var httpClient = httpClientFactory.CreateClient(typeof(global::Mailjet.Client.MailjetClient).Namespace);
 
             httpClient.DefaultRequestHeaders.Authorization.Should().BeEquivalentTo(
                 new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes("The API key:The API secret"))));
