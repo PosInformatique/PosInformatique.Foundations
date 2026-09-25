@@ -7,6 +7,7 @@
 namespace Microsoft.Extensions.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection.Extensions;
+    using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.Emailing;
 
     /// <summary>
@@ -30,6 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddScoped<IEmailManager, EmailManager>();
 
             services.Configure(options);
+            services.AddSingleton<IValidateOptions<EmailingOptions>, EmailingOptionsValidator>();
 
             return new EmailingBuilder(services);
         }
