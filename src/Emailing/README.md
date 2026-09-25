@@ -127,11 +127,19 @@ services.AddEmailing(options =>
     // Required: sender email address used for all outgoing emails
     options.SenderEmailAddress = EmailAddress.Parse("no-reply@myapp.com");
 
+    // Optional: display name of the sender used for all outgoing emails
+    options.SenderDisplayName = "My Application";
+
     // Register templates with their identifiers
     options.RegisterTemplate(EmailTemplateIdentifiers.Invitation, invitationTemplate);
     options.RegisterTemplate(EmailTemplateIdentifiers.AccountDeletion, accountDeletionTemplate);
 });
 ```
+
+> **Note:**
+> The `SenderDisplayName` value is ignored when using the [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+> or [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/) providers, since the display name
+> in this case depends on the configuration of the Azure Communication Service or Microsoft Graph mailbox used to send the emails.
 
 > **Important:**
 > The `AddEmailing()` method registers a scoped implementation of `IEmailManager`.

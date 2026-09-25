@@ -42,6 +42,7 @@ namespace PosInformatique.Foundations.Emailing
 
             var emailingBuilder = serviceCollection.AddEmailing(opt =>
             {
+                opt.SenderDisplayName = "P.O.S Informatique - Foundations";
                 opt.SenderEmailAddress = this.senderEmailAddress;
             });
 
