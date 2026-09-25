@@ -7,6 +7,7 @@
 namespace PosInformatique.Foundations.Emailing.Azure.Tests
 {
     using System.Reflection;
+    using global::Azure.Identity;
     using PosInformatique.Foundations.EmailAddresses;
     using PosInformatique.Foundations.MediaTypes;
 
@@ -94,6 +95,76 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
             await provider.Invoking(p => p.SendAsync(null, default))
                 .Should().ThrowExactlyAsync<ArgumentNullException>()
                 .WithParameterName("message");
+
+            azureClient.VerifyAll();
+        }
+
+        [Fact]
+        public async Task SendSync_WithAuthenticationFailedException()
+        {
+            var cancellationToken = new CancellationTokenSource().Token;
+
+            var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
+            var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
+
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            var authenticationFailedException = new AuthenticationFailedException("The authentication failed message");
+
+            var azureClient = new Mock<global::Azure.Communication.Email.EmailClient>(MockBehavior.Strict);
+            azureClient.Setup(c => c.SendAsync(global::Azure.WaitUntil.Started, It.IsAny<global::Azure.Communication.Email.EmailMessage>(), cancellationToken))
+                .Callback((global::Azure.WaitUntil _, global::Azure.Communication.Email.EmailMessage m, CancellationToken _) =>
+                {
+                    m.Content.Html.Should().Be("The HTML content");
+                    m.Content.Subject.Should().Be("The subject");
+                    m.SenderAddress.Should().Be("sender@domain.com");
+                    m.Recipients.To.Should().HaveCount(1);
+                    m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
+                    m.Recipients.To[0].DisplayName.Should().Be("The recipient");
+                })
+                .ThrowsAsync(authenticationFailedException);
+
+            var provider = new AzureEmailProvider(azureClient.Object);
+
+            await provider.Invoking(p => p.SendAsync(message, cancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The authentication failed message")
+                .Where(e => e.InnerException == authenticationFailedException);
+
+            azureClient.VerifyAll();
+        }
+
+        [Fact]
+        public async Task SendSync_WithRequestFailedException()
+        {
+            var cancellationToken = new CancellationTokenSource().Token;
+
+            var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
+            var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
+
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            var requestFailedException = new global::Azure.RequestFailedException("The request failed message");
+
+            var azureClient = new Mock<global::Azure.Communication.Email.EmailClient>(MockBehavior.Strict);
+            azureClient.Setup(c => c.SendAsync(global::Azure.WaitUntil.Started, It.IsAny<global::Azure.Communication.Email.EmailMessage>(), cancellationToken))
+                .Callback((global::Azure.WaitUntil _, global::Azure.Communication.Email.EmailMessage m, CancellationToken _) =>
+                {
+                    m.Content.Html.Should().Be("The HTML content");
+                    m.Content.Subject.Should().Be("The subject");
+                    m.SenderAddress.Should().Be("sender@domain.com");
+                    m.Recipients.To.Should().HaveCount(1);
+                    m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
+                    m.Recipients.To[0].DisplayName.Should().Be("The recipient");
+                })
+                .ThrowsAsync(requestFailedException);
+
+            var provider = new AzureEmailProvider(azureClient.Object);
+
+            await provider.Invoking(p => p.SendAsync(message, cancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The request failed message")
+                .Where(e => e.InnerException == requestFailedException);
 
             azureClient.VerifyAll();
         }

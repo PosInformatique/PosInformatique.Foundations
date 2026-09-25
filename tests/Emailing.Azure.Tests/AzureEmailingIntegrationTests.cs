@@ -6,6 +6,7 @@
 
 namespace PosInformatique.Foundations.Emailing.Azure.Tests
 {
+    using global::Azure;
     using global::Azure.Identity;
     using Microsoft.Extensions.Azure;
     using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
 
     public class AzureEmailingIntegrationTests
     {
-        private readonly EmailingIntegrationTests tests;
+        private readonly EmailingIntegrationTestsConfiguration configuration;
 
         public AzureEmailingIntegrationTests()
         {
@@ -22,11 +23,20 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                 return;
             }
 
-            var configuration = new EmailingIntegrationTestsConfiguration("AzureEmailingIntegrationTests.local.settings.json");
+            this.configuration = new EmailingIntegrationTestsConfiguration("AzureEmailingIntegrationTests.local.settings.json");
+        }
 
-            this.tests = new EmailingIntegrationTests(
+        [Fact]
+        public async Task SendEmailAsync()
+        {
+            if (this.configuration is null)
+            {
+                return;
+            }
+
+            await EmailingIntegrationTests.SendEmailAsync(
                 emailingBuilder => emailingBuilder.UseAzureCommunicationService(
-                    new Uri(configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_ENDPOINT_URL"]),
+                    new Uri(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_ENDPOINT_URL"]),
                     clientBuilder =>
                     {
                         var credentialsOptions = new DefaultAzureCredentialOptions()
@@ -34,26 +44,79 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                             ExcludeEnvironmentCredential = true,
                             ExcludeWorkloadIdentityCredential = true,
                             ExcludeManagedIdentityCredential = true,
-                            TenantId = configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_TENANT_ID"],
+                            TenantId = this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_TENANT_ID"],
                         };
 
                         clientBuilder.WithCredential(new DefaultAzureCredential(credentialsOptions));
                     }),
-                EmailAddress.Parse(configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL_ADDRESS"]),
-                EmailAddress.Parse(configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_RECIPIENT_EMAIL_ADDRESS"]));
+                EmailAddress.Parse(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL_ADDRESS"]),
+                EmailAddress.Parse(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_RECIPIENT_EMAIL_ADDRESS"]),
+                manuallyRunOnly: true);
         }
 
         [Fact]
-#pragma warning disable S2699 // Tests should include assertions
-        public async Task SendEmailAsync()
-#pragma warning restore S2699 // Tests should include assertions
+        public async Task SendEmailAsync_WithInvalidCredentials()
         {
-            if (this.tests is null)
+            if (this.configuration is null)
             {
                 return;
             }
 
-            await this.tests.SendEmailAsync();
+            var action = async () => await EmailingIntegrationTests.SendEmailAsync(
+                emailingBuilder => emailingBuilder.UseAzureCommunicationService(
+                    new Uri(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_ENDPOINT_URL"]),
+                    clientBuilder =>
+                    {
+                        var credentials = new ClientSecretCredential(
+                            "00000000-0000-0000-0000-000000000000",
+                            "00000000-0000-0000-0000-000000000000",
+                            "Wrong secret");
+
+                        clientBuilder.WithCredential(credentials);
+                    }),
+                EmailAddress.Parse(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_SENDER_EMAIL_ADDRESS"]),
+                EmailAddress.Parse(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_RECIPIENT_EMAIL_ADDRESS"]));
+
+            var exception = await action.Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("ClientSecretCredential authentication failed: ");
+
+            exception
+                .WithInnerExceptionExactly<AuthenticationFailedException>()
+                .WithMessage("ClientSecretCredential authentication failed: ");
+        }
+
+        [Fact]
+        public async Task SendEmailAsync_WithWrongSender()
+        {
+            if (this.configuration is null)
+            {
+                return;
+            }
+
+            var action = async () => await EmailingIntegrationTests.SendEmailAsync(
+                emailingBuilder => emailingBuilder.UseAzureCommunicationService(
+                    new Uri(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_ENDPOINT_URL"]),
+                    clientBuilder =>
+                    {
+                        var credentialsOptions = new DefaultAzureCredentialOptions()
+                        {
+                            ExcludeEnvironmentCredential = true,
+                            ExcludeWorkloadIdentityCredential = true,
+                            ExcludeManagedIdentityCredential = true,
+                            TenantId = this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_TENANT_ID"],
+                        };
+
+                        clientBuilder.WithCredential(new DefaultAzureCredential(credentialsOptions));
+                    }),
+                "invalid_sender@domain.com",
+                EmailAddress.Parse(this.configuration["EMAILING_AZURE_COMMUNICATION_SERVICES_RECIPIENT_EMAIL_ADDRESS"]));
+
+            var exception = await action.Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The specified sender domain has not been linked.*");
+
+            exception
+                .WithInnerExceptionExactly<RequestFailedException>()
+                .WithMessage("The specified sender domain has not been linked.*");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace PosInformatique.Foundations.Emailing
         /// <param name="cancellationToken"><see cref="CancellationToken"/> which allows to cancel the send of the e-mail.</param>
         /// <returns>A <see cref="Task"/> instance which represents the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="message"/> argument is <see langword="null"/>.</exception>
+        /// <exception cref="EmailProviderException">Thrown when an error occurs at the provider side (configuration errors, unavailable services, etc.) and impacts the sending of e-mails.</exception>
         Task SendAsync(EmailMessage message, CancellationToken cancellationToken = default);
     }
 }

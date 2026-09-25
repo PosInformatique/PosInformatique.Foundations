@@ -7,7 +7,9 @@
 namespace PosInformatique.Foundations.Emailing.Mailjet
 {
     using global::Mailjet.Client;
+    using global::Mailjet.Client.Exceptions;
     using global::Mailjet.Client.TransactionalEmails;
+    using global::Mailjet.Client.TransactionalEmails.Response;
 
     /// <summary>
     /// Implementation of the <see cref="IEmailProvider"/> to send the e-mail using
@@ -76,7 +78,56 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
                 }
             }
 
-            await this.client.SendTransactionalEmailAsync(mailjetMessage);
+            try
+            {
+                var response = await this.client.SendTransactionalEmailAsync(mailjetMessage);
+
+                if (response.Messages.Length != 1)
+                {
+                    throw new InvalidOperationException("The Mailjet emailing provider did not return a proper response.");
+                }
+
+                var responseMessage = response.Messages[0];
+
+                if (responseMessage.Status == "error")
+                {
+                    var exception = ProcessError(responseMessage);
+
+                    if (exception is not null)
+                    {
+                        throw exception;
+                    }
+                }
+            }
+            catch (MailjetException exception)
+            {
+                throw new EmailProviderException(exception.Message, exception);
+            }
+        }
+
+        private static EmailProviderException? ProcessError(MessageResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                var exception = ProcessError(error);
+
+                if (exception is not null)
+                {
+                    return exception;
+                }
+            }
+
+            return null;
+        }
+
+        private static EmailProviderException? ProcessError(SendEmailError error)
+        {
+            if (error.StatusCode == 403)
+            {
+                return new EmailProviderException(error.ErrorMessage);
+            }
+
+            return null;
         }
     }
 }

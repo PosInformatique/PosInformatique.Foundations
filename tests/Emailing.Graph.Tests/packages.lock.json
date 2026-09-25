@@ -91,6 +91,12 @@
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
       },
+      "xunit.v3.assert": {
+        "type": "Direct",
+        "requested": "[4.0.1, )",
+        "resolved": "4.0.1",
+        "contentHash": "nC7d3cY06Oo7hkdwWPZkBR0Ud75xNhgx0P7i0GmMMZC3puCGlc4szFiT30biH03IN/eDnr8h+nv3A1UD17bk/A=="
+      },
       "xunit.v3.core.mtp-v2": {
         "type": "Direct",
         "requested": "[4.0.1, )",
@@ -481,6 +487,7 @@
       "PosInformatique.Foundations.Emailing.Graph": {
         "type": "Project",
         "dependencies": {
+          "Azure.Identity": "[1.17.1, )",
           "Microsoft.Graph": "[5.89.0, )",
           "PosInformatique.Foundations.Emailing": "[1.0.0, )"
         }
@@ -618,6 +625,12 @@
         "dependencies": {
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
+      },
+      "xunit.v3.assert": {
+        "type": "Direct",
+        "requested": "[4.0.1, )",
+        "resolved": "4.0.1",
+        "contentHash": "nC7d3cY06Oo7hkdwWPZkBR0Ud75xNhgx0P7i0GmMMZC3puCGlc4szFiT30biH03IN/eDnr8h+nv3A1UD17bk/A=="
       },
       "xunit.v3.core.mtp-v2": {
         "type": "Direct",
@@ -1038,6 +1051,7 @@
       "PosInformatique.Foundations.Emailing.Graph": {
         "type": "Project",
         "dependencies": {
+          "Azure.Identity": "[1.17.1, )",
           "Microsoft.Graph": "[5.89.0, )",
           "PosInformatique.Foundations.Emailing": "[1.0.0, )"
         }
@@ -1175,6 +1189,12 @@
         "dependencies": {
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
+      },
+      "xunit.v3.assert": {
+        "type": "Direct",
+        "requested": "[4.0.1, )",
+        "resolved": "4.0.1",
+        "contentHash": "nC7d3cY06Oo7hkdwWPZkBR0Ud75xNhgx0P7i0GmMMZC3puCGlc4szFiT30biH03IN/eDnr8h+nv3A1UD17bk/A=="
       },
       "xunit.v3.core.mtp-v2": {
         "type": "Direct",
@@ -1589,6 +1609,7 @@
       "PosInformatique.Foundations.Emailing.Graph": {
         "type": "Project",
         "dependencies": {
+          "Azure.Identity": "[1.17.1, )",
           "Microsoft.Graph": "[5.89.0, )",
           "PosInformatique.Foundations.Emailing": "[1.0.0, )"
         }

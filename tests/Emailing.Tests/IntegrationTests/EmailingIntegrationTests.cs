@@ -13,28 +13,17 @@ namespace PosInformatique.Foundations.Emailing
     using PosInformatique.Foundations.MediaTypes;
     using PosInformatique.Foundations.Text.Templating;
 
-    public class EmailingIntegrationTests
+    public static class EmailingIntegrationTests
     {
-        private readonly Action<EmailingBuilder> configure;
-
-        private readonly EmailAddress senderEmailAddress;
-
-        private readonly EmailAddress recipientEmailAddress;
-
-        public EmailingIntegrationTests(
+        public static async Task SendEmailAsync(
             Action<EmailingBuilder> configure,
             EmailAddress senderEmailAddress,
-            EmailAddress recipientEmailAddress)
+            EmailAddress recipientEmailAddress,
+            bool manuallyRunOnly = false)
         {
-            this.configure = configure;
-            this.senderEmailAddress = senderEmailAddress;
-            this.recipientEmailAddress = recipientEmailAddress;
-        }
-
-        public async Task SendEmailAsync()
-        {
-            if (!Debugger.IsAttached)
+            if (manuallyRunOnly && !Debugger.IsAttached)
             {
+                Assert.Skip("This test is ignored because it is marked as manually run only.");
                 return;
             }
 
@@ -43,10 +32,10 @@ namespace PosInformatique.Foundations.Emailing
             var emailingBuilder = serviceCollection.AddEmailing(opt =>
             {
                 opt.SenderDisplayName = "P.O.S Informatique - Foundations";
-                opt.SenderEmailAddress = this.senderEmailAddress;
+                opt.SenderEmailAddress = senderEmailAddress;
             });
 
-            this.configure(emailingBuilder);
+            configure(emailingBuilder);
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
@@ -64,7 +53,7 @@ namespace PosInformatique.Foundations.Emailing
                 Recipients =
                 {
                     new EmailRecipient<TemplateData>(
-                        this.recipientEmailAddress,
+                        recipientEmailAddress,
                         "John DOE",
                         new TemplateData()),
                 },

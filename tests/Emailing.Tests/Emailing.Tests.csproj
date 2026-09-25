@@ -1,7 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <Compile Remove="IntegrationTests\EmailingIntegrationTests.cs" />
+    <Compile Remove="IntegrationTests\EmailingIntegrationTestsConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="IntegrationTests\EmailingIntegrationTests.cs" />
+    <None Include="IntegrationTests\EmailingIntegrationTestsConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
 
