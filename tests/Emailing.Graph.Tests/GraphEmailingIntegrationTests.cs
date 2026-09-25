@@ -16,6 +16,11 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
 
         public GraphEmailingIntegrationTests()
         {
+            if (!File.Exists("GraphEmailingIntegrationTests.local.settings.json"))
+            {
+                return;
+            }
+
             var configuration = new EmailingIntegrationTestsConfiguration("GraphEmailingIntegrationTests.local.settings.json");
 
             var credentials = new ClientSecretCredential(
@@ -34,6 +39,11 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
         public async Task SendEmailAsync()
 #pragma warning restore S2699 // Tests should include assertions
         {
+            if (this.tests is null)
+            {
+                return;
+            }
+
             await this.tests.SendEmailAsync();
         }
     }

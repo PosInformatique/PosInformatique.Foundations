@@ -15,6 +15,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
 
         public MailjetEmailingIntegrationTests()
         {
+            if (!File.Exists("MailjetEmailingIntegrationTests.local.settings.json"))
+            {
+                return;
+            }
+
             var configuration = new EmailingIntegrationTestsConfiguration("MailjetEmailingIntegrationTests.local.settings.json");
 
             this.tests = new EmailingIntegrationTests(
@@ -30,6 +35,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
         public async Task SendEmailAsync()
 #pragma warning restore S2699 // Tests should include assertions
         {
+            if (this.tests is null)
+            {
+                return;
+            }
+
             await this.tests.SendEmailAsync();
         }
     }

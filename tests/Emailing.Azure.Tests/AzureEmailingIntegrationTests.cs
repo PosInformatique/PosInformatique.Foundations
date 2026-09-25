@@ -17,6 +17,11 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
 
         public AzureEmailingIntegrationTests()
         {
+            if (!File.Exists("AzureEmailingIntegrationTests.local.settings.json"))
+            {
+                return;
+            }
+
             var configuration = new EmailingIntegrationTestsConfiguration("AzureEmailingIntegrationTests.local.settings.json");
 
             this.tests = new EmailingIntegrationTests(
@@ -43,6 +48,11 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
         public async Task SendEmailAsync()
 #pragma warning restore S2699 // Tests should include assertions
         {
+            if (this.tests is null)
+            {
+                return;
+            }
+
             await this.tests.SendEmailAsync();
         }
     }
