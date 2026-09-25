@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides an IEmailProvider implementation for PosInformatique.Foundations.Emailing using Mailjet.
+      Uses Mailjet.Client.IMailjetClient to send templated emails through the Mailjet API with API key/secret authentication.
+    </Description>
+    <PackageTags>
+      email;emailing;mailjet;provider;dotnet;dependencyinjection;posinformatique
+    </PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mailjet.Api" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Emailing\Emailing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="..\Emailing\Icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
