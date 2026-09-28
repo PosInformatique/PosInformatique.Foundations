@@ -5,6 +5,7 @@
 ### 1.3.0
 
 #### PosInformatique.Foundations.Emailing
+- Added the support to specify the sender display name.
 - Throws a `EmailProviderException` when the email provider fails to send an email.
 
 #### PosInformatique.Foundations.Emailing.Mailjet
