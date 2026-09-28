@@ -4,6 +4,12 @@
 
 ### 1.3.0
 
+#### PosInformatique.Foundations.Emailing
+- Throws a `EmailProviderException` when the email provider fails to send an email.
+
+#### PosInformatique.Foundations.Emailing.Mailjet
+- New emailing provider to send emails using Mailjet.
+
 #### PosInformatique.Foundations.MediaTypes
 - Added support for SVG image MIME type.
 

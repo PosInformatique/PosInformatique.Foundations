@@ -254,6 +254,9 @@ Under the hood:
 
 The provider implementation is responsible for the technical details (SMTP, Azure Communication Service, etc.).
 
+> **Note:** If an error occurs on the provider side while sending an e-mail (configuration errors, unavailable services, etc.),
+> an `EmailProviderException` is thrown.
+
 ## Summary
 
 The typical flow is:
