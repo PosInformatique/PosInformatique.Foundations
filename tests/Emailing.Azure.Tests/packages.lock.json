@@ -80,6 +80,12 @@
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
       },
+      "xunit.analyzers": {
+        "type": "Direct",
+        "requested": "[2.1.0, )",
+        "resolved": "2.1.0",
+        "contentHash": "X7QXEcZQGz0G/HL4HUyK+aAvNa/IMGbOCnFIq4jD/Evktq12xANKwzOUr7b08vCmC1LXu/47qHWOdjm3KfaJ0A=="
+      },
       "xunit.v3.assert": {
         "type": "Direct",
         "requested": "[4.0.1, )",
@@ -510,6 +516,12 @@
         "dependencies": {
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
+      },
+      "xunit.analyzers": {
+        "type": "Direct",
+        "requested": "[2.1.0, )",
+        "resolved": "2.1.0",
+        "contentHash": "X7QXEcZQGz0G/HL4HUyK+aAvNa/IMGbOCnFIq4jD/Evktq12xANKwzOUr7b08vCmC1LXu/47qHWOdjm3KfaJ0A=="
       },
       "xunit.v3.assert": {
         "type": "Direct",
@@ -964,6 +976,12 @@
         "dependencies": {
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
+      },
+      "xunit.analyzers": {
+        "type": "Direct",
+        "requested": "[2.1.0, )",
+        "resolved": "2.1.0",
+        "contentHash": "X7QXEcZQGz0G/HL4HUyK+aAvNa/IMGbOCnFIq4jD/Evktq12xANKwzOUr7b08vCmC1LXu/47qHWOdjm3KfaJ0A=="
       },
       "xunit.v3.assert": {
         "type": "Direct",

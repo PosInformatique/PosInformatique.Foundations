@@ -229,7 +229,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
 
             var provider = new MailjetEmailProvider(mailjetClient.Object);
 
-            await provider.SendAsync(message, default);
+            await provider.SendAsync(message, TestContext.Current.CancellationToken);
 
             mailjetClient.VerifyAll();
         }
