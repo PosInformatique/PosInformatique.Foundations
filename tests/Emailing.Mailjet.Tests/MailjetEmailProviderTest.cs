@@ -72,6 +72,8 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.Attachments[1].Filename.Should().Be("Attachment2");
                     m.Attachments[1].ContentType.Should().Be("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
                     m.Attachments[1].Base64Content.Should().Be(Convert.ToBase64String([3, 4]));
+                    m.TrackClicks.Should().Be(TrackClicks.disabled);
+                    m.TrackOpens.Should().Be(TrackOpens.disabled);
                 })
                 .ReturnsAsync(new TransactionalEmailResponse()
                 {

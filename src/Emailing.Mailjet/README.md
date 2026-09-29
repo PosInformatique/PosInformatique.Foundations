@@ -26,6 +26,10 @@ dotnet add package PosInformatique.Foundations.Emailing.Mailjet
 - Supports configuration via the Mailjet **API key** and **API secret**.
 - Registers and configures a named `HttpClient` (via `IHttpClientFactory`) used to communicate with the Mailjet API, so you can further customize it (handlers, timeouts, resilience policies, etc.) if needed.
 
+## Notes
+
+> Email tracking is **disabled**. Both open tracking and click tracking are configured to be disabled when sending emails through this provider.
+
 ## Basic configuration
 
 ### Using API key and secret

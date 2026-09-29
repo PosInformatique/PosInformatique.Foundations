@@ -57,6 +57,8 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
                 {
                     new SendContact(message.To.Email.ToString(), message.To.DisplayName),
                 },
+                TrackClicks = TrackClicks.disabled,
+                TrackOpens = TrackOpens.disabled,
             };
 
             if (message.Attachments.Count > 0)
