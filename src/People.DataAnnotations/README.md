@@ -7,7 +7,7 @@
 This package provides .NET `DataAnnotations` attributes to validate first names and last names using the `FirstName` and `LastName` value objects
 from [PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.People/).
 
-It allows you to apply robust name validation directly on your models with attributes like `[FirstName]` attribute and `[LastName]`, ensuring that string properties conform to the business rules for first and last names.
+It allows you to apply robust name validation directly on your models with attributes like `[FirstName]` and `[LastName]`, ensuring that string properties conform to the business rules for first and last names.
 
 ## Install
 You can install the package from NuGet:

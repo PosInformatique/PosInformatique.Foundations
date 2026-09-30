@@ -1,4 +1,4 @@
-﻿### PosInformatique.Foundations.Text.Templating.Razor
+﻿# PosInformatique.Foundations.Text.Templating.Razor
 
 [![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating.Razor)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.Text.Templating.Razor)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
@@ -67,8 +67,8 @@ Create a Razor component that will be used as a template, for example `HelloTemp
     }
 }
 
-Hello this.Model.UserName !
-Today is this.Model.Now:U
+Hello @Model.UserName !
+Today is @Model.Now:U
 ```
 
 Key points:
@@ -141,10 +141,10 @@ Example:
     public MyEmailModel? Model { get; set; }
 
     [Inject]
-    public IDateTimeProvider DateTimeProvider { get; set; } = default!
+    public IDateTimeProvider DateTimeProvider { get; set; } = default!;
 
     [Inject]
-    public IMyFormatter Formatter { get; set; } = default!
+    public IMyFormatter Formatter { get; set; } = default!;
 }
 
 Hello @Model?.Name,
@@ -173,5 +173,5 @@ Use this only when you are sure that the content is safe (to avoid XSS vulnerabi
 
 - [NuGet package: Emailing.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Templates.Razor/)
 - [NuGet package: Text.Templating (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
-- [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)
+- [NuGet package: Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

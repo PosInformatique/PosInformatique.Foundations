@@ -83,7 +83,7 @@ for more details.
 
 ### Example with Microsoft.Graph
 
-The [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/)
+The [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/)
 package depends on [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.89.0**
 for backward compatibility with a wide range of existing projects.
 
@@ -98,12 +98,12 @@ If your application requires a newer version, you can simply add an explicit ref
 
 In this case, your project will use [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph/) **5.96.0**
 while still consuming
-[PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/[PosInformatique.Foundations.Emailing.Graph/).
+[PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/).
 This is **recommended**, especially to benefit from the latest security updates and bug fixes of the underlying dependencies.
 
 > The next versions of [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages
-> will updated their dependencies to newer versions, if there is security vulnerabilities reported by NuGet or GitHub advisories.
-> This to force also developers to avoid using vulnerable versions of the dependencies when upgrading to the new versions of the packages.
+> will update their dependencies to newer versions if there are security vulnerabilities reported by NuGet or GitHub advisories.
+> This is also meant to force developers to avoid using vulnerable versions of the dependencies when upgrading to the new versions of the packages.
 
 ## 📄 License
 

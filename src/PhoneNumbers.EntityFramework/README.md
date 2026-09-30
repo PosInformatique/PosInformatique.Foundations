@@ -38,7 +38,7 @@ dotnet add package PosInformatique.Foundations.PhoneNumbers.EntityFramework
 > For SQL Server, you can create it with:
 
 ```sql
-CREATE TYPE MimeType FROM VARCHAR(16) NOT NULL;
+CREATE TYPE PhoneNumber FROM VARCHAR(16) NOT NULL;
 ```
 
 ### Configure a PhoneNumber property

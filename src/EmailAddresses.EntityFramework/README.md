@@ -28,7 +28,7 @@ This package depends on the base package [PosInformatique.Foundations.EmailAddre
 ## Use cases
 - **Entity mapping**: enforce strong typing for email addresses at the persistence layer.
 - **Consistency**: ensure the same validation rules are applied in your entities and database.
-- **Safety**: prevent invalid strings being stored in your database
+- **Safety**: prevent invalid strings from being stored in your database.
 
 ## Examples
 
