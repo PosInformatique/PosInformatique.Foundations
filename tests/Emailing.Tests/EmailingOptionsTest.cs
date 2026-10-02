@@ -16,7 +16,18 @@ namespace PosInformatique.Foundations.Emailing.Tests
         {
             var options = new EmailingOptions();
 
+            options.SenderDisplayName.Should().BeNull();
             options.SenderEmailAddress.Should().BeNull();
+        }
+
+        [Fact]
+        public void SenderDisplayName_ValueChanged()
+        {
+            var options = new EmailingOptions();
+
+            options.SenderDisplayName = "The display name";
+
+            options.SenderDisplayName.Should().Be("The display name");
         }
 
         [Fact]

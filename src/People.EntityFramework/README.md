@@ -23,7 +23,7 @@ This package depends on the base package [PosInformatique.Foundations.People](ht
 - Provides an extension method `IsFirstName()` and `IsLastName()` to configure EF Core properties for `FirstName` and `LastName`.
 - Easy EF Core mapping for `FirstName` and `LastName` properties.
 - Maps to NVARCHAR(50), Unicode, non-fixed-length columns.
-- Built on top of the core `FirstName` and `FirstName` value objects.
+- Built on top of the core `FirstName` and `LastName` value objects.
 - Keeps domain normalization rules in the database boundary.
 
 ## Examples

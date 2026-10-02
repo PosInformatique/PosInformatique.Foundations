@@ -24,8 +24,18 @@ namespace PosInformatique.Foundations.Emailing
         }
 
         /// <summary>
-        /// Gets or sets the e-mail address of the sender used for the e-mails.
+        /// Gets or sets the display name of the sender used for the e-mails.
         /// </summary>
+        public string? SenderDisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the e-mail address of the sender used for the e-mails.
+        /// The <see cref="SenderEmailAddress"/> property will be used.
+        /// </summary>
+        /// <remarks>
+        /// The <c>PosInformatique.Foundations.Emailing.Azure</c> and <c>PosInformatique.Foundations.Emailing.Azure</c> providers ignore this
+        /// property because it is not supported. The sender e-mail address which has been configured in the provider configuration at the service side will be used.
+        /// </remarks>
         public EmailAddress? SenderEmailAddress { get; set; }
 
         /// <summary>

@@ -135,6 +135,7 @@ Provides common media types and mapping helpers.
   - `Dwg` (`image/x-dwg`)
   - `Jpeg` (`image/jpeg`)
   - `Png` (`image/png`)
+  - `Svg` (`image/svg+xml`)
   - `Tiff` (`image/tiff`)
   - `WebP` (`image/webp`)
 

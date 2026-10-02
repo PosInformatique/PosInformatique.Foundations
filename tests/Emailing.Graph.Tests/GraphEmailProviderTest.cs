@@ -7,8 +7,10 @@
 namespace PosInformatique.Foundations.Emailing.Graph.Tests
 {
     using System.Reflection;
+    using Azure.Identity;
     using Microsoft.Graph;
     using Microsoft.Graph.Models;
+    using Microsoft.Graph.Models.ODataErrors;
     using Microsoft.Graph.Users.Item.SendMail;
     using Microsoft.Kiota.Abstractions;
     using Microsoft.Kiota.Abstractions.Serialization;
@@ -163,7 +165,101 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
         }
 
         [Fact]
-        public async Task SendSync_WithMessageArgumentNull()
+        public async Task SendAsync_WithAuthenticationFailedException()
+        {
+            var cancellationToken = new CancellationTokenSource().Token;
+
+            var authenticationFailedException = new AuthenticationFailedException("The authentication failed message");
+
+            var serializationWriterFactory = new Mock<ISerializationWriterFactory>(MockBehavior.Strict);
+            serializationWriterFactory.Setup(f => f.GetSerializationWriter("application/json"))
+                .Returns(new JsonSerializationWriter());
+
+            var requestAdapter = new Mock<IRequestAdapter>(MockBehavior.Strict);
+            requestAdapter.Setup(r => r.BaseUrl)
+                .Returns("http://base/url");
+            requestAdapter.Setup(r => r.EnableBackingStore(null));
+            requestAdapter.Setup(r => r.SerializationWriterFactory)
+                .Returns(serializationWriterFactory.Object);
+            requestAdapter.Setup(r => r.SendNoContentAsync(It.IsAny<RequestInformation>(), It.IsNotNull<Dictionary<string, ParsableFactory<IParsable>>>(), cancellationToken))
+                .Callback((RequestInformation requestInfo, Dictionary<string, ParsableFactory<IParsable>> _, CancellationToken _) =>
+                {
+                    requestInfo.HttpMethod.Should().Be(Method.POST);
+                    requestInfo.URI.Should().Be("http://base/url/users/sender%40domain.com/sendMail");
+                })
+                .ThrowsAsync(authenticationFailedException);
+
+            var graphServiceClient = new Mock<GraphServiceClient>(MockBehavior.Strict, requestAdapter.Object, null);
+
+            var client = new GraphEmailProvider(graphServiceClient.Object);
+
+            var from = new EmailContact(EmailAddresses.EmailAddress.Parse("sender@domain.com"), "The sender");
+            var to = new EmailContact(EmailAddresses.EmailAddress.Parse("recipient@domain.com"), "The recipient");
+
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            await client.Invoking(c => c.SendAsync(message, cancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The authentication failed message")
+                .Where(e => e.InnerException == authenticationFailedException);
+
+            graphServiceClient.VerifyAll();
+            requestAdapter.VerifyAll();
+            serializationWriterFactory.VerifyAll();
+        }
+
+        [Fact]
+        public async Task SendAsync_WithODataError()
+        {
+            var cancellationToken = new CancellationTokenSource().Token;
+
+            var oDataError = new ODataError
+            {
+                Error = new MainError
+                {
+                    Message = "The OData error message",
+                },
+            };
+
+            var serializationWriterFactory = new Mock<ISerializationWriterFactory>(MockBehavior.Strict);
+            serializationWriterFactory.Setup(f => f.GetSerializationWriter("application/json"))
+                .Returns(new JsonSerializationWriter());
+
+            var requestAdapter = new Mock<IRequestAdapter>(MockBehavior.Strict);
+            requestAdapter.Setup(r => r.BaseUrl)
+                .Returns("http://base/url");
+            requestAdapter.Setup(r => r.EnableBackingStore(null));
+            requestAdapter.Setup(r => r.SerializationWriterFactory)
+                .Returns(serializationWriterFactory.Object);
+            requestAdapter.Setup(r => r.SendNoContentAsync(It.IsAny<RequestInformation>(), It.IsNotNull<Dictionary<string, ParsableFactory<IParsable>>>(), cancellationToken))
+                .Callback((RequestInformation requestInfo, Dictionary<string, ParsableFactory<IParsable>> _, CancellationToken _) =>
+                {
+                    requestInfo.HttpMethod.Should().Be(Method.POST);
+                    requestInfo.URI.Should().Be("http://base/url/users/sender%40domain.com/sendMail");
+                })
+                .ThrowsAsync(oDataError);
+
+            var graphServiceClient = new Mock<GraphServiceClient>(MockBehavior.Strict, requestAdapter.Object, null);
+
+            var client = new GraphEmailProvider(graphServiceClient.Object);
+
+            var from = new EmailContact(EmailAddresses.EmailAddress.Parse("sender@domain.com"), "The sender");
+            var to = new EmailContact(EmailAddresses.EmailAddress.Parse("recipient@domain.com"), "The recipient");
+
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            await client.Invoking(c => c.SendAsync(message, cancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The OData error message")
+                .Where(e => e.InnerException == oDataError);
+
+            graphServiceClient.VerifyAll();
+            requestAdapter.VerifyAll();
+            serializationWriterFactory.VerifyAll();
+        }
+
+        [Fact]
+        public async Task SendAsync_WithMessageArgumentNull()
         {
             var requestAdapter = new Mock<IRequestAdapter>(MockBehavior.Strict);
             requestAdapter.Setup(r => r.BaseUrl)

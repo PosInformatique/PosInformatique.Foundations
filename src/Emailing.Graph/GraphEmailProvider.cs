@@ -6,8 +6,10 @@
 
 namespace PosInformatique.Foundations.Emailing.Graph
 {
+    using Azure.Identity;
     using Microsoft.Graph;
     using Microsoft.Graph.Models;
+    using Microsoft.Graph.Models.ODataErrors;
     using Microsoft.Graph.Users.Item.SendMail;
 
     /// <summary>
@@ -93,7 +95,18 @@ namespace PosInformatique.Foundations.Emailing.Graph
                 SaveToSentItems = false,
             };
 
-            await this.serviceClient.Users[message.From.Email.ToString()].SendMail.PostAsync(body, cancellationToken: cancellationToken);
+            try
+            {
+                await this.serviceClient.Users[message.From.Email.ToString()].SendMail.PostAsync(body, cancellationToken: cancellationToken);
+            }
+            catch (AuthenticationFailedException exception)
+            {
+                throw new EmailProviderException(exception.Message, exception);
+            }
+            catch (ODataError exception)
+            {
+                throw new EmailProviderException(exception.Message, exception);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ provides helpers to create `EmailTemplate<TModel>` instances using Razor compone
 It is built on top of:
 
 - [PosInformatique.Foundations.Emailing](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)
-- [PosInformatique.Foundations.Text.Templates.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
+- [PosInformatique.Foundations.Text.Templating.Razor](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor/)
 
 This allows you to design your email content with Blazor-style Razor components, benefiting from layout reuse, strongly-typed models, and familiar Razor syntax.
 
@@ -50,7 +50,7 @@ var emailingBuilder = services.AddEmailing(options =>
 {
     // Configure emailing options here and register the templates
 })
-UseRazorEmailTemplates();.
+.UseRazorEmailTemplates();
 ```
 
 - `AddEmailing(...)` registers the core emailing services and the templates.

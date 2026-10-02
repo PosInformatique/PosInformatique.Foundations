@@ -52,6 +52,10 @@
     <Project Path="src/Emailing.Graph/Emailing.Graph.csproj" Id="5874e6da-a783-4e2d-8317-0e783a6ee511" />
     <Project Path="tests/Emailing.Graph.Tests/Emailing.Graph.Tests.csproj" Id="3cace78b-a3ac-4a7a-b1f3-92dce29c5544" />
   </Folder>
+  <Folder Name="/Emailing/MailJet/">
+    <Project Path="src/Emailing.Mailjet/Emailing.Mailjet.csproj" />
+    <Project Path="tests/Emailing.Mailjet.Tests/Emailing.Mailjet.Tests.csproj" />
+  </Folder>
   <Folder Name="/Emailing/Templates/" />
   <Folder Name="/Emailing/Templates/Razor/">
     <Project Path="src/Emailing.Templates.Razor/Emailing.Templates.Razor.csproj" Id="2d0078a9-305d-43ad-aaa9-9f35f62f0873" />

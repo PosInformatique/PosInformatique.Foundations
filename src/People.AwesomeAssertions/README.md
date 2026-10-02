@@ -5,7 +5,7 @@
 
 ## Introduction
 Assertion extensions for `FirstName` and `LastName` value objects from
-[PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.AwesomeAssertions/)
+[PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.People/)
 using [AwesomeAssertions](https://awesomeassertions.org/).
 
 This package resolves the ambiguity that occurs when using [AwesomeAssertions](https://awesomeassertions.org/) directly on these value
@@ -86,5 +86,5 @@ user.LastName.Should().Be("MARTIN");
 
 ## Links
 - [NuGet package: People.AwesomeAssertions](https://www.nuget.org/packages/PosInformatique.Foundations.People.AwesomeAssertions/)
-- [NuGet package: People (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.AwesomeAssertions/)
+- [NuGet package: People (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.People/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

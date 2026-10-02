@@ -7,6 +7,8 @@
 namespace PosInformatique.Foundations.Emailing.Azure
 {
     using System.Globalization;
+    using global::Azure;
+    using global::Azure.Identity;
 
     /// <summary>
     /// Implementation of the <see cref="IEmailProvider"/> to send the e-mail using
@@ -67,7 +69,18 @@ namespace PosInformatique.Foundations.Emailing.Azure
                     attachmentContent));
             }
 
-            await this.client.SendAsync(global::Azure.WaitUntil.Started, azureMessage, cancellationToken);
+            try
+            {
+                await this.client.SendAsync(WaitUntil.Started, azureMessage, cancellationToken);
+            }
+            catch (AuthenticationFailedException exception)
+            {
+                throw new EmailProviderException(exception.Message, exception);
+            }
+            catch (RequestFailedException exception)
+            {
+                throw new EmailProviderException(exception.Message, exception);
+            }
         }
     }
 }

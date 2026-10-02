@@ -1,4 +1,4 @@
-﻿### PosInformatique.Foundations.Emailing.Graph
+﻿# PosInformatique.Foundations.Emailing.Graph
 
 [![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.Emailing.Graph)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.Emailing.Graph)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/)
@@ -118,6 +118,6 @@ If `baseUrl` is `null`, `https://graph.microsoft.com/v1.0` is used by default.
 ## Links
 
 - [NuGet package: Emailing](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)
-s- [Microsoft Graph .NET SDK](https://learn.microsoft.com/graph/sdks/sdks-overview)
+- [Microsoft Graph .NET SDK](https://learn.microsoft.com/graph/sdks/sdks-overview)
 - [Azure Identity (TokenCredential)](https://learn.microsoft.com/dotnet/azure/sdk/authentication/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

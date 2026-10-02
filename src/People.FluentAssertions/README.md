@@ -5,7 +5,7 @@
 
 ## Introduction
 Assertion extensions for `FirstName` and `LastName` value objects from
-[PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.FluentAssertions/)
+[PosInformatique.Foundations.People](https://www.nuget.org/packages/PosInformatique.Foundations.People/)
 using [FluentAssertions](https://fluentassertions.com/).
 
 This package resolves the ambiguity that occurs when using [FluentAssertions](https://fluentassertions.com/) directly on these value
@@ -86,5 +86,5 @@ user.LastName.Should().Be("MARTIN");
 
 ## Links
 - [NuGet package: People.FluentAssertions](https://www.nuget.org/packages/PosInformatique.Foundations.People.FluentAssertions/)
-- [NuGet package: People (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.FluentAssertions/)
+- [NuGet package: People (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.People/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

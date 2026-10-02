@@ -40,6 +40,26 @@ namespace Microsoft.Extensions.DependencyInjection.Tests
         }
 
         [Fact]
+        public void AddEmailing_WithInvalidOptions()
+        {
+            var provider = Mock.Of<IEmailProvider>(MockBehavior.Strict);
+
+            var services = new ServiceCollection();
+            services.AddSingleton(provider);
+
+            EmailingServiceCollectionExtensions.AddEmailing(services, opt => { });
+
+            var sp = services.BuildServiceProvider();
+
+            var options = sp.GetRequiredService<IOptions<EmailingOptions>>();
+
+            var act = () => options.Value;
+
+            act.Should().ThrowExactly<OptionsValidationException>()
+                .WithMessage("The SenderEmailAddress property must be provided when configuring the emailing feature with EmailingOptions.*");
+        }
+
+        [Fact]
         public void AddEmailing_WithNullServices()
         {
             var act = () =>

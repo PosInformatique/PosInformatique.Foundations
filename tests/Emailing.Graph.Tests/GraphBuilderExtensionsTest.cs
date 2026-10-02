@@ -94,7 +94,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
             }
             while (field is null);
 
-            return (T)field.GetValue(obj)!;
+            return (T)field.GetValue(obj);
         }
     }
 }

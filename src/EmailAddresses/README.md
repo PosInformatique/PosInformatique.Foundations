@@ -1,4 +1,4 @@
-# PosInformatique.Foundations.EmailAddresses
+﻿# PosInformatique.Foundations.EmailAddresses
 
 [![NuGet version](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
@@ -72,6 +72,6 @@ list.Sort(); // Sorted alphabetically
 ## Links
 - [NuGet package: EmailAddresses (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses/)
 - [NuGet package: EmailAddresses.EntityFramework](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework/)
-- [NuGet package: EmailAddresses.FluentValidations](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation/)
+- [NuGet package: EmailAddresses.FluentValidation](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation/)
 - [NuGet package: EmailAddresses.Json](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.Json/)
 - [Source code](https://github.com/PosInformatique/PosInformatique.Foundations)

@@ -80,8 +80,10 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 .WithParameterName("identifier");
         }
 
-        [Fact]
-        public async Task SendAsync()
+        [Theory]
+        [InlineData("sender@domain.com", "sender@domain.com")]
+        [InlineData(null, "")]
+        public async Task SendAsync(string senderDisplayName, string expectedSenderDisplayName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -154,8 +156,11 @@ namespace PosInformatique.Foundations.Emailing.Tests
 
             var sender = EmailAddress.Parse("sender@domain.com");
 
-            var options = new EmailingOptions();
-            options.SenderEmailAddress = sender;
+            var options = new EmailingOptions()
+            {
+                SenderDisplayName = senderDisplayName,
+                SenderEmailAddress = sender,
+            };
 
             var contentStreams = new List<Stream>();
 
@@ -172,7 +177,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                     m.Attachments[1].ContentType.Should().Be(MimeTypes.Application.Docx);
                     m.Attachments[1].FileName.Should().Be("Attachment2");
                     m.From.Email.Should().BeSameAs(sender);
-                    m.From.DisplayName.Should().BeEmpty();
+                    m.From.DisplayName.Should().Be(expectedSenderDisplayName);
                     m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 1");
                     m.HtmlContent.Should().Be("HTML Content 1");
@@ -194,7 +199,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                     m.Attachments[1].ContentType.Should().Be(MimeTypes.Application.Docx);
                     m.Attachments[1].FileName.Should().Be("Attachment2");
                     m.From.Email.Should().BeSameAs(sender);
-                    m.From.DisplayName.Should().BeEmpty();
+                    m.From.DisplayName.Should().Be(expectedSenderDisplayName);
                     m.Importance.Should().Be(EmailImportance.High);
                     m.Subject.Should().Be("Subject 2");
                     m.HtmlContent.Should().Be("HTML Content 2");

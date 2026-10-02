@@ -41,7 +41,7 @@ dotnet add package PosInformatique.Foundations.People
 - Allowed characters: letters only; separators: ' ' and '-'.
 - Normalization:
   - Each word starts uppercase and continues lowercase (e.g., "John", "John Henri-Smith").
-  - No consecutive separators, ths trailing separators are removed.
+  - No consecutive separators, the trailing separators are removed.
 
 ### LastName
 - Max length: 50.

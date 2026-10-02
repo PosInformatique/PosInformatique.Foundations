@@ -47,6 +47,12 @@ namespace PosInformatique.Foundations.Emailing
         {
             ArgumentNullException.ThrowIfNull(email);
 
+            var senderDisplayName = this.options.Value.SenderDisplayName;
+            if (senderDisplayName is null)
+            {
+                senderDisplayName = string.Empty;
+            }
+
             var senderEmailAddress = this.options.Value.SenderEmailAddress!;
 
             // Copy the attachments in memory.
@@ -86,7 +92,7 @@ namespace PosInformatique.Foundations.Emailing
                     var htmlContent = htmlContentOutputWriter.ToString();
 
                     var message = new EmailMessage(
-                        new EmailContact(senderEmailAddress, string.Empty),
+                        new EmailContact(senderEmailAddress, senderDisplayName),
                         new EmailContact(recipient.Address, recipient.DisplayName),
                         subject,
                         htmlContent)

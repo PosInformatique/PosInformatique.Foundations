@@ -32,7 +32,7 @@ This package depends on the base package [PosInformatique.Foundations.MediaTypes
 
 - **Entity mapping**: enforce strong typing for MIME types at the persistence layer.
 - **Consistency**: ensure the same rules are applied in your entities and database.
-- **Safety**: prevent invalid or malformed MIME type strings being stored in your database.
+- **Safety**: prevent invalid or malformed MIME type strings from being stored in your database.
 
 ## Examples
 

@@ -14,7 +14,7 @@ It allows you to:
 - Generate and send templated emails for each recipient through an `IEmailProvider` implementation.
 
 The actual transport (SMTP, Azure Communication Service, Graph API, etc.) is delegated to a provider implementation.
-Existing implementation are available in the following packages:
+Existing implementations are available in the following packages:
 - Azure Communication Service: [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/).
 - Microsoft Graph API: [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/).
 
@@ -43,7 +43,7 @@ and one of its concrete implementations (for example
 - Per-recipient data injection using a model with `EmailRecipient<TModel>`.
 - Central `IEmailManager` to create and send emails.
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
-- Support of the *Importance* of the e-mails (**Low, Normal and High).
+- Support of the *Importance* of the e-mails (**Low**, **Normal** and **High**).
 - Support for sending emails with attachments.
 
 ## Basic concepts
@@ -127,11 +127,19 @@ services.AddEmailing(options =>
     // Required: sender email address used for all outgoing emails
     options.SenderEmailAddress = EmailAddress.Parse("no-reply@myapp.com");
 
+    // Optional: display name of the sender used for all outgoing emails
+    options.SenderDisplayName = "My Application";
+
     // Register templates with their identifiers
     options.RegisterTemplate(EmailTemplateIdentifiers.Invitation, invitationTemplate);
     options.RegisterTemplate(EmailTemplateIdentifiers.AccountDeletion, accountDeletionTemplate);
 });
 ```
+
+> **Note:**
+> The `SenderDisplayName` value is ignored when using the [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+> or [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/) providers, since the display name
+> in this case depends on the configuration of the Azure Communication Service or Microsoft Graph mailbox used to send the emails.
 
 > **Important:**
 > The `AddEmailing()` method registers a scoped implementation of `IEmailManager`.
@@ -246,6 +254,9 @@ Under the hood:
 
 The provider implementation is responsible for the technical details (SMTP, Azure Communication Service, etc.).
 
+> **Note:** If an error occurs on the provider side while sending an e-mail (configuration errors, unavailable services, etc.),
+> an `EmailProviderException` is thrown.
+
 ## Summary
 
 The typical flow is:
@@ -254,7 +265,7 @@ The typical flow is:
    - Register templates and sender via `AddEmailing(...)`.
    - Register an `IEmailProvider` implementation.
 2. Define and centralize template identifiers using `EmailTemplateIdentifier<TModel>`.
-3. Define data models by creating custom data class.
+3. Define data models by creating custom data classes.
 4. At runtime, use `IEmailManager.Create(...)` to instantiate a strongly-typed email.
 5. Add recipients and models through `EmailRecipientCollection<TModel>`.
 6. Call `IEmailManager.SendAsync()` to generate and send emails through the `IEmailProvider`.

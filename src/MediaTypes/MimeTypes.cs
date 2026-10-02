@@ -22,6 +22,7 @@ namespace PosInformatique.Foundations.MediaTypes
             { "jpg", Image.Jpeg },
             { "jpeg", Image.Jpeg },
             { "png", Image.Png },
+            { "svg", Image.Svg },
             { "tif", Image.Tiff },
             { "tiff", Image.Tiff },
             { "webp", Image.WebP },
@@ -36,6 +37,7 @@ namespace PosInformatique.Foundations.MediaTypes
             { Image.Dwg, "dwg" },
             { Image.Jpeg, "jpg" },
             { Image.Png, "png" },
+            { Image.Svg, "svg" },
             { Image.Tiff, "tiff" },
             { Image.WebP, "webp" },
         };
@@ -117,6 +119,11 @@ namespace PosInformatique.Foundations.MediaTypes
             /// Gets the media type <c>image/png</c>.
             /// </summary>
             public static MimeType Png { get; } = MimeType.Parse("image/png");
+
+            /// <summary>
+            /// Gets the media type <c>image/svg+xml</c>.
+            /// </summary>
+            public static MimeType Svg { get; } = MimeType.Parse("image/svg+xml");
 
             /// <summary>
             /// Gets the media type <c>image/tiff</c>.
