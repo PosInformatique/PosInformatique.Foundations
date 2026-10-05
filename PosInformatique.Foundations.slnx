@@ -125,6 +125,7 @@
   <Folder Name="/Text/" />
   <Folder Name="/Text/Templating/">
     <Project Path="src/Text.Templating/Text.Templating.csproj" Id="25d9a572-5f28-4e35-9836-8f8d70617e0d" />
+    <Project Path="tests/Text.Templating.Tests/Text.Templating.Tests.csproj" />
   </Folder>
   <Folder Name="/Text/Templating/Razor/">
     <Project Path="src/Text.Templating.Razor/Text.Templating.Razor.csproj" Id="aab32a1c-3774-4216-8558-76073bc8ac1f" />

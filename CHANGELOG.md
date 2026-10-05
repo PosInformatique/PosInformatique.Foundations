@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### 1.4.0
+
+#### PosInformatique.Foundations.Text.Templating
+- Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
+
 ### 1.3.0
 
 #### PosInformatique.Foundations.Emailing

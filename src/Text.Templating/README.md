@@ -27,6 +27,7 @@ dotnet add package PosInformatique.Foundations.Text.Templating
 - Asynchronous rendering API through `RenderAsync`
 - Pluggable rendering context via `ITextTemplateRenderContext` to access services during template execution
 - Engine-agnostic design: can be used with different template engines (Razor, etc.)
+- `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text, regardless of the data model
 
 ## Usage
 
