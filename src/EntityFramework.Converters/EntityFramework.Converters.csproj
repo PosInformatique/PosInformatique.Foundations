@@ -4,10 +4,10 @@
     <IsPackable>true</IsPackable>
 
     <Description>
-      Provides a collection of basic Entity Framework Core value converters, starting with an extension method
-      to configure DateTime properties as UTC.
+      Provides a collection of basic Entity Framework Core value converters, including an extension method
+      to configure DateTime properties as UTC and a converter to map two-value enumerations to boolean columns.
     </Description>
-    <PackageTags>entityframeworkcore;ef-core;converters;datetime;utc;propertybuilder;sqlserver;dotnet;posinformatique</PackageTags>
+    <PackageTags>entityframeworkcore;ef-core;converters;datetime;utc;enum;boolean;propertybuilder;valueconverter;sqlserver;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
     </PackageReleaseNotes>

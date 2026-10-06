@@ -7,6 +7,9 @@ dotnet_diagnostic.BL0005.severity = none
 
 #### Code Analysis ####
 
+# CA1069: Enums values should not be duplicated
+dotnet_diagnostic.CA1069.severity = none
+
 # CA1806: Do not ignore method results
 dotnet_diagnostic.CA1806.severity = none
 
@@ -43,6 +46,9 @@ dotnet_diagnostic.SA1600.severity = none
 
 # SA1601: Partial elements should be documented
 dotnet_diagnostic.SA1601.severity = none
+
+# SA1602: Enumeration items should be documented
+dotnet_diagnostic.SA1602.severity = none
 
 #### Visual Studio ####
 

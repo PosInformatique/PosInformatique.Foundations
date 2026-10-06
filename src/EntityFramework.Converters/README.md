@@ -8,8 +8,12 @@
 Provides a collection of basic **Entity Framework Core** value converters and extension methods to
 simplify common property configuration scenarios.
 
-The first converter available is the `IsUtc()` extension method for `PropertyBuilder<DateTime>`, used to
-configure `DateTime` properties as UTC. More converters will be added in future versions of this package.
+The converters currently available are:
+
+- `IsUtc()`: an extension method for `PropertyBuilder<DateTime>`, used to configure `DateTime` properties as UTC.
+- `EnumToBooleanConverter<TEnum>`: a `ValueConverter` to map an enumeration with only two values to a `bool` column.
+
+More converters will be added in future versions of this package.
 
 ## Install
 
@@ -64,6 +68,35 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 ```csharp
 builder.Property(o => o.ShippedAt)
     .IsUtc();
+```
+
+### Enum to boolean
+
+- Provides the `EnumToBooleanConverter<TEnum>` value converter to map an enumeration to a `bool` column (and vice versa).
+- The `TEnum` type must be an enumeration containing exactly two distinct values, one that can be represented as `0` (`false`) and one that can be represented as `1` (`true`).
+- An `ArgumentException` (wrapped in a `TypeInitializationException`) is thrown when accessing the `Instance` property if the enumeration does not comply with this constraint.
+
+#### Examples
+
+##### Example: Configure an enum property as a boolean column
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+public enum OrderStatus
+{
+    Pending = 0,
+    Completed = 1,
+}
+
+public class OrderConfiguration : IEntityTypeConfiguration<Order>
+{
+    public void Configure(EntityTypeBuilder<Order> builder)
+    {
+        builder.Property(o => o.Status)
+            .HasConversion(EnumToBooleanConverter<OrderStatus>.Instance);
+    }
+}
 ```
 
 ## Links
