@@ -395,17 +395,10 @@
           "xunit.v3.runner.common": "[4.0.1]"
         }
       },
-      "PosInformatique.Foundations.PhoneNumbers": {
+      "PosInformatique.Foundations.EntityFramework.Converters": {
         "type": "Project",
         "dependencies": {
-          "libphonenumber-csharp": "[9.0.1, )"
-        }
-      },
-      "PosInformatique.Foundations.PhoneNumbers.EntityFramework": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, )",
-          "PosInformatique.Foundations.PhoneNumbers": "[1.0.0, )"
+          "Microsoft.EntityFrameworkCore": "[10.0.0, )"
         }
       },
       "Azure.Identity": {
@@ -418,12 +411,6 @@
           "Microsoft.Identity.Client": "4.73.1",
           "Microsoft.Identity.Client.Extensions.Msal": "4.73.1"
         }
-      },
-      "libphonenumber-csharp": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.1, )",
-        "resolved": "9.0.1",
-        "contentHash": "P/YqSrDy+qO9lO1AOJh2cjndnHSlTbZJ3Z5frCcK/CqB8j+46fE4Qyvm3Z8ZRRLnhMdarISDNeBOsahXrE/kNw=="
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",
@@ -943,17 +930,10 @@
           "xunit.v3.runner.common": "[4.0.1]"
         }
       },
-      "PosInformatique.Foundations.PhoneNumbers": {
+      "PosInformatique.Foundations.EntityFramework.Converters": {
         "type": "Project",
         "dependencies": {
-          "libphonenumber-csharp": "[9.0.1, )"
-        }
-      },
-      "PosInformatique.Foundations.PhoneNumbers.EntityFramework": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "[8.0.0, )",
-          "PosInformatique.Foundations.PhoneNumbers": "[1.0.0, )"
+          "Microsoft.EntityFrameworkCore": "[8.0.0, )"
         }
       },
       "Azure.Identity": {
@@ -967,12 +947,6 @@
           "Microsoft.Identity.Client.Extensions.Msal": "4.61.3",
           "System.Security.Cryptography.ProtectedData": "4.7.0"
         }
-      },
-      "libphonenumber-csharp": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.1, )",
-        "resolved": "9.0.1",
-        "contentHash": "P/YqSrDy+qO9lO1AOJh2cjndnHSlTbZJ3Z5frCcK/CqB8j+46fE4Qyvm3Z8ZRRLnhMdarISDNeBOsahXrE/kNw=="
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",
@@ -1493,17 +1467,10 @@
           "xunit.v3.runner.common": "[4.0.1]"
         }
       },
-      "PosInformatique.Foundations.PhoneNumbers": {
+      "PosInformatique.Foundations.EntityFramework.Converters": {
         "type": "Project",
         "dependencies": {
-          "libphonenumber-csharp": "[9.0.1, )"
-        }
-      },
-      "PosInformatique.Foundations.PhoneNumbers.EntityFramework": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "[9.0.0, )",
-          "PosInformatique.Foundations.PhoneNumbers": "[1.0.0, )"
+          "Microsoft.EntityFrameworkCore": "[9.0.0, )"
         }
       },
       "Azure.Identity": {
@@ -1517,12 +1484,6 @@
           "Microsoft.Identity.Client.Extensions.Msal": "4.61.3",
           "System.Security.Cryptography.ProtectedData": "4.7.0"
         }
-      },
-      "libphonenumber-csharp": {
-        "type": "CentralTransitive",
-        "requested": "[9.0.1, )",
-        "resolved": "9.0.1",
-        "contentHash": "P/YqSrDy+qO9lO1AOJh2cjndnHSlTbZJ3Z5frCcK/CqB8j+46fE4Qyvm3Z8ZRRLnhMdarISDNeBOsahXrE/kNw=="
       },
       "Microsoft.EntityFrameworkCore": {
         "type": "CentralTransitive",

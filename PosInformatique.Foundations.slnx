@@ -62,6 +62,10 @@
     <Project Path="tests/Emailing.Templates.Razor.Tests/Emailing.Templates.Razor.Tests.csproj" Id="cb6212b5-270e-4ec9-bf07-6f7b8a3b8187" />
   </Folder>
   <Folder Name="/EntityFramework/" />
+  <Folder Name="/EntityFramework/Converters/">
+    <Project Path="src/EntityFramework.Converters/EntityFramework.Converters.csproj" />
+    <Project Path="tests/EntityFramework.Converters.Tests/EntityFramework.Converters.Tests.csproj" />
+  </Folder>
   <Folder Name="/EntityFramework/Migrations/">
     <Project Path="src/EntityFramework.Migrations/EntityFramework.Migrations.csproj" Id="f0d64c1b-fa34-4d7a-a377-1a6b4c9e8dd4" />
     <Project Path="tests/EntityFramework.Migrations.Tests/EntityFramework.Migrations.Tests.csproj" Id="ac049bd6-65d3-491b-9b7f-9ed639918b49" />

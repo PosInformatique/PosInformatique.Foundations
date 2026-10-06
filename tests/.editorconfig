@@ -30,6 +30,9 @@ dotnet_diagnostic.S3878.severity = none
 # S3984: Exceptions should not be created without being thrown
 dotnet_diagnostic.S3984.severity = none
 
+# S6562: Always set the "DateTimeKind" when creating new "DateTime" instances
+dotnet_diagnostic.S6562.severity = none
+
 #### StyleCop ####
 
 # SA1312: Variable names should begin with lower-case letter

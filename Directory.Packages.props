@@ -15,6 +15,7 @@
     <PackageVersion Include="libphonenumber-csharp" Version="9.0.1" />
     <PackageVersion Include="Mailjet.Api" Version="4.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" Condition="'$(TargetFramework)' == 'net8.0'" />
