@@ -34,7 +34,6 @@ using MimeKit.Cryptography;
 #endif
 
 using MimeKit.Utils;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MimeKit {
 	/// <summary>

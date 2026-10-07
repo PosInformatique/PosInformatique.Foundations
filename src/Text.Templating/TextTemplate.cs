@@ -6,8 +6,6 @@
 
 namespace PosInformatique.Foundations.Text.Templating
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Base classe which represents a text template.
     /// </summary>

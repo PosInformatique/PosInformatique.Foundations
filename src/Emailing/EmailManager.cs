@@ -6,7 +6,6 @@
 
 namespace PosInformatique.Foundations.Emailing
 {
-    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.Text.Templating;
 

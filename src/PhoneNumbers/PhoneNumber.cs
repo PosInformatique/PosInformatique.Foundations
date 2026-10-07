@@ -6,7 +6,6 @@
 
 namespace PosInformatique.Foundations.PhoneNumbers
 {
-    using System.Diagnostics.CodeAnalysis;
     using global::PhoneNumbers;
 
     /// <summary>

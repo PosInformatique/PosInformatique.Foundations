@@ -6,8 +6,6 @@
 
 namespace PosInformatique.Foundations.Text.Templating
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Implementation of the <see cref="TextTemplate{TModel}"/> which generates a constant text.
     /// </summary>

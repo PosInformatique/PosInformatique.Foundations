@@ -6,7 +6,6 @@
 
 namespace PosInformatique.Foundations.Text.Templating.Scriban
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Dynamic;
     using System.IO;
     using global::Scriban;

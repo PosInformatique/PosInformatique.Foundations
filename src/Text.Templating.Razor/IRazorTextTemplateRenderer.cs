@@ -6,8 +6,6 @@
 
 namespace PosInformatique.Foundations.Text.Templating.Razor
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Used internaly by the <see cref="RazorTextTemplate{TModel}"/> to render a Razor component to a text output.
     /// </summary>

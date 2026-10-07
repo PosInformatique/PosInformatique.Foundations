@@ -6,8 +6,6 @@
 
 namespace PosInformatique.Foundations.MediaTypes
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// Represents an immutable media type (formerly known as MIME type),
     /// composed of a type and a subtype, such as <c>application/json</c> or <c>image/png</c>.
