@@ -6,6 +6,9 @@
 
 namespace PosInformatique.Foundations.Emailing
 {
+    using System.Diagnostics.CodeAnalysis;
+    using PosInformatique.Foundations.Text.Templating;
+
     /// <summary>
     /// Manager which allows to send e-mail using a <see cref="IEmailProvider"/>.
     /// </summary>
@@ -30,12 +33,16 @@ namespace PosInformatique.Foundations.Emailing
         /// <summary>
         /// Sends the specified <paramref name="email"/>.
         /// </summary>
+        /// <remarks>If you call this method with trimming enabled, the members of <typeparamref name="TModel"/> must not be removed
+        /// because they are accessed by the <see cref="TextTemplate{TModel}"/> renderer. Protect the <typeparamref name="TModel"/> type and its members from being trimmed
+        /// with the <see cref="DynamicDependencyAttribute"/>.</remarks>
         /// <typeparam name="TModel">Type of the data model to inject in the <see cref="Email{TModel}.Template"/>.</typeparam>
         /// <param name="email">The e-mail template with the recipients to send.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/> which allows to cancel the send process.</param>
         /// <returns>An instance of the <see cref="Task"/> class which represents the asynchronous operation.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="email"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="EmailProviderException">Thrown when an error occurs at the provider side (configuration errors, unavailable services, etc.) and impacts the sending of e-mails.</exception>
+        [RequiresUnreferencedCode("TModel is accessed by text template renderer and may require all members to be preserved.")]
         Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default);
     }
 }

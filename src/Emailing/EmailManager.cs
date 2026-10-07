@@ -6,6 +6,7 @@
 
 namespace PosInformatique.Foundations.Emailing
 {
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Options;
     using PosInformatique.Foundations.Text.Templating;
 
@@ -43,6 +44,7 @@ namespace PosInformatique.Foundations.Emailing
             return new Email<TModel>(template);
         }
 
+        [RequiresUnreferencedCode("TModel is accessed by text template renderer and may require all members to be preserved.")]
         public async Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(email);

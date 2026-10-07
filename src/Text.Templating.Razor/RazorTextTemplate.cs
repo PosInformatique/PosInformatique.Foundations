@@ -6,6 +6,7 @@
 
 namespace PosInformatique.Foundations.Text.Templating.Razor
 {
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
@@ -29,6 +30,7 @@ namespace PosInformatique.Foundations.Text.Templating.Razor
         }
 
         /// <inheritdoc />
+        [RequiresUnreferencedCode("Model is accessed by text template renderer and may require all members to be preserved.")]
         public override async Task RenderAsync(TModel model, TextWriter output, ITextTemplateRenderContext context, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(model);

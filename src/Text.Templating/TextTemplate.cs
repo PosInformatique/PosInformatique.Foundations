@@ -6,6 +6,8 @@
 
 namespace PosInformatique.Foundations.Text.Templating
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Base classe which represents a text template.
     /// </summary>
@@ -23,6 +25,9 @@ namespace PosInformatique.Foundations.Text.Templating
         /// Generates the text using the <paramref name="model"/> to the current template. The result
         /// of the generated text is obtained in the <paramref name="output"/> writer.
         /// </summary>
+        /// <remarks>If you call this method with trimming enabled, the members of <typeparamref name="TModel"/> must not be removed
+        /// because they are accessed by the <see cref="TextTemplate{TModel}"/> renderer. Protect the <typeparamref name="TModel"/> type and its members from being trimmed
+        /// with the <see cref="DynamicDependencyAttribute"/>.</remarks>
         /// <param name="model">Data model to inject to the template to generate the final text.</param>
         /// <param name="output"><see cref="TextWriter"/> which contains the generated text.</param>
         /// <param name="context"><see cref="ITextTemplateRenderContext"/> which allows to retrieve additional services for text generation.</param>
@@ -31,6 +36,7 @@ namespace PosInformatique.Foundations.Text.Templating
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="model"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="output"/> argument is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <paramref name="context"/> argument is <see langword="null"/>.</exception>
+        [RequiresUnreferencedCode("Model is accessed by text template renderer and may require all members to be preserved.")]
         public abstract Task RenderAsync(TModel model, TextWriter output, ITextTemplateRenderContext context, CancellationToken cancellationToken = default);
     }
 }

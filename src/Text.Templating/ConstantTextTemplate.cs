@@ -6,6 +6,8 @@
 
 namespace PosInformatique.Foundations.Text.Templating
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Implementation of the <see cref="TextTemplate{TModel}"/> which generates a constant text.
     /// </summary>
@@ -27,6 +29,7 @@ namespace PosInformatique.Foundations.Text.Templating
         }
 
         /// <inheritdoc />
+        [RequiresUnreferencedCode("Model is accessed by text template renderer and may require all members to be preserved.")]
         public override Task RenderAsync(TModel model, TextWriter output, ITextTemplateRenderContext context, CancellationToken cancellationToken = default)
         {
             return output.WriteAsync(this.text);
