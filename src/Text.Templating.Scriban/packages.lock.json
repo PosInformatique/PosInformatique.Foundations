@@ -16,9 +16,9 @@
       },
       "Scriban": {
         "type": "Direct",
-        "requested": "[7.0.0, )",
-        "resolved": "7.0.0",
-        "contentHash": "Y4/BGU/c2TjvGUfMBm5jZfPjHe8B4dk8ej72Vsy+nTsRCb/TNqZ1PdGQnV+04p7RJ85UiM4ni2Dx2F7yKOORNw=="
+        "requested": "[7.2.2, )",
+        "resolved": "7.2.2",
+        "contentHash": "8qYvR1PxjYtTgAKFyJ2W57DEF3uQcpL7NjkciQuuDnxVxLcSgx+ozBveg7AIJcr7nHETI472g8GVSl6LsYaFyQ=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
@@ -59,9 +59,9 @@
       },
       "Scriban": {
         "type": "Direct",
-        "requested": "[7.0.0, )",
-        "resolved": "7.0.0",
-        "contentHash": "Y4/BGU/c2TjvGUfMBm5jZfPjHe8B4dk8ej72Vsy+nTsRCb/TNqZ1PdGQnV+04p7RJ85UiM4ni2Dx2F7yKOORNw=="
+        "requested": "[7.2.2, )",
+        "resolved": "7.2.2",
+        "contentHash": "8qYvR1PxjYtTgAKFyJ2W57DEF3uQcpL7NjkciQuuDnxVxLcSgx+ozBveg7AIJcr7nHETI472g8GVSl6LsYaFyQ=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
@@ -102,9 +102,9 @@
       },
       "Scriban": {
         "type": "Direct",
-        "requested": "[7.0.0, )",
-        "resolved": "7.0.0",
-        "contentHash": "Y4/BGU/c2TjvGUfMBm5jZfPjHe8B4dk8ej72Vsy+nTsRCb/TNqZ1PdGQnV+04p7RJ85UiM4ni2Dx2F7yKOORNw=="
+        "requested": "[7.2.2, )",
+        "resolved": "7.2.2",
+        "contentHash": "8qYvR1PxjYtTgAKFyJ2W57DEF3uQcpL7NjkciQuuDnxVxLcSgx+ozBveg7AIJcr7nHETI472g8GVSl6LsYaFyQ=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Direct",
