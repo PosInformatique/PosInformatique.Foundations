@@ -40,12 +40,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.2.0-beta.556, )",
-        "resolved": "1.2.0-beta.556",
-        "contentHash": "llRPgmA1fhC0I0QyFLEcjvtM2239QzKr/tcnbsjArLMJxJlu0AA5G7Fft0OI30pHF3MW63Gf4aSSsjc5m82J1Q==",
-        "dependencies": {
-          "StyleCop.Analyzers.Unstable": "1.2.0.556"
-        }
+        "requested": "[1.3.1-beta, )",
+        "resolved": "1.3.1-beta",
+        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
       },
       "Microsoft.AspNetCore.Authorization": {
         "type": "Transitive",
@@ -162,11 +159,6 @@
         "resolved": "10.0.0",
         "contentHash": "Qfs4KtmfMUQ/BtD4jdt753kiAa7frm1QVms8UHiFArOokoXBkBOOKE2N5APdt3BlAdTSFJNiuDFfgDzVq/3EZg=="
       },
-      "StyleCop.Analyzers.Unstable": {
-        "type": "Transitive",
-        "resolved": "1.2.0.556",
-        "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
-      },
       "PosInformatique.Foundations.Text.Templating": {
         "type": "Project"
       },
@@ -245,12 +237,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.2.0-beta.556, )",
-        "resolved": "1.2.0-beta.556",
-        "contentHash": "llRPgmA1fhC0I0QyFLEcjvtM2239QzKr/tcnbsjArLMJxJlu0AA5G7Fft0OI30pHF3MW63Gf4aSSsjc5m82J1Q==",
-        "dependencies": {
-          "StyleCop.Analyzers.Unstable": "1.2.0.556"
-        }
+        "requested": "[1.3.1-beta, )",
+        "resolved": "1.3.1-beta",
+        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
       },
       "Microsoft.AspNetCore.Authorization": {
         "type": "Transitive",
@@ -298,11 +287,6 @@
         "type": "Transitive",
         "resolved": "8.0.0",
         "contentHash": "qQqASbHxWIddssdEBKUQ/49j21SEstiho6VAepPQa9eISLCBCE6wq0m3YaB6cpdF5U+AWX5F3FvDfmssql3xtw=="
-      },
-      "StyleCop.Analyzers.Unstable": {
-        "type": "Transitive",
-        "resolved": "1.2.0.556",
-        "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
       },
       "System.IO.Pipelines": {
         "type": "Transitive",
@@ -386,12 +370,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.2.0-beta.556, )",
-        "resolved": "1.2.0-beta.556",
-        "contentHash": "llRPgmA1fhC0I0QyFLEcjvtM2239QzKr/tcnbsjArLMJxJlu0AA5G7Fft0OI30pHF3MW63Gf4aSSsjc5m82J1Q==",
-        "dependencies": {
-          "StyleCop.Analyzers.Unstable": "1.2.0.556"
-        }
+        "requested": "[1.3.1-beta, )",
+        "resolved": "1.3.1-beta",
+        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
       },
       "Microsoft.AspNetCore.Authorization": {
         "type": "Transitive",
@@ -439,11 +420,6 @@
         "type": "Transitive",
         "resolved": "9.0.0",
         "contentHash": "efQKxKUPe8OuH0hRiYsvBJkhhPzIYFNcr9+3wanQ7Bch/wr1JWNd90GYiPLtkSHepE1zMEoaLkAxi5N5/eyC4Q=="
-      },
-      "StyleCop.Analyzers.Unstable": {
-        "type": "Transitive",
-        "resolved": "1.2.0.556",
-        "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
       },
       "PosInformatique.Foundations.Text.Templating": {
         "type": "Project"
