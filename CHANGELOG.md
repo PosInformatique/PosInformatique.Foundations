@@ -6,11 +6,17 @@
 
 - Added Native AOT support for all the packages.
 
+#### PosInformatique.Foundations.Emailing.Graph
+- Upgrade the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to version 6.0.3 at minimum to fix security vulnerabilities.
+
 #### PosInformatique.Foundations.EntityFramework.Converters
 - New [package](./src/EntityFramework.Converters/README.md) providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
 
 #### PosInformatique.Foundations.Text.Templating
 - Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
+
+#### PosInformatique.Foundations.Text.Templating.Scriban
+- Upgrade the [Scriban](https://www.nuget.org/packages/Scriban) dependency to version 7.2.2 at minimum to fix security vulnerabilities.
 
 ### 1.3.0
 
