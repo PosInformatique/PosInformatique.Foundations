@@ -5,7 +5,7 @@
 ### 1.4.0
 
 #### PosInformatique.Foundations.EntityFramework.Converters
-- New package providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
+- New package providing an `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>`. It treats persisted values as already UTC and sets their `DateTime.Kind` to `Utc` without converting the time.
 
 #### PosInformatique.Foundations.Text.Templating
 - Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
