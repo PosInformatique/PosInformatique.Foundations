@@ -4,8 +4,10 @@
 
 ### 1.4.0
 
+- Added Native AOT support for all the packages.
+
 #### PosInformatique.Foundations.EntityFramework.Converters
-- New package providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
+- New [package](./src/EntityFramework.Converters/README.md) providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
 
 #### PosInformatique.Foundations.Text.Templating
 - Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
@@ -17,7 +19,7 @@
 - Throws a `EmailProviderException` when the email provider fails to send an email.
 
 #### PosInformatique.Foundations.Emailing.Mailjet
-- New emailing provider to send emails using Mailjet.
+- New [email provider](./src/Emailing.Mailjet/README.md) emailing provider to send emails using Mailjet.
 
 #### PosInformatique.Foundations.MediaTypes
 - Added support for SVG image MIME type.
@@ -25,7 +27,7 @@
 ### 1.2.0
 
 #### PosInformatique.Foundations.People.AwesomeAssertions
-- Added support with AwesomeAssertions to assert the FirstName and LastName value objects.
+- Added [support with AwesomeAssertions](./src/People.AwesomeAssertions/README.md) to assert the FirstName and LastName value objects.
 
 ### 1.1.0
 

@@ -1,4 +1,4 @@
-# PosInformatique.Foundations
+﻿# PosInformatique.Foundations
 
 <img src="Icon.png" alt="PosInformatique.Foundations icon" width="64" height="64" />
 
@@ -14,6 +14,7 @@ each addressing a single responsibility.
 - **Composable**: you bring exactly the pieces you need, nothing more.  
 - **Practical**: packages can be foundational (value objects, abstractions, contracts) or technical utilities (helpers, validation rules, extensions).  
 - **Consistent**: all packages follow the same naming convention and version alignment.  
+- **AOT-friendly**: all the packages are compatible with Native AOT and trimming.  
 - **Standards-based**: whenever possible, implementations follow well-known standards (e.g. RFC 5322 for email addresses, E.164 for phone numbers,...).  
 
 ➡️ Each package has **no strong dependency** on another. You are free to pick only what you need.  
