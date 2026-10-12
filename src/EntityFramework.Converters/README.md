@@ -8,9 +8,9 @@
 Provides a collection of basic **Entity Framework Core** value converters and extension methods to
 simplify common property configuration scenarios.
 
-The converters currently available are:
+The converters and configuration extensions currently available are:
 
-- `IsUtc()`: an extension method for `PropertyBuilder<DateTime>`, used to configure `DateTime` properties as UTC.
+- `AssumeUtc()`: an extension method for `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>`. It assumes persisted values already represent UTC and sets their `DateTime.Kind` to `Utc`; it does not convert the time.
 - `EnumToBooleanConverter<TEnum>`: a `ValueConverter` to map an enumeration with only two values to a `bool` column.
 
 More converters will be added in future versions of this package.
@@ -25,30 +25,29 @@ dotnet add package PosInformatique.Foundations.EntityFramework.Converters
 
 ## Available converters
 
-### `DateTime` as UTC
+### Assume UTC for a `DateTime` property
 
-- Provides an `IsUtc()` extension method to mark a `DateTime` (or nullable `DateTime`) property as UTC.
+- `AssumeUtc()` assumes values in the database already represent UTC and sets `DateTime.Kind` to `Utc` when values are read from or written to the database.
 - Supports both `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>`.
 
-#### ⚠️ Important: no actual date conversion is performed
+#### ⚠️ Important: this does not convert times to UTC
 
-The `IsUtc()` method does **not** convert the value between time zones. It only sets the `DateTimeKind` of the
-value to `DateTimeKind.Utc` (using `DateTime.SpecifyKind`) when the value is read from or written to the
-database, it never changes the underlying value.
+The `AssumeUtc()` method does **not** convert a value between time zones or change its clock time. It only sets
+the `DateTime.Kind` to `DateTimeKind.Utc` (using `DateTime.SpecifyKind`) when the value is read from or written
+to the database.
 
 SQL Server `datetime`/`datetime2` columns do not store any time zone information, and Entity Framework Core
 returns `DateTime` values with `DateTimeKind.Unspecified` by default, which can lead to ambiguous or incorrect
 behavior when comparing or serializing dates (for example with `System.Text.Json`, which treats `Unspecified`
 dates differently than `Utc` dates).
 
-This package is therefore intended **only** for applications that already persist their `DateTime` values as
-UTC in `datetime`/`datetime2` SQL Server columns, and that consider the whole column (or table) to contain UTC
-dates. If your database stores local (non-UTC) dates, you must convert the values to UTC yourself before using
-this package, as `IsUtc()` will only flag the value as UTC without changing its actual value.
+Use this extension only when the `DateTime` values persisted in your `datetime`/`datetime2` SQL Server columns
+already represent UTC. If the database stores local (non-UTC) times, convert them to UTC yourself before using
+this extension; otherwise, they will be labeled UTC without being converted.
 
 #### Examples
 
-##### Example: Configure a `DateTime` property as UTC
+##### Example: Assume a `DateTime` property contains UTC values
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -58,16 +57,16 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> builder)
     {
         builder.Property(o => o.CreatedAt)
-            .IsUtc();
+            .AssumeUtc();
     }
 }
 ```
 
-##### Example: Configure a nullable `DateTime` property as UTC
+##### Example: Assume a nullable `DateTime` property contains UTC values
 
 ```csharp
 builder.Property(o => o.ShippedAt)
-    .IsUtc();
+    .AssumeUtc();
 ```
 
 ### Enum to boolean
