@@ -16,9 +16,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.1-beta, )",
-        "resolved": "1.3.1-beta",
-        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
+        "requested": "[1.3.18-beta, )",
+        "resolved": "1.3.18-beta",
+        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
       },
       "PosInformatique.Foundations.PhoneNumbers": {
         "type": "Project",
@@ -48,9 +48,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.1-beta, )",
-        "resolved": "1.3.1-beta",
-        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
+        "requested": "[1.3.18-beta, )",
+        "resolved": "1.3.18-beta",
+        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
       },
       "PosInformatique.Foundations.PhoneNumbers": {
         "type": "Project",
@@ -80,9 +80,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.1-beta, )",
-        "resolved": "1.3.1-beta",
-        "contentHash": "6He/rk2rWjlqoNVnhn5PiAZYwCoXpmujw4kLr6Wnzo7DE4vg2RLZ0HBnYTysmAblu2S19DgHaEYHNidJ1KuL8w=="
+        "requested": "[1.3.18-beta, )",
+        "resolved": "1.3.18-beta",
+        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
       },
       "PosInformatique.Foundations.PhoneNumbers": {
         "type": "Project",
