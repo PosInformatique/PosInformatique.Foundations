@@ -10,7 +10,6 @@
     <File Path="Icon.png" />
     <File Path="LICENSE" />
     <File Path="README.md" />
-    <File Path="stylecop.json" />
   </Folder>
   <Folder Name="/00 - Solution Items/.github/" />
   <Folder Name="/00 - Solution Items/.github/workflows/">

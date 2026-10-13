@@ -34,6 +34,11 @@ end_of_line = crlf
 csharp_style_prefer_primary_constructors = false:suggestion
 csharp_using_directive_placement = inside_namespace:warning
 
+# StyleCop Analyzers settings
+stylecop.documentation.companyName = P.O.S Informatique
+stylecop.documentation.copyrightText = Copyright (c) {companyName}. All rights reserved.
+stylecop.documentation.documentInternalElements = false
+
 # Naming rules
 
 dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
