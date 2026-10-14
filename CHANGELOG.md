@@ -12,6 +12,9 @@
 #### PosInformatique.Foundations.EntityFramework.Converters
 - New [package](./src/EntityFramework.Converters/README.md) providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
 
+#### PosInformatique.Foundations.People.EntityFramework
+- Added nullable property support for the `IsFirstName()` and `IsLastName()` EF Core extensions.
+
 #### PosInformatique.Foundations.Text.Templating
 - Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
 

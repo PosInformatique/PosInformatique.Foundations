@@ -20,11 +20,20 @@ namespace Microsoft.EntityFrameworkCore
         /// Configures the specified <paramref name="property"/> to be mapped on a <c>NVARCHAR(50)</c> column
         /// to store a <see cref="FirstName"/> instance.
         /// </summary>
+        /// <typeparam name="T">Type of the property which must be <see cref="FirstName"/>.</typeparam>
         /// <param name="property">Entity property to map in the <see cref="ModelBuilder"/>.</param>
         /// <returns>The <paramref name="property"/> instance to configure the configuration of the property.</returns>
         /// <exception cref="ArgumentNullException">If the specified <paramref name="property"/> argument is <see langword="null"/>.</exception>
-        public static PropertyBuilder<FirstName> IsFirstName(this PropertyBuilder<FirstName> property)
+        /// <exception cref="ArgumentException">If the specified <typeparamref name="T"/> generic type is not a <see cref="FirstName"/>.</exception>
+        public static PropertyBuilder<T> IsFirstName<T>(this PropertyBuilder<T> property)
         {
+            ArgumentNullException.ThrowIfNull(property);
+
+            if (typeof(T) != typeof(FirstName))
+            {
+                throw new ArgumentException($"The '{nameof(IsFirstName)}()' method must be called on '{nameof(FirstName)} class.", nameof(property));
+            }
+
             return property
                 .IsUnicode(true)
                 .IsFixedLength(false)
