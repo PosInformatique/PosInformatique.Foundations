@@ -21,23 +21,17 @@ indent_style = space
 indent_size = 2
 
 [*.{cs,vb}]
+tab_width = 4
+indent_size = 4
+end_of_line = crlf
 
 # Organize usings
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = true
 
-#### Naming styles ####
-tab_width = 4
-indent_size = 4
-end_of_line = crlf
-
+# Style
 csharp_style_prefer_primary_constructors = false:suggestion
 csharp_using_directive_placement = inside_namespace:warning
-
-# StyleCop Analyzers settings
-stylecop.documentation.companyName = P.O.S Informatique
-stylecop.documentation.copyrightText = Copyright (c) {companyName}. All rights reserved.
-stylecop.documentation.documentInternalElements = false
 
 # Naming rules
 
@@ -68,7 +62,6 @@ dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, int
 dotnet_naming_symbols.non_field_members.required_modifiers = 
 
 # Naming styles
-
 dotnet_naming_style.begins_with_i.required_prefix = I
 dotnet_naming_style.begins_with_i.required_suffix = 
 dotnet_naming_style.begins_with_i.word_separator = 
@@ -96,6 +89,18 @@ dotnet_style_qualification_for_method = true
 dotnet_style_qualification_for_property = true
 dotnet_style_collection_initializer = true:suggestion
 dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+
+### StyleCop Analyzers ###
+
+stylecop.documentation.companyName = P.O.S Informatique
+stylecop.documentation.copyrightText = Copyright (c) {companyName}. All rights reserved.
+stylecop.documentation.documentInternalElements = false
+
+# SA1305: Names should not use Hungarian notation
+dotnet_diagnostic.SA1305.severity = warning
+
+# SA1412: Store files as UTF-8 with byte order mark
+dotnet_diagnostic.SA1412.severity = warning
 
 ### Visual Studio ###
 
