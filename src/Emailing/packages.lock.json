@@ -26,9 +26,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.18-beta, )",
-        "resolved": "1.3.18-beta",
-        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
+        "requested": "[1.3.151-beta, )",
+        "resolved": "1.3.151-beta",
+        "contentHash": "AGruKOaxfcJ/QFaJ5Um3SqHgenUFxNu2Gbksuq2piz6uwFwS/xWgwXQXrHJeLmOLG/W9BZ90v7by+SnwoUlEpg=="
       },
       "Microsoft.Extensions.Primitives": {
         "type": "Transitive",
@@ -76,9 +76,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.18-beta, )",
-        "resolved": "1.3.18-beta",
-        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
+        "requested": "[1.3.151-beta, )",
+        "resolved": "1.3.151-beta",
+        "contentHash": "AGruKOaxfcJ/QFaJ5Um3SqHgenUFxNu2Gbksuq2piz6uwFwS/xWgwXQXrHJeLmOLG/W9BZ90v7by+SnwoUlEpg=="
       },
       "Microsoft.Extensions.Primitives": {
         "type": "Transitive",
@@ -126,9 +126,9 @@
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
-        "requested": "[1.3.18-beta, )",
-        "resolved": "1.3.18-beta",
-        "contentHash": "Fr9Rf7z6Inlxuxqj8I1SNL8WH+E+eCWa+qAKhXp6lt0oUQevYyflQTDhuw7zEgJfG23y0+tBPqN+ZNBns3c+fQ=="
+        "requested": "[1.3.151-beta, )",
+        "resolved": "1.3.151-beta",
+        "contentHash": "AGruKOaxfcJ/QFaJ5Um3SqHgenUFxNu2Gbksuq2piz6uwFwS/xWgwXQXrHJeLmOLG/W9BZ90v7by+SnwoUlEpg=="
       },
       "Microsoft.Extensions.Primitives": {
         "type": "Transitive",
