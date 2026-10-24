@@ -63,7 +63,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
                     jsonMessage.Message.Importance.Should().Be(expectedImportance);
-                    jsonMessage.Message.ToRecipients.Should().HaveCount(1);
+                    jsonMessage.Message.ToRecipients.Should().ContainSingle();
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
                     jsonMessage.SaveToSentItems.Should().BeFalse();
@@ -127,7 +127,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
                     jsonMessage.Message.Importance.Should().Be(expectedImportance);
-                    jsonMessage.Message.ToRecipients.Should().HaveCount(1);
+                    jsonMessage.Message.ToRecipients.Should().ContainSingle();
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
                     jsonMessage.SaveToSentItems.Should().BeFalse();

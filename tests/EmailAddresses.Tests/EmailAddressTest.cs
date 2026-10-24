@@ -308,12 +308,12 @@ namespace PosInformatique.Foundations.EmailAddresses.Tests
         [Fact]
         public void CompareTo()
         {
-            EmailAddress.Parse("test1@test.com").CompareTo(EmailAddress.Parse("test2@test.com")).Should().BeLessThan(0);
-            EmailAddress.Parse("test2@test.com").CompareTo(EmailAddress.Parse("test1@test.com")).Should().BeGreaterThan(0);
+            EmailAddress.Parse("test1@test.com").CompareTo(EmailAddress.Parse("test2@test.com")).Should().BeNegative();
+            EmailAddress.Parse("test2@test.com").CompareTo(EmailAddress.Parse("test1@test.com")).Should().BePositive();
 
             EmailAddress.Parse("test1@test.com").CompareTo(EmailAddress.Parse("test1@test.com")).Should().Be(0);
 
-            EmailAddress.Parse("test1@test.com").CompareTo(null).Should().BeGreaterThan(0);
+            EmailAddress.Parse("test1@test.com").CompareTo(null).Should().BePositive();
         }
 
         [Theory]

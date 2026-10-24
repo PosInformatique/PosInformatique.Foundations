@@ -17,6 +17,7 @@
     <File Path=".github/workflows/github-actions-release.yaml" />
   </Folder>
   <Folder Name="/00 - Solution Items/src/">
+    <File Path="src/.editorconfig" />
     <File Path="src/Directory.Build.props" />
   </Folder>
   <Folder Name="/00 - Solution Items/tests/">

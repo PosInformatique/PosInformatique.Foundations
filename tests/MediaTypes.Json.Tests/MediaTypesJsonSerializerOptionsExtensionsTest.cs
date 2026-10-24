@@ -17,13 +17,13 @@ namespace System.Text.Json.Tests
 
             options.AddMediaTypesConverters();
 
-            options.Converters.Should().HaveCount(1);
+            options.Converters.Should().ContainSingle();
             options.Converters[0].Should().BeOfType<MimeTypeJsonConverter>();
 
             // Call again to check nothing has been changed.
             options.AddMediaTypesConverters();
 
-            options.Converters.Should().HaveCount(1);
+            options.Converters.Should().ContainSingle();
             options.Converters[0].Should().BeOfType<MimeTypeJsonConverter>();
         }
 

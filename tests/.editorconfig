@@ -10,6 +10,9 @@ dotnet_diagnostic.BL0005.severity = none
 # CA1069: Enums values should not be duplicated
 dotnet_diagnostic.CA1069.severity = none
 
+# CA1507: Use nameof to express symbol names
+dotnet_diagnostic.CA1507.severity = none
+
 # CA1806: Do not ignore method results
 dotnet_diagnostic.CA1806.severity = none
 
@@ -54,3 +57,17 @@ dotnet_diagnostic.SA1602.severity = none
 
 # IDE0017: Simplify object initialization
 dotnet_diagnostic.IDE0017.severity = none
+
+### Awesome Assertions ###
+
+# FAA0001: Simplify Assertion
+dotnet_diagnostic.FAA0001.severity = warning
+
+# FAA0002: Replace Xunit assertion with Fluent Assertions equivalent
+dotnet_diagnostic.FAA0002.severity = warning
+
+# FAA0003: Replace NUnit assertion with Fluent Assertions equivalent
+dotnet_diagnostic.FAA0003.severity = warning
+
+# FAA0004: Replace MSTest assertion with Fluent Assertions equivalent
+dotnet_diagnostic.FAA0004.severity = warning
