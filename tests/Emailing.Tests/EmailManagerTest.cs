@@ -228,6 +228,24 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Fact]
+        public async Task SendAsync_WithNoRecipients()
+        {
+            var template = new EmailTemplate<Model>(Mock.Of<TextTemplate<Model>>(MockBehavior.Strict), Mock.Of<TextTemplate<Model>>(MockBehavior.Strict));
+
+            var email = new Email<Model>(template);
+
+            var options = new EmailingOptions();
+            options.SenderEmailAddress = EmailAddress.Parse("sender@domain.com");
+
+            var manager = new EmailManager(Options.Create(options), default, default);
+
+            await manager.Invoking(m => m.SendAsync(email, default))
+                .Should().ThrowExactlyAsync<ArgumentException>()
+                .WithMessage("The email must have at least one recipient. (Parameter 'email')")
+                .WithParameterName("email");
+        }
+
+        [Fact]
         public async Task SendAsync_WithNullIdentifier()
         {
             var options = new EmailingOptions();
