@@ -4,22 +4,24 @@
 
 ### 1.4.0
 
-- Added Native AOT support for all the packages.
+- Added Native AOT support for all packages.
 
 #### PosInformatique.Foundations.Emailing.Graph
-- Upgrade the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to version 6.0.3 at minimum to fix security vulnerabilities.
+- Upgraded the minimum required version of the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to 6.0.3 to address security vulnerabilities.
 
 #### PosInformatique.Foundations.EntityFramework.Converters
-- New [package](./src/EntityFramework.Converters/README.md) providing an `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` which treats persisted values as already UTC and sets their `DateTime.Kind` to `Utc` without converting the time.
+- Added a new [package](./src/EntityFramework.Converters/README.md) that provides basic value converters for Entity Framework Core:
+  - Added the `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>` to treat values as UTC when writing to and reading from the database. It sets `DateTime.Kind` to `Utc` without changing the ticks or performing a time zone conversion.
+  - Added `EnumToBooleanConverter<TEnum>` to map enum values `0` and `1` to `false` and `true`, respectively, and back again. The enum must contain exactly two distinct values: `0` and `1`.
 
 #### PosInformatique.Foundations.People.EntityFramework
 - Added nullable property support for the `IsFirstName()` and `IsLastName()` EF Core extensions.
 
 #### PosInformatique.Foundations.Text.Templating
-- Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
+- Added the `ConstantTextTemplate<TModel>` implementation to generate fixed text.
 
 #### PosInformatique.Foundations.Text.Templating.Scriban
-- Upgrade the [Scriban](https://www.nuget.org/packages/Scriban) dependency to version 7.2.2 at minimum to fix security vulnerabilities.
+- Upgraded the minimum required version of the [Scriban](https://www.nuget.org/packages/Scriban) dependency to 7.2.2 to address security vulnerabilities.
 
 ### 1.3.0
 
