@@ -6,6 +6,9 @@
 
 - Added Native AOT support for all packages.
 
+#### PosInformatique.Foundations.Emailing
+- Added validation to `IEmailManager.SendAsync<TModel>()` to require at least one recipient. An `ArgumentException` is thrown if the email has no recipients.
+
 #### PosInformatique.Foundations.Emailing.Graph
 - Upgraded the minimum required version of the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to 6.0.3 to address security vulnerabilities.
 

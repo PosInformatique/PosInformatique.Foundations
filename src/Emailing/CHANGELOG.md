@@ -1,4 +1,7 @@
-﻿1.3.0
+﻿1.4.0
+  - Added validation to `IEmailManager.SendAsync<TModel>()` to require at least one recipient. An `ArgumentException` is thrown if the email has no recipients.
+
+1.3.0
   - Added the support to specify the sender display name.
   - Added the support to raise a `EmailProviderException` when the email provider fails to send an email.
 
