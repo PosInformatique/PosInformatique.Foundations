@@ -60,10 +60,10 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
-                    m.To.Should().HaveCount(1);
+                    m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
-                    m.Headers.Should().HaveCount(1);
+                    m.Headers.Should().ContainSingle();
                     m.Headers["X-Priority"].Should().Be(expectedXPriority);
                     m.Attachments.Should().HaveCount(2);
                     m.Attachments[0].Filename.Should().Be("Attachment1");
@@ -124,7 +124,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
-                    m.To.Should().HaveCount(1);
+                    m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
                 })
@@ -158,7 +158,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
-                    m.To.Should().HaveCount(1);
+                    m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
                 })
@@ -206,7 +206,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
-                    m.To.Should().HaveCount(1);
+                    m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
                 })
@@ -254,7 +254,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
-                    m.To.Should().HaveCount(1);
+                    m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
                 })

@@ -391,18 +391,18 @@ namespace PosInformatique.Foundations.People.Tests
         [Fact]
         public void CompareTo()
         {
-            FirstName.Create("First name A").CompareTo(FirstName.Create("First name B")).Should().BeLessThan(0);
-            FirstName.Create("First name B").CompareTo(FirstName.Create("First name A")).Should().BeGreaterThan(0);
+            FirstName.Create("First name A").CompareTo(FirstName.Create("First name B")).Should().BeNegative();
+            FirstName.Create("First name B").CompareTo(FirstName.Create("First name A")).Should().BePositive();
 
             FirstName.Create("First name A").CompareTo(FirstName.Create("First name A")).Should().Be(0);
 
-            FirstName.Create("First name A").CompareTo(FirstName.Create("First nâme A")).Should().BeLessThan(0);
-            FirstName.Create("First nâme A").CompareTo(FirstName.Create("First name A")).Should().BeGreaterThan(0);
+            FirstName.Create("First name A").CompareTo(FirstName.Create("First nâme A")).Should().BeNegative();
+            FirstName.Create("First nâme A").CompareTo(FirstName.Create("First name A")).Should().BePositive();
 
-            FirstName.Create("First name B").CompareTo(FirstName.Create("First nâme A")).Should().BeLessThan(0);
-            FirstName.Create("First nâme A").CompareTo(FirstName.Create("First name B")).Should().BeGreaterThan(0);
+            FirstName.Create("First name B").CompareTo(FirstName.Create("First nâme A")).Should().BeNegative();
+            FirstName.Create("First nâme A").CompareTo(FirstName.Create("First name B")).Should().BePositive();
 
-            FirstName.Create("First name A").CompareTo(null).Should().BeGreaterThan(0);
+            FirstName.Create("First name A").CompareTo(null).Should().BePositive();
         }
 
         [Theory]

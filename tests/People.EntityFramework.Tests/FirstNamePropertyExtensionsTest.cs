@@ -22,6 +22,42 @@ namespace Microsoft.EntityFrameworkCore.Tests
             property.IsUnicode().Should().BeTrue();
             property.IsFixedLength().Should().BeFalse();
             property.GetMaxLength().Should().Be(50);
+
+            property = entity.GetProperty("NullableFirstName");
+
+            property.GetColumnType().Should().Be("nvarchar(50)");
+            property.IsUnicode().Should().BeTrue();
+            property.IsFixedLength().Should().BeFalse();
+            property.GetMaxLength().Should().Be(50);
+        }
+
+        [Fact]
+        public void IsFirstName_NullArgument()
+        {
+            var act = () =>
+            {
+                FirstNamePropertyExtensions.IsFirstName<object>(null);
+            };
+
+            act.Should().ThrowExactly<ArgumentNullException>()
+                .WithParameterName("property");
+        }
+
+        [Fact]
+        public void IsFirstName_NotFirstNameProperty()
+        {
+            var builder = new ModelBuilder();
+            var property = builder.Entity<EntityMock>()
+                .Property(e => e.Id);
+
+            var act = () =>
+            {
+                property.IsFirstName();
+            };
+
+            act.Should().ThrowExactly<ArgumentException>()
+                .WithMessage("The 'IsFirstName()' method must be called on 'FirstName class. (Parameter 'property')")
+                .WithParameterName("property");
         }
 
         [Fact]
@@ -113,6 +149,11 @@ namespace Microsoft.EntityFrameworkCore.Tests
                     .Property(e => e.FirstName);
 
                 property.IsFirstName().Should().BeSameAs(property);
+
+                var nullableProperty = modelBuilder.Entity<EntityMock>()
+                    .Property(e => e.NullableFirstName);
+
+                nullableProperty.IsFirstName().Should().BeSameAs(nullableProperty);
             }
         }
 
@@ -121,6 +162,10 @@ namespace Microsoft.EntityFrameworkCore.Tests
             public int Id { get; set; }
 
             public FirstName FirstName { get; set; }
+
+#nullable enable
+            public FirstName? NullableFirstName { get; set; }
+#nullable restore
         }
     }
 }

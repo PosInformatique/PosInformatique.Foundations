@@ -4,11 +4,22 @@
 
 ### 1.4.0
 
+- Added Native AOT support for all the packages.
+
+#### PosInformatique.Foundations.Emailing.Graph
+- Upgrade the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to version 6.0.3 at minimum to fix security vulnerabilities.
+
 #### PosInformatique.Foundations.EntityFramework.Converters
-- New package providing an `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>`. It treats persisted values as already UTC and sets their `DateTime.Kind` to `Utc` without converting the time.
+- New [package](./src/EntityFramework.Converters/README.md) providing an `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` which treats persisted values as already UTC and sets their `DateTime.Kind` to `Utc` without converting the time.
+
+#### PosInformatique.Foundations.People.EntityFramework
+- Added nullable property support for the `IsFirstName()` and `IsLastName()` EF Core extensions.
 
 #### PosInformatique.Foundations.Text.Templating
 - Added the `ConstantTextTemplate<TModel>` implementation to generate a constant (fixed) text.
+
+#### PosInformatique.Foundations.Text.Templating.Scriban
+- Upgrade the [Scriban](https://www.nuget.org/packages/Scriban) dependency to version 7.2.2 at minimum to fix security vulnerabilities.
 
 ### 1.3.0
 
@@ -17,7 +28,7 @@
 - Throws a `EmailProviderException` when the email provider fails to send an email.
 
 #### PosInformatique.Foundations.Emailing.Mailjet
-- New emailing provider to send emails using Mailjet.
+- New [email provider](./src/Emailing.Mailjet/README.md) emailing provider to send emails using Mailjet.
 
 #### PosInformatique.Foundations.MediaTypes
 - Added support for SVG image MIME type.
@@ -25,7 +36,7 @@
 ### 1.2.0
 
 #### PosInformatique.Foundations.People.AwesomeAssertions
-- Added support with AwesomeAssertions to assert the FirstName and LastName value objects.
+- Added [support with AwesomeAssertions](./src/People.AwesomeAssertions/README.md) to assert the FirstName and LastName value objects.
 
 ### 1.1.0
 

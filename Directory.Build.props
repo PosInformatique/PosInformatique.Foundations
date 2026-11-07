@@ -32,12 +32,6 @@
     <RootNamespace>PosInformatique.Foundations.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\stylecop.json">
-      <Link>stylecop.json</Link>
-    </AdditionalFiles>
-  </ItemGroup>
-  
   <!-- Common NuGet packages -->
   <ItemGroup>
     <PackageReference Include="SonarAnalyzer.CSharp">

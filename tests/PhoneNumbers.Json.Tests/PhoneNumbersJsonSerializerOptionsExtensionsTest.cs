@@ -17,13 +17,13 @@ namespace System.Text.Json.Tests
 
             options.AddPhoneNumbersConverters();
 
-            options.Converters.Should().HaveCount(1);
+            options.Converters.Should().ContainSingle();
             options.Converters[0].Should().BeOfType<PhoneNumberJsonConverter>();
 
             // Call again to check nothing has been changed.
             options.AddPhoneNumbersConverters();
 
-            options.Converters.Should().HaveCount(1);
+            options.Converters.Should().ContainSingle();
             options.Converters[0].Should().BeOfType<PhoneNumberJsonConverter>();
         }
 

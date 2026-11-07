@@ -48,6 +48,11 @@ namespace PosInformatique.Foundations.Emailing
         {
             ArgumentNullException.ThrowIfNull(email);
 
+            if (email.Recipients.Count == 0)
+            {
+                throw new ArgumentException("The email must have at least one recipient.", nameof(email));
+            }
+
             var senderDisplayName = this.options.Value.SenderDisplayName;
             if (senderDisplayName is null)
             {
