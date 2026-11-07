@@ -20,7 +20,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="property">The property builder for the <see cref="DateTime"/> property.</param>
         /// <returns>The <paramref name="property"/> instance to continue the configuration of the property.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the <paramref name="property"/> is <see langword="null"/>.</exception>
-        public static PropertyBuilder<DateTime> IsUtc(this PropertyBuilder<DateTime> property)
+        public static PropertyBuilder<DateTime> AssumeUtc(this PropertyBuilder<DateTime> property)
         {
             ArgumentNullException.ThrowIfNull(property);
 
@@ -34,7 +34,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="property">The property builder for the <see cref="DateTime"/> property.</param>
         /// <returns>The <paramref name="property"/> instance to continue the configuration of the property.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the <paramref name="property"/> is <see langword="null"/>.</exception>
-        public static PropertyBuilder<DateTime?> IsUtc(this PropertyBuilder<DateTime?> property)
+        public static PropertyBuilder<DateTime?> AssumeUtc(this PropertyBuilder<DateTime?> property)
         {
             ArgumentNullException.ThrowIfNull(property);
 

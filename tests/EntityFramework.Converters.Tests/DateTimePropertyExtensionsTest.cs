@@ -11,18 +11,18 @@ namespace Microsoft.EntityFrameworkCore.Tests
     public class DateTimePropertyExtensionsTest
     {
         [Fact]
-        public void IsUtc_ArgumentNullException()
+        public void AssumeUtc_ArgumentNullException()
         {
-            var act = () => DateTimePropertyExtensions.IsUtc((PropertyBuilder<DateTime>)null);
+            var act = () => DateTimePropertyExtensions.AssumeUtc((PropertyBuilder<DateTime>)null);
 
             act.Should().ThrowExactly<ArgumentNullException>()
                 .WithParameterName("property");
         }
 
         [Fact]
-        public void IsUtc_Nullable_ArgumentNullException()
+        public void AssumeUtc_Nullable_ArgumentNullException()
         {
-            var act = () => DateTimePropertyExtensions.IsUtc((PropertyBuilder<DateTime?>)null);
+            var act = () => DateTimePropertyExtensions.AssumeUtc((PropertyBuilder<DateTime?>)null);
 
             act.Should().ThrowExactly<ArgumentNullException>()
                 .WithParameterName("property");
@@ -31,7 +31,7 @@ namespace Microsoft.EntityFrameworkCore.Tests
         [Theory]
         [InlineData(DateTimeKind.Unspecified)]
         [InlineData(DateTimeKind.Local)]
-        public void IsUtc(DateTimeKind kind)
+        public void AssumeUtc(DateTimeKind kind)
         {
             var context = new DbContextMock();
 
@@ -46,7 +46,7 @@ namespace Microsoft.EntityFrameworkCore.Tests
         [Theory]
         [InlineData(DateTimeKind.Unspecified)]
         [InlineData(DateTimeKind.Local)]
-        public void IsUtc_Nullable(DateTimeKind kind)
+        public void AssumeUtc_Nullable(DateTimeKind kind)
         {
             var context = new DbContextMock();
 
@@ -74,12 +74,12 @@ namespace Microsoft.EntityFrameworkCore.Tests
                 var property = modelBuilder.Entity<EntityMock>()
                     .Property(e => e.DateTime);
 
-                property.IsUtc().Should().BeSameAs(property);
+                property.AssumeUtc().Should().BeSameAs(property);
 
                 var nullableProperty = modelBuilder.Entity<EntityMock>()
                     .Property(e => e.NullableDateTime);
 
-                nullableProperty.IsUtc().Should().BeSameAs(nullableProperty);
+                nullableProperty.AssumeUtc().Should().BeSameAs(nullableProperty);
             }
         }
 

@@ -10,7 +10,7 @@
 - Upgrade the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to version 6.0.3 at minimum to fix security vulnerabilities.
 
 #### PosInformatique.Foundations.EntityFramework.Converters
-- New [package](./src/EntityFramework.Converters/README.md) providing an `IsUtc()` extension method for `PropertyBuilder<DateTime>` to configure `DateTime` properties as UTC.
+- New [package](./src/EntityFramework.Converters/README.md) providing an `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` which treats persisted values as already UTC and sets their `DateTime.Kind` to `Utc` without converting the time.
 
 #### PosInformatique.Foundations.People.EntityFramework
 - Added nullable property support for the `IsFirstName()` and `IsLastName()` EF Core extensions.
