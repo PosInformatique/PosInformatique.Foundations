@@ -69,7 +69,7 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                     m.SenderAddress.Should().Be("sender@domain.com");
                     m.Recipients.BCC.Should().BeEmpty();
                     m.Recipients.CC.Should().BeEmpty();
-                    m.Recipients.To.Should().HaveCount(1);
+                    m.Recipients.To.Should().ContainSingle();
                     m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
                     m.Recipients.To[0].DisplayName.Should().Be("The recipient");
                 })
@@ -118,7 +118,7 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                     m.Content.Html.Should().Be("The HTML content");
                     m.Content.Subject.Should().Be("The subject");
                     m.SenderAddress.Should().Be("sender@domain.com");
-                    m.Recipients.To.Should().HaveCount(1);
+                    m.Recipients.To.Should().ContainSingle();
                     m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
                     m.Recipients.To[0].DisplayName.Should().Be("The recipient");
                 })
@@ -153,7 +153,7 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                     m.Content.Html.Should().Be("The HTML content");
                     m.Content.Subject.Should().Be("The subject");
                     m.SenderAddress.Should().Be("sender@domain.com");
-                    m.Recipients.To.Should().HaveCount(1);
+                    m.Recipients.To.Should().ContainSingle();
                     m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
                     m.Recipients.To[0].DisplayName.Should().Be("The recipient");
                 })

@@ -63,7 +63,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
                     jsonMessage.Message.Importance.Should().Be(expectedImportance);
-                    jsonMessage.Message.ToRecipients.Should().HaveCount(1);
+                    jsonMessage.Message.ToRecipients.Should().ContainSingle();
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
                     jsonMessage.SaveToSentItems.Should().BeFalse();
@@ -127,7 +127,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
                     jsonMessage.Message.Importance.Should().Be(expectedImportance);
-                    jsonMessage.Message.ToRecipients.Should().HaveCount(1);
+                    jsonMessage.Message.ToRecipients.Should().ContainSingle();
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
                     jsonMessage.SaveToSentItems.Should().BeFalse();
@@ -213,7 +213,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
-            var oDataError = new ODataError
+            var odataError = new ODataError
             {
                 Error = new MainError
                 {
@@ -237,7 +237,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     requestInfo.HttpMethod.Should().Be(Method.POST);
                     requestInfo.URI.Should().Be("http://base/url/users/sender%40domain.com/sendMail");
                 })
-                .ThrowsAsync(oDataError);
+                .ThrowsAsync(odataError);
 
             var graphServiceClient = new Mock<GraphServiceClient>(MockBehavior.Strict, requestAdapter.Object, null);
 
@@ -251,7 +251,7 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
             await client.Invoking(c => c.SendAsync(message, cancellationToken))
                 .Should().ThrowExactlyAsync<EmailProviderException>()
                 .WithMessage("The OData error message")
-                .Where(e => e.InnerException == oDataError);
+                .Where(e => e.InnerException == odataError);
 
             graphServiceClient.VerifyAll();
             requestAdapter.VerifyAll();

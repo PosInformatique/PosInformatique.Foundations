@@ -22,7 +22,7 @@ namespace PosInformatique.Foundations.Text.Templating.Razor
             this.loggerFactory = loggerFactory;
         }
 
-        public async Task RenderAsync(Type componentType, object? model, TextWriter output, CancellationToken cancellationToken = default)
+        public async Task RenderAsync([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, object? model, TextWriter output, CancellationToken cancellationToken = default)
         {
             await using var htmlRenderer = new HtmlRenderer(this.serviceProvider, this.loggerFactory);
 

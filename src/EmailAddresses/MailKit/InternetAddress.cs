@@ -1,4 +1,4 @@
-//
+﻿//
 // InternetAddress.cs
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>

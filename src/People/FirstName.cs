@@ -7,7 +7,6 @@
 namespace PosInformatique.Foundations.People
 {
     using System.Collections;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Text;
 

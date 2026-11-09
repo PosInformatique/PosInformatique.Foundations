@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="AwesomeAssertions" Version="9.0.0" />
+    <PackageVersion Include="AwesomeAssertions.Analyzers" Version="9.0.8" />
     <PackageVersion Include="Azure.Communication.Email" Version="1.0.0" />
     <PackageVersion Include="Azure.Identity" Version="1.17.1" />
     <PackageVersion Include="FluentAssertions" Version="7.2.0" />
@@ -15,6 +16,7 @@
     <PackageVersion Include="libphonenumber-csharp" Version="9.0.1" />
     <PackageVersion Include="Mailjet.Api" Version="4.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(DotNetVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" Condition="'$(TargetFramework)' == 'net8.0'" />
@@ -27,17 +29,20 @@
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Options" Version="$(DotNetVersion)" />
-    <PackageVersion Include="Microsoft.Graph" Version="5.89.0" />
-    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.11.2" />
-    <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="2.4.1" />
+    <PackageVersion Include="Microsoft.Graph" Version="6.0.3" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.12.0" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="2.5.2" />
     <PackageVersion Include="Moq" Version="4.21.0" />
     <PackageVersion Include="PosInformatique.AwesomeAssertions.Json" Version="1.0.0" />
     <PackageVersion Include="PosInformatique.Moq.Analyzers" Version="2.1.0" />
-    <PackageVersion Include="Scriban" Version="7.0.0" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.34.0.3385" />
-    <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
-    <PackageVersion Include="xunit.analyzers" Version="2.1.0" />
-    <PackageVersion Include="xunit.v3.assert" Version="4.0.1" />
-    <PackageVersion Include="xunit.v3.core.mtp-v2" Version="4.0.1" />
+    <PackageVersion Include="Scriban" Version="7.2.2" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.35.0.4138" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="8.0.2" Condition="'$(TargetFramework)' == 'net8.0'" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="9.0.21" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="1.3.177-beta" />
+    <PackageVersion Include="xunit.analyzers" Version="2.2.0" />
+    <PackageVersion Include="xunit.v3.assert" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3.core.mtp-v2" Version="4.0.2" />
   </ItemGroup>
 </Project>

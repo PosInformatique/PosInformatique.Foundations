@@ -43,9 +43,15 @@ namespace PosInformatique.Foundations.Emailing
             return new Email<TModel>(template);
         }
 
+        [RequiresUnreferencedCode("TModel is accessed by text template renderer and may require all members to be preserved.")]
         public async Task SendAsync<TModel>(Email<TModel> email, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(email);
+
+            if (email.Recipients.Count == 0)
+            {
+                throw new ArgumentException("The email must have at least one recipient.", nameof(email));
+            }
 
             var senderDisplayName = this.options.Value.SenderDisplayName;
             if (senderDisplayName is null)

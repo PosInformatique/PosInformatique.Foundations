@@ -7,7 +7,7 @@ on:
         type: string
         description: The version of the library
         required: true
-        default: 1.3.0
+        default: 1.4.0
       VersionSuffix:
         type: string
         description: The version suffix of the library (for example rc.1)
@@ -21,10 +21,10 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.0.x
       

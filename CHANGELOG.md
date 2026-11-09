@@ -2,6 +2,30 @@
 
 ## Changelog
 
+### 1.4.0
+
+- Added Native AOT support for all packages.
+
+#### PosInformatique.Foundations.Emailing
+- Added validation to `IEmailManager.SendAsync<TModel>()` to require at least one recipient. An `ArgumentException` is thrown if the email has no recipients.
+
+#### PosInformatique.Foundations.Emailing.Graph
+- Upgraded the minimum required version of the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to 6.0.3 to address security vulnerabilities.
+
+#### PosInformatique.Foundations.EntityFramework.Converters
+- Added a new [package](./src/EntityFramework.Converters/README.md) that provides basic value converters for Entity Framework Core:
+  - Added the `AssumeUtc()` extension method for `PropertyBuilder<DateTime>` and `PropertyBuilder<DateTime?>` to treat values as UTC when writing to and reading from the database. It sets `DateTime.Kind` to `Utc` without changing the ticks or performing a time zone conversion.
+  - Added `EnumToBooleanConverter<TEnum>` to map enum values `0` and `1` to `false` and `true`, respectively, and back again. The enum must contain exactly two distinct values: `0` and `1`.
+
+#### PosInformatique.Foundations.People.EntityFramework
+- Added nullable property support for the `IsFirstName()` and `IsLastName()` EF Core extensions.
+
+#### PosInformatique.Foundations.Text.Templating
+- Added the `ConstantTextTemplate<TModel>` implementation to generate fixed text.
+
+#### PosInformatique.Foundations.Text.Templating.Scriban
+- Upgraded the minimum required version of the [Scriban](https://www.nuget.org/packages/Scriban) dependency to 7.2.2 to address security vulnerabilities.
+
 ### 1.3.0
 
 #### PosInformatique.Foundations.Emailing
@@ -9,7 +33,7 @@
 - Throws a `EmailProviderException` when the email provider fails to send an email.
 
 #### PosInformatique.Foundations.Emailing.Mailjet
-- New emailing provider to send emails using Mailjet.
+- New [email provider](./src/Emailing.Mailjet/README.md) emailing provider to send emails using Mailjet.
 
 #### PosInformatique.Foundations.MediaTypes
 - Added support for SVG image MIME type.
@@ -17,7 +41,7 @@
 ### 1.2.0
 
 #### PosInformatique.Foundations.People.AwesomeAssertions
-- Added support with AwesomeAssertions to assert the FirstName and LastName value objects.
+- Added [support with AwesomeAssertions](./src/People.AwesomeAssertions/README.md) to assert the FirstName and LastName value objects.
 
 ### 1.1.0
 

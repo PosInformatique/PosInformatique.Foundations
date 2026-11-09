@@ -185,6 +185,41 @@ User is inactive
 
 For more details, see the [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/language.md).
 
+## Trimming and Native AOT
+
+The `ScribanTextTemplate<TModel>` implementation access the members of the `TModel` model through **reflection**.
+The trimmer cannot detect this usage statically, so when your application is published with trimming or Native AOT enabled,
+the model type and its members can be removed, which causes errors at runtime.
+
+The `TModel` type passed to `RenderAsync()` **must therefore be preserved** by the application using the `DynamicDependencyAttribute`.
+Apply it on the method (or the class) which calls `RenderAsync()`, and reference the model type:
+
+```csharp
+using System.Diagnostics.CodeAnalysis;
+
+public class MyEmailModel
+{
+    public string UserName { get; set; }
+
+    public DateTime Now { get; set; }
+}
+
+public class EmailSender
+{
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MyEmailModel))]
+    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "MyEmailModel is preserved by the DynamicDependency attribute.")]
+    public async Task SendAsync(TextTemplate<MyEmailModel> template, MyEmailModel model, TextWriter writer, ITextTemplateRenderContext context)
+    {
+        await template.RenderAsync(model, writer, context);
+    }
+}
+```
+
+Notes:
+
+- Every type of the model graph accessed by the template (nested objects, items of collections,...) must be preserved as well, by adding one `DynamicDependencyAttribute` per type.
+- `RenderAsync()` is annotated with `RequiresUnreferencedCode`: without the `UnconditionalSuppressMessage` (or `RequiresUnreferencedCode` on your own method), the trimming analyzer raises the `IL2026` warning on the call.
+
 ## Links
 
 - [NuGet package: Text.Templating (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating/)

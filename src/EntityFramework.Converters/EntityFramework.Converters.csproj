@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Description>
+      Provides a collection of basic Entity Framework Core value converters, including an extension method
+      to configure DateTime properties as UTC and a converter to map two-value enumerations to boolean columns.
+    </Description>
+    <PackageTags>entityframeworkcore;ef-core;converters;datetime;utc;enum;boolean;propertybuilder;valueconverter;sqlserver;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+</Project>

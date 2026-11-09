@@ -22,6 +22,42 @@ namespace Microsoft.EntityFrameworkCore.Tests
             property.IsUnicode().Should().BeTrue();
             property.IsFixedLength().Should().BeFalse();
             property.GetMaxLength().Should().Be(50);
+
+            property = entity.GetProperty("NullableLastName");
+
+            property.GetColumnType().Should().Be("nvarchar(50)");
+            property.IsUnicode().Should().BeTrue();
+            property.IsFixedLength().Should().BeFalse();
+            property.GetMaxLength().Should().Be(50);
+        }
+
+        [Fact]
+        public void IsLastName_NullArgument()
+        {
+            var act = () =>
+            {
+                LastNamePropertyExtensions.IsLastName<object>(null);
+            };
+
+            act.Should().ThrowExactly<ArgumentNullException>()
+                .WithParameterName("property");
+        }
+
+        [Fact]
+        public void IsLastName_NotLastNameProperty()
+        {
+            var builder = new ModelBuilder();
+            var property = builder.Entity<EntityMock>()
+                .Property(e => e.Id);
+
+            var act = () =>
+            {
+                property.IsLastName();
+            };
+
+            act.Should().ThrowExactly<ArgumentException>()
+                .WithMessage("The 'IsLastName()' method must be called on 'LastName class. (Parameter 'property')")
+                .WithParameterName("property");
         }
 
         [Fact]
@@ -113,6 +149,11 @@ namespace Microsoft.EntityFrameworkCore.Tests
                     .Property(e => e.LastName);
 
                 property.IsLastName().Should().BeSameAs(property);
+
+                var nullableProperty = modelBuilder.Entity<EntityMock>()
+                    .Property(e => e.NullableLastName);
+
+                nullableProperty.IsLastName().Should().BeSameAs(nullableProperty);
             }
         }
 
@@ -121,6 +162,10 @@ namespace Microsoft.EntityFrameworkCore.Tests
             public int Id { get; set; }
 
             public LastName LastName { get; set; }
+
+#nullable enable
+            public LastName? NullableLastName { get; set; }
+#nullable restore
         }
     }
 }
