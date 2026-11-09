@@ -70,6 +70,11 @@
     <Project Path="src/EntityFramework.Migrations/EntityFramework.Migrations.csproj" Id="f0d64c1b-fa34-4d7a-a377-1a6b4c9e8dd4" />
     <Project Path="tests/EntityFramework.Migrations.Tests/EntityFramework.Migrations.Tests.csproj" Id="ac049bd6-65d3-491b-9b7f-9ed639918b49" />
   </Folder>
+  <Folder Name="/Linq/" />
+  <Folder Name="/Linq/Expressions/">
+    <Project Path="src/Linq.Expressions/Linq.Expressions.csproj" />
+    <Project Path="tests/Linq.Expressions.Tests/Linq.Expressions.Tests.csproj" />
+  </Folder>
   <Folder Name="/MediaTypes/">
     <Project Path="src/MediaTypes/MediaTypes.csproj" Id="31039dbf-ee6f-414c-8345-b92a6bc3e60a" />
     <Project Path="tests/MediaTypes.Tests/MediaTypes.Tests.csproj" Id="1cee2c26-ceb5-43c8-a5c9-98ced675385c" />
