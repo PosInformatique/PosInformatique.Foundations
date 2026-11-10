@@ -2,6 +2,21 @@
 
 ## Changelog
 
+### 1.5.0
+
+#### PosInformatique.Foundations.Linq.Expressions
+- Added a new [package](./src/Linq.Expressions/README.md) with `OrExpressionBuilder<T>` to combine predicates using short-circuiting logical OR.
+
+#### PosInformatique.Foundations.MediaTypes
+- Added support for text MIME types:
+  - `text/plain`
+  - `text/html`
+  - `text/csv`
+  - `text/rtf`
+  - `text/markdown`
+  - `text/tab-separated-values`
+- Added the `IsText()` extension method.
+
 ### 1.4.0
 
 - Added Native AOT support for all packages.

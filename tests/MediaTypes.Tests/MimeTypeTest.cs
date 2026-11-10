@@ -9,8 +9,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
     public class MimeTypeTest
     {
         [Theory]
-        [InlineData("text/plain", "text", "plain")]
         [InlineData("image/jpeg", "image", "jpeg")]
+        [InlineData("text/plain", "text", "plain")]
         public void Parse_Success(string input, string expectedType, string expectedSubtype)
         {
             var mimeType = MimeType.Parse(input);
@@ -34,10 +34,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         [Theory]
         [InlineData("")]
         [InlineData("   ")]
-        [InlineData("part1")]
-        [InlineData("part1/part2/part3")]
-        [InlineData("part1/")]
         [InlineData("/part2")]
+        [InlineData("part1")]
+        [InlineData("part1/")]
+        [InlineData("part1/part2/part3")]
         public void Parse_Failed(string input)
         {
             var act = () =>
@@ -50,8 +50,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text", "plain")]
         [InlineData("image/jpeg", "image", "jpeg")]
+        [InlineData("text/plain", "text", "plain")]
         public void Parse_WithFormatProvider_Success(string input, string expectedType, string expectedSubtype)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -77,10 +77,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         [Theory]
         [InlineData("")]
         [InlineData("   ")]
-        [InlineData("part1")]
-        [InlineData("part1/part2/part3")]
-        [InlineData("part1/")]
         [InlineData("/part2")]
+        [InlineData("part1")]
+        [InlineData("part1/")]
+        [InlineData("part1/part2/part3")]
         public void Parse_WithFormatProvider_Failed(string input)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -95,8 +95,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text", "plain")]
         [InlineData("image/jpeg", "image", "jpeg")]
+        [InlineData("text/plain", "text", "plain")]
         public void TryParse_Success(string input, string expectedType, string expectedSubtype)
         {
             MimeType.TryParse(input, out var mimeType).Should().BeTrue();
@@ -109,10 +109,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        [InlineData("part1")]
-        [InlineData("part1/part2/part3")]
-        [InlineData("part1/")]
         [InlineData("/part2")]
+        [InlineData("part1")]
+        [InlineData("part1/")]
+        [InlineData("part1/part2/part3")]
         public void TryParse_Failed(string input)
         {
             MimeType.TryParse(input, out var mimeType).Should().BeFalse();
@@ -121,8 +121,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text", "plain")]
         [InlineData("image/jpeg", "image", "jpeg")]
+        [InlineData("text/plain", "text", "plain")]
         public void TryParse_WithFormatProvider_Success(string input, string expectedType, string expectedSubtype)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -137,10 +137,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        [InlineData("part1")]
-        [InlineData("part1/part2/part3")]
-        [InlineData("part1/")]
         [InlineData("/part2")]
+        [InlineData("part1")]
+        [InlineData("part1/")]
+        [InlineData("part1/part2/part3")]
         public void TryParse_WithFormatProvider_Failed(string input)
         {
             var formatProvider = Mock.Of<IFormatProvider>(MockBehavior.Strict);
@@ -151,8 +151,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text/plain", true)]
         [InlineData("text/plain", "image/jpeg", false)]
+        [InlineData("text/plain", "text/plain", true)]
         [InlineData("text/plain", null, false)]
         public void Equals_WithObject(string mimeType1String, string mimeType2String, bool expectedResult)
         {
@@ -163,8 +163,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text/plain", true)]
         [InlineData("text/plain", "image/jpeg", false)]
+        [InlineData("text/plain", "text/plain", true)]
         [InlineData("text/plain", null, false)]
         public void Equals_WithMimeType(string mimeType1String, string mimeType2String, bool expectedResult)
         {
@@ -175,10 +175,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text/plain", true)]
-        [InlineData("text/plain", "image/jpeg", false)]
-        [InlineData("text/plain", null, false)]
         [InlineData(null, null, true)]
+        [InlineData("text/plain", "image/jpeg", false)]
+        [InlineData("text/plain", "text/plain", true)]
+        [InlineData("text/plain", null, false)]
         public void OperatorEqual(string mimeType1String, string mimeType2String, bool expectedResult)
         {
             var mimeType1 = mimeType1String != null ? MimeType.Parse(mimeType1String) : null;
@@ -188,10 +188,10 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text/plain", false)]
-        [InlineData("text/plain", "image/jpeg", true)]
-        [InlineData("text/plain", null, true)]
         [InlineData(null, null, false)]
+        [InlineData("text/plain", "image/jpeg", true)]
+        [InlineData("text/plain", "text/plain", false)]
+        [InlineData("text/plain", null, true)]
         public void OperatorDifferent(string mimeType1String, string mimeType2String, bool expectedResult)
         {
             var mimeType1 = mimeType1String != null ? MimeType.Parse(mimeType1String) : null;
@@ -201,8 +201,8 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("text/plain", "text/plain", true)]
         [InlineData("text/plain", "image/jpeg", false)]
+        [InlineData("text/plain", "text/plain", true)]
         public void GetHashCode_Test(string mimeType1String, string mimeType2String, bool expectedEqual)
         {
             var mimeType1 = MimeType.Parse(mimeType1String);
@@ -212,16 +212,22 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Theory]
-        [InlineData("pdf", "Application.Pdf")]
-        [InlineData("docx", "Application.Docx")]
         [InlineData("bmp", "Image.Bmp")]
-        [InlineData("jpg", "Image.Jpeg")]
+        [InlineData("csv", "Text.Csv")]
+        [InlineData("docx", "Application.Docx")]
+        [InlineData("html", "Text.Html")]
         [InlineData("jpeg", "Image.Jpeg")]
+        [InlineData("jpg", "Image.Jpeg")]
+        [InlineData("md", "Text.Markdown")]
+        [InlineData("pdf", "Application.Pdf")]
         [InlineData("png", "Image.Png")]
+        [InlineData("rtf", "Text.Rtf")]
         [InlineData("tif", "Image.Tiff")]
         [InlineData("tiff", "Image.Tiff")]
-        [InlineData("webp", "Image.WebP")]
+        [InlineData("tsv", "Text.TabSeparatedValues")]
+        [InlineData("txt", "Text.Plain")]
         [InlineData("unknown", "Application.OctetStream")]
+        [InlineData("webp", "Image.WebP")]
         public void FromExtension(string extension, string path)
         {
             MimeType.FromExtension(extension).Should().BeSameAs(GetMimeTypeFromPath(path));
@@ -251,6 +257,12 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         [InlineData("image/tiff", ".tiff")]
         [InlineData("image/webp", ".webp")]
         [InlineData("other/type", "")]
+        [InlineData("text/csv", ".csv")]
+        [InlineData("text/html", ".html")]
+        [InlineData("text/markdown", ".md")]
+        [InlineData("text/plain", ".txt")]
+        [InlineData("text/rtf", ".rtf")]
+        [InlineData("text/tab-separated-values", ".tsv")]
         public void GetExtension(string mimeType, string expectedExtensions)
         {
             MimeType.Parse(mimeType).GetExtension().Should().Be(expectedExtensions);

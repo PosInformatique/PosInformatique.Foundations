@@ -25,8 +25,8 @@ dotnet add package PosInformatique.Foundations.MediaTypes
 - Provides `IFormattable` and `IParsable<T>` for seamless integration with .NET APIs
 - Resolve a `MimeType` from a file extension (with or without leading dot).
 - Resolve a default file extension from a `MimeType`.
-- Set of common `application/*` and `image/*` media types.
-- Simple extension methods, e.g. `IsPdf()` and `IsImage()`.
+- Set of common `application/*`, `image/*`, and `text/*` media types.
+- Simple extension methods, e.g. `IsPdf()`, `IsImage()`, and `IsText()`.
 
 ## Usage
 
@@ -53,6 +53,7 @@ using PosInformatique.Foundations.MediaTypes;
 var pdf = MimeTypes.Application.Pdf;   // application/pdf
 var docx = MimeTypes.Application.Docx; // application/vnd.openxmlformats-officedocument.wordprocessingml.document
 var jpeg = MimeTypes.Image.Jpeg;       // image/jpeg
+var markdown = MimeTypes.Text.Markdown; // text/markdown
 ```
 
 ### From file extension to media type
@@ -102,6 +103,12 @@ if (drawing.IsAutoCad())
 {
     Console.WriteLine("This is an AutoCAD drawing type.");
 }
+
+var text = MimeTypes.Text.Plain;
+if (text.IsText())
+{
+    Console.WriteLine("This is a text type.");
+}
 ```
 
 ## API overview
@@ -139,11 +146,20 @@ Provides common media types and mapping helpers.
   - `Tiff` (`image/tiff`)
   - `WebP` (`image/webp`)
 
+- `MimeTypes.Text`
+  - `Csv` (`text/csv`)
+  - `Html` (`text/html`)
+  - `Markdown` (`text/markdown`)
+  - `Plain` (`text/plain`)
+  - `Rtf` (`text/rtf`)
+  - `TabSeparatedValues` (`text/tab-separated-values`)
+
 ### MimeTypeExtensions
 
 - `bool IsAutoCad(this MimeType mimeType)`
 - `bool IsImage(this MimeType mimeType)`
 - `bool IsPdf(this MimeType mimeType)`
+- `bool IsText(this MimeType mimeType)`
 
 ## Links
 
