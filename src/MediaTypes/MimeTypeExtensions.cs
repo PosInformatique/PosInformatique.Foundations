@@ -59,5 +59,18 @@ namespace PosInformatique.Foundations.MediaTypes
 
             return mimeType.Type == "image" && !IsAutoCad(mimeType);
         }
+
+        /// <summary>
+        /// Determines whether the specified media type represents a text media type.
+        /// </summary>
+        /// <param name="mimeType">The media type to check.</param>
+        /// <returns><see langword="true" /> if the media type is in the text/* family; otherwise, <see langword="false" />.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the <paramref name="mimeType"/> argument is <see langword="null"/>.</exception>
+        public static bool IsText(this MimeType mimeType)
+        {
+            ArgumentNullException.ThrowIfNull(mimeType);
+
+            return mimeType.Type == "text";
+        }
     }
 }

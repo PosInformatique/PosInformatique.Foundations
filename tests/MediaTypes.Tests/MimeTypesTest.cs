@@ -45,12 +45,12 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Fact]
-        public void Image_Jpeg()
+        public void Image_Dwg()
         {
-            MimeTypes.Image.Jpeg.Should().BeSameAs(MimeTypes.Image.Jpeg);
+            MimeTypes.Image.Dwg.Should().BeSameAs(MimeTypes.Image.Dwg);
 
-            MimeTypes.Image.Jpeg.Type.Should().Be("image");
-            MimeTypes.Image.Jpeg.Subtype.Should().Be("jpeg");
+            MimeTypes.Image.Dwg.Type.Should().Be("image");
+            MimeTypes.Image.Dwg.Subtype.Should().Be("x-dwg");
         }
 
         [Fact]
@@ -63,12 +63,12 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
         }
 
         [Fact]
-        public void Image_Dwg()
+        public void Image_Jpeg()
         {
-            MimeTypes.Image.Dwg.Should().BeSameAs(MimeTypes.Image.Dwg);
+            MimeTypes.Image.Jpeg.Should().BeSameAs(MimeTypes.Image.Jpeg);
 
-            MimeTypes.Image.Dwg.Type.Should().Be("image");
-            MimeTypes.Image.Dwg.Subtype.Should().Be("x-dwg");
+            MimeTypes.Image.Jpeg.Type.Should().Be("image");
+            MimeTypes.Image.Jpeg.Subtype.Should().Be("jpeg");
         }
 
         [Fact]
@@ -105,6 +105,60 @@ namespace PosInformatique.Foundations.MediaTypes.Tests
 
             MimeTypes.Image.WebP.Type.Should().Be("image");
             MimeTypes.Image.WebP.Subtype.Should().Be("webp");
+        }
+
+        [Fact]
+        public void Text_Csv()
+        {
+            MimeTypes.Text.Csv.Should().BeSameAs(MimeTypes.Text.Csv);
+
+            MimeTypes.Text.Csv.Type.Should().Be("text");
+            MimeTypes.Text.Csv.Subtype.Should().Be("csv");
+        }
+
+        [Fact]
+        public void Text_Html()
+        {
+            MimeTypes.Text.Html.Should().BeSameAs(MimeTypes.Text.Html);
+
+            MimeTypes.Text.Html.Type.Should().Be("text");
+            MimeTypes.Text.Html.Subtype.Should().Be("html");
+        }
+
+        [Fact]
+        public void Text_Markdown()
+        {
+            MimeTypes.Text.Markdown.Should().BeSameAs(MimeTypes.Text.Markdown);
+
+            MimeTypes.Text.Markdown.Type.Should().Be("text");
+            MimeTypes.Text.Markdown.Subtype.Should().Be("markdown");
+        }
+
+        [Fact]
+        public void Text_Plain()
+        {
+            MimeTypes.Text.Plain.Should().BeSameAs(MimeTypes.Text.Plain);
+
+            MimeTypes.Text.Plain.Type.Should().Be("text");
+            MimeTypes.Text.Plain.Subtype.Should().Be("plain");
+        }
+
+        [Fact]
+        public void Text_Rtf()
+        {
+            MimeTypes.Text.Rtf.Should().BeSameAs(MimeTypes.Text.Rtf);
+
+            MimeTypes.Text.Rtf.Type.Should().Be("text");
+            MimeTypes.Text.Rtf.Subtype.Should().Be("rtf");
+        }
+
+        [Fact]
+        public void Text_TabSeparatedValues()
+        {
+            MimeTypes.Text.TabSeparatedValues.Should().BeSameAs(MimeTypes.Text.TabSeparatedValues);
+
+            MimeTypes.Text.TabSeparatedValues.Type.Should().Be("text");
+            MimeTypes.Text.TabSeparatedValues.Subtype.Should().Be("tab-separated-values");
         }
     }
 }
