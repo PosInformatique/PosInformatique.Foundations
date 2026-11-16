@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ using System;
 using System.Buffers;
 
 namespace MimeKit.Utils {
-	internal ref struct ByteArrayBuilder
+	ref struct ByteArrayBuilder
 	{
 		byte[] buffer;
 		int length;
@@ -49,6 +49,10 @@ namespace MimeKit.Utils {
 			}
 		}
 
+		public int Length {
+			get { return length; }
+		}
+
 		public void Append (byte c)
 		{
 			EnsureCapacity (length + 1);
@@ -56,20 +60,17 @@ namespace MimeKit.Utils {
 			buffer[length++] = c;
 		}
 
-		public byte[] ToArray ()
+		// Only Length bytes are written. The buffer is invalid after growth or disposal.
+		public readonly byte[] GetBuffer ()
 		{
-			var array = new byte[length];
-
-			Buffer.BlockCopy (buffer, 0, array, 0, length);
-
-			return array;
+			return buffer;
 		}
 
 		public void Dispose ()
 		{
-			if (buffer != null) {
+			if (length != -1) {
 				ArrayPool<byte>.Shared.Return (buffer);
-				buffer = null;
+				length = -1;
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,11 +25,12 @@
 //
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MimeKit.Utils {
 	static class ArgumentValidator
 	{
-		public static bool TryValidate (ParserOptions options, string text)
+		public static bool TryValidate ([NotNullWhen (true)] ParserOptions? options, [NotNullWhen (true)] string? text)
 		{
 			if (options is null)
 				return false;

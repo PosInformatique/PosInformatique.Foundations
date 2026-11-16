@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,7 @@ namespace MimeKit.Utils {
 		const string EncodedPhraseSafe = "!*+-/";                  // rfc2047 5.3 (but w/o '=' and '_' since they need to be encoded, obviously)
 		const string Specials = "()<>[]:;@\\,.\"";                 // rfc5322 3.2.3
 		internal const string TokenSpecials = "()<>@,;:\\\"/[]?="; // rfc2045 5.1
-		const string Whitespace = " \t\r\n";
+		internal const string Whitespace = " \t\r\n";
 
 		static readonly CharType[] table = new CharType[256];
 
@@ -113,6 +113,11 @@ namespace MimeKit.Utils {
 			SetFlags (Specials, CharType.IsSpecial);
 			RemoveFlags (Specials, CharType.IsAtom | CharType.IsPhraseAtom);
 			RemoveFlags (EncodedWordSpecials, CharType.IsEncodedWordSafe);
+
+			// Note: '\\' is not an rfc2047 especial, but 'Q'-encoded words are also used within quoted-strings (e.g. parameter
+			// values) and comments where a literal '\\' would be interpreted as a quoted-pair (and rfc2047 section 5 (2) forbids
+			// '\\' in encoded-words within comments), so always encode it.
+			table['\\'] &= ~CharType.IsEncodedWordSafe;
 			RemoveFlags (AttributeSpecials + TokenSpecials, CharType.IsAttrChar);
 			SetFlags (EncodedPhraseSafe, CharType.IsEncodedPhraseSafe);
 
@@ -123,11 +128,6 @@ namespace MimeKit.Utils {
 			// Note: Allow ')' in the display-name of a mailbox address for rfc7103 unbalanced parenthesis
 			table[')'] |= CharType.IsPhraseAtom;
 		}
-
-		//public static bool IsAscii (this byte c)
-		//{
-		//	return (table[c] & CharType.IsAscii) != 0;
-		//}
 
 		public static bool IsAsciiAtom (this byte c)
 		{
@@ -149,19 +149,9 @@ namespace MimeKit.Utils {
 			return (table[c] & CharType.IsBlank) != 0;
 		}
 
-		public static bool IsCtrl (this byte c)
-		{
-			return (table[c] & CharType.IsControl) != 0;
-		}
-
 		public static bool IsDomain (this byte c)
 		{
 			return (table[c] & CharType.IsDomainSafe) != 0;
-		}
-
-		public static bool IsType (this byte c, CharType type)
-		{
-			return (table[c] & type) != 0;
 		}
 
 		public static bool IsWhitespace (this byte c)

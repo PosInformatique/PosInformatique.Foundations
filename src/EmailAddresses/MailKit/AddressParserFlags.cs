@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ using System;
 
 namespace MimeKit {
 	[Flags]
-	internal enum AddressParserFlags
+	enum AddressParserFlags
 	{
 		AllowMailboxAddress = 1 << 0,
 		AllowGroupAddress = 1 << 1,

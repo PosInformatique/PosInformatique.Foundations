@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,12 @@
 
 using System;
 using System.Text;
-using System.Reflection;
-using System.Collections.Generic;
-
-#if ENABLE_CRYPTO
-using MimeKit.Cryptography;
-#endif
 
 using MimeKit.Utils;
 
 namespace MimeKit {
 	/// <summary>
-	/// Parser options as used by <see cref="MimeParser"/> as well as various Parse and TryParse methods in MimeKit.
+	/// Parser options as used by <see cref="IMimeParser"/> as well as various Parse and TryParse methods in MimeKit.
 	/// </summary>
 	/// <remarks>
 	/// <see cref="ParserOptions"/> allows you to change and/or override default parsing options used by methods such
@@ -45,11 +39,15 @@ namespace MimeKit {
 	/// </remarks>
 	internal class ParserOptions
 	{
+		int maxHeaderLength;
+
+		internal const int DefaultMaxHeaderLength = 16 * 1024;
+
 		/// <summary>
 		/// The default parser options.
 		/// </summary>
 		/// <remarks>
-		/// If a <see cref="ParserOptions"/> is not supplied to <see cref="MimeParser"/> or other Parse and TryParse
+		/// If a <see cref="ParserOptions"/> is not supplied to <see cref="IMimeParser"/> or other Parse and TryParse
 		/// methods throughout MimeKit, <see cref="ParserOptions.Default"/> will be used.
 		/// </remarks>
 		public static readonly ParserOptions Default = new ParserOptions ();
@@ -109,13 +107,42 @@ namespace MimeKit {
 		/// Get or set the maximum MIME nesting depth the parser should accept.
 		/// </summary>
 		/// <remarks>
-		/// <para>This option exists in order to define the maximum recursive depth of MIME parts that the parser
-		/// should accept before treating further nesting as a leaf-node MIME part and not recursing any further.
-		/// If the value is set too large, then it is possible that a maliciously formed set of deeply nested
-		/// multipart MIME parts could cause a stack overflow.</para>
+		/// <para>This option exists in order to define the maximum nesting depth of MIME parts that the parser
+		/// should accept before treating further nesting as a leaf-node MIME part.</para>
+		/// <para><see cref="MimeReader"/> and <see cref="MimeParser"/> do not use recursion to parse nested MIME
+		/// parts, but <see cref="LegacyMimeParser"/> does, as do many operations on the parsed entities (such as
+		/// <see cref="MimeEntity.WriteTo(System.IO.Stream, System.Threading.CancellationToken)"/>). If the value
+		/// is set too large, then it is possible that a maliciously formed set of deeply nested multipart MIME parts
+		/// could cause a stack overflow.</para>
 		/// </remarks>
 		/// <value>The maximum MIME nesting depth.</value>
 		public int MaxMimeDepth { get; set; }
+
+		/// <summary>
+		/// Get or set the maximum length of a header that the parser should accept.
+		/// </summary>
+		/// <remarks>
+		/// <para>This option exists in order to limit the amount of memory that the parser will allocate
+		/// for any single header. Without a limit, a maliciously crafted message containing a single enormous
+		/// (e.g. folded) header could force the parser to buffer the entire header in memory.</para>
+		/// <para>The length is measured in bytes of raw header data and includes the field name, the colon,
+		/// the raw value (including any folding), and the terminating newline sequence.</para>
+		/// <para>When a header exceeds this limit, the parser will throw a <see cref="FormatException"/>.</para>
+		/// <para>The default value is <c>16384</c> (16 KB).</para>
+		/// </remarks>
+		/// <value>The maximum header length, in bytes.</value>
+		/// <exception cref="System.ArgumentOutOfRangeException">
+		/// <paramref name="value"/> is less than <c>1</c>.
+		/// </exception>
+		public int MaxHeaderLength {
+			get { return maxHeaderLength; }
+			set {
+				if (value < 1)
+					throw new ArgumentOutOfRangeException (nameof (value));
+
+				maxHeaderLength = value;
+			}
+		}
 
 		/// <summary>
 		/// Get or set the compliance mode that should be used when parsing Content-Type and Content-Disposition parameters.
@@ -187,6 +214,8 @@ namespace MimeKit {
 			RespectContentLength = false;
 			MaxAddressGroupDepth = 3;
 			MaxMimeDepth = 1024;
+			MaxHeaderLength = DefaultMaxHeaderLength;
 		}
+
 	}
 }

@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,10 @@
 
 using System;
 using System.Text;
-using System.Globalization;
 using System.Collections.Generic;
-
-#if ENABLE_SNM
-using System.Net.Mail;
-#endif
+using System.Diagnostics.CodeAnalysis;
 
 using MimeKit.Utils;
-using MimeKit.Encodings;
 
 namespace MimeKit {
 	/// <summary>
@@ -44,40 +39,39 @@ namespace MimeKit {
 	/// Represents a mailbox address (commonly referred to as an email address)
 	/// for a single recipient.
 	/// </remarks>
+	/// <example>
+	/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="ParseMailbox"/>
+	/// </example>
 	internal class MailboxAddress : InternetAddress
 	{
-		/// <summary>
-		/// Get or set the punycode implementation that should be used for encoding and decoding mailbox addresses.
-		/// </summary>
-		/// <remarks>
-		/// Gets or sets the punycode implementation that should be used for encoding and decoding mailbox addresses.
-		/// </remarks>
-		/// <value>The punycode implementation.</value>
-		public static IPunycode IdnMapping { get; set; }
+
 
 		string address;
 		int at;
 
-		static MailboxAddress ()
-		{
-			IdnMapping = new Punycode ();
-		}
 
-		internal MailboxAddress (Encoding encoding, string name, IEnumerable<string> route, string address, int at) : base (encoding, name)
+		internal MailboxAddress (Encoding encoding, string? name, IEnumerable<string> route, string address, int at) : base (encoding, name)
 		{
-			Route = new DomainList (route);
+			Route = new DomainList (route, false);
+			Route.Changed += RouteChanged;
 
 			this.address = address;
 			this.at = at;
 		}
 
-		internal MailboxAddress (Encoding encoding, string name, string address, int at) : base (encoding, name)
+		internal MailboxAddress (Encoding encoding, string? name, string address, int at) : base (encoding, name)
 		{
 			Route = new DomainList ();
+			Route.Changed += RouteChanged;
 
 			this.address = address;
 			this.at = at;
 		}
+
+
+
+
+
 
 		/// <summary>
 		/// Get the mailbox route.
@@ -95,7 +89,10 @@ namespace MimeKit {
 		/// Get or set the mailbox address.
 		/// </summary>
 		/// <remarks>
-		/// Represents the actual email address and is in the form of <c>user@domain.com</c>.
+		/// <para>Represents the actual email address and is in the form of <c>user@domain.com</c>.</para>
+		/// <para>The domain is preserved exactly as it was parsed or set: an IDN-encoded domain (e.g. <c>xn--bcher-kva.example</c>)
+		/// is not decoded and an internationalized domain (e.g. <c>bücher.example</c>) is not encoded. Use
+		/// <see cref="GetAddress(bool)"/> to get the address with the domain in a specific form.</para>
 		/// </remarks>
 		/// <value>The mailbox address.</value>
 		/// <exception cref="System.ArgumentNullException">
@@ -106,33 +103,11 @@ namespace MimeKit {
 		/// </exception>
 		public string Address {
 			get { return address; }
+
 		}
 
-		/// <summary>
-		/// Get the local-part of the email address.
-		/// </summary>
-		/// <remarks>
-		/// Gets the local-part of the email address, sometimes referred to as the "user" portion of an email address.
-		/// </remarks>
-		/// <value>The local-part portion of the mailbox address.</value>
-		public string LocalPart {
-			get {
-				return at != -1 ? address.Substring (0, at) : address;
-			}
-		}
 
-		/// <summary>
-		/// Get the domain of the email address.
-		/// </summary>
-		/// <remarks>
-		/// Gets the domain of the email address.
-		/// </remarks>
-		/// <value>The domain portion of the mailbox address.</value>
-		public string Domain {
-			get {
-				return at != -1 ? address.Substring (at + 1) : string.Empty;
-			}
-		}
+
 
 		/// <summary>
 		/// Get whether the address is an international address.
@@ -143,6 +118,9 @@ namespace MimeKit {
 		/// <para>For more information, see section 3.2 of
 		/// <a href="https://tools.ietf.org/html/rfc6532#section-3.2">rfc6532</a>.</para>
 		/// </remarks>
+		/// <example>
+		/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="InternationalAddresses"/>
+		/// </example>
 		/// <value><see langword="true" /> if the address is an international address; otherwise, <see langword="false" />.</value>
 		public bool IsInternational {
 			get {
@@ -161,22 +139,36 @@ namespace MimeKit {
 			}
 		}
 
-		internal static bool TryParse (ParserOptions options, byte[] text, ref int index, int endIndex, bool throwOnError, out MailboxAddress mailbox)
+
+
+
+
+
+
+
+
+
+		#region IComparable implementation
+
+
+		#endregion
+
+		#region IEquatable implementation
+
+
+		#endregion
+
+		void RouteChanged (object? sender, EventArgs e)
 		{
-			var flags = AddressParserFlags.AllowMailboxAddress;
-
-			if (throwOnError)
-				flags |= AddressParserFlags.ThrowOnError;
-
-			if (!InternetAddress.TryParse (flags, options, text, ref index, endIndex, 0, out var address)) {
-				mailbox = null;
-				return false;
-			}
-
-			mailbox = (MailboxAddress) address;
-
-			return true;
+			OnChanged ();
 		}
+
+
+
+
+
+
+
 
 		/// <summary>
 		/// Try to parse the given text into a new <see cref="MailboxAddress"/> instance.
@@ -185,30 +177,39 @@ namespace MimeKit {
 		/// Parses a single <see cref="MailboxAddress"/>. If the address is not a mailbox address or
 		/// there is more than a single mailbox address, then parsing will fail.
 		/// </remarks>
+		/// <example>
+		/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="TryParseMailbox"/>
+		/// </example>
 		/// <returns><see langword="true" /> if the address was successfully parsed; otherwise, <see langword="false" />.</returns>
 		/// <param name="options">The parser options to use.</param>
 		/// <param name="text">The text.</param>
 		/// <param name="mailbox">The parsed mailbox address.</param>
-		public static bool TryParse (ParserOptions options, string text, out MailboxAddress mailbox)
+		public static bool TryParse (ParserOptions? options, string? text, [NotNullWhen (true)] out MailboxAddress? mailbox)
 		{
 			if (!ArgumentValidator.TryValidate (options, text)) {
 				mailbox = null;
 				return false;
 			}
 
-			var buffer = Encoding.UTF8.GetBytes (text);
-			int endIndex = buffer.Length;
-			int index = 0;
+			var parser = AddressParser.Create (options, text);
 
-			if (!TryParse (options, buffer, ref index, endIndex, false, out mailbox))
-				return false;
-
-			if (!ParseUtils.SkipCommentsAndWhiteSpace (buffer, ref index, endIndex, false) || index != endIndex) {
+			if (!parser.TryParseCompleteAddress (AddressParserFlags.AllowMailboxAddress, out var address)) {
 				mailbox = null;
 				return false;
 			}
 
+			mailbox = (MailboxAddress) address;
 			return true;
 		}
+
+
+
+
+
+
+
+
+
+
 	}
 }

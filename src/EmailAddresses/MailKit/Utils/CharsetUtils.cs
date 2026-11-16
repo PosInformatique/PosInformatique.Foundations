@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,13 @@
 //
 
 using System;
-using System.IO;
 using System.Text;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MimeKit.Utils {
-	internal static class CharsetUtils
+	static class CharsetUtils
 	{
 		static readonly char[] DashUnderscore = new[] { '-', '_' };
 		static readonly Dictionary<string, int> aliases;
@@ -218,7 +218,7 @@ namespace MimeKit.Utils {
 					i++;
 				}
 
-				if (i + 2 < charset.Length && charset[i] == 'c' && charset[i + 1] == 'p')
+				if (i + 2 < charset.Length && (charset[i] == 'c' || charset[i] == 'C') && (charset[i + 1] == 'p' || charset[i + 1] == 'P'))
 					i += 2;
 
 				if (TryParseInt32 (charset, i, charset.Length - i, out codepage))
@@ -304,6 +304,25 @@ namespace MimeKit.Utils {
 			return codepage;
 		}
 
+		public static Encoding GetEncoding (string charset, string fallback)
+		{
+			int codepage;
+
+			if (charset is null)
+				throw new ArgumentNullException (nameof (charset));
+
+			if (fallback is null)
+				throw new ArgumentNullException (nameof (fallback));
+
+			if ((codepage = GetCodePage (charset)) == -1)
+				throw new NotSupportedException ($"The '{charset}' encoding is not supported.");
+
+			var encoderFallback = new EncoderReplacementFallback (fallback);
+			var decoderFallback = new DecoderReplacementFallback (fallback);
+
+			return Encoding.GetEncoding (codepage, encoderFallback, decoderFallback);
+		}
+
 		public static Encoding GetEncoding (int codepage, string fallback)
 		{
 			if (fallback is null)
@@ -315,17 +334,17 @@ namespace MimeKit.Utils {
 			return Encoding.GetEncoding (codepage, encoderFallback, decoderFallback);
 		}
 
-		public static Encoding GetEncoding (int codepage)
+		public static bool TryGetEncoding (int codepage, [NotNullWhen (true)] out Encoding? encoding)
 		{
-			return Encoding.GetEncoding (codepage);
-		}
+			encoding = null;
 
-		public static Encoding GetEncodingOrDefault (int codepage, Encoding defaultEncoding)
-		{
 			try {
-				return Encoding.GetEncoding (codepage);
-			} catch {
-				return defaultEncoding;
+				encoding = Encoding.GetEncoding (codepage);
+				return true;
+			} catch (NotSupportedException) {
+				return false;
+			} catch (ArgumentException) {
+				return false;
 			}
 		}
 
@@ -411,6 +430,14 @@ namespace MimeKit.Utils {
 
 		internal static char[] ConvertToUnicode (ParserOptions options, byte[] input, int startIndex, int length, out int charCount)
 		{
+			// UTF-8 is always the first choice when no invalid sequences are present.
+			if (Utf8.IsValid (input.AsSpan (startIndex, length))) {
+				var unicode = UTF8.GetChars (input, startIndex, length);
+
+				charCount = unicode.Length;
+				return unicode;
+			}
+
 			var invalid = new InvalidByteCountFallback ();
 			var userCharset = options.CharsetEncoding;
 			int min = int.MaxValue;
@@ -467,29 +494,39 @@ namespace MimeKit.Utils {
 
 			try {
 				charCount = decoder.GetChars (input, startIndex, length, output, 0, true);
-			} catch {
+			} catch (ArgumentException) {
 				charCount = 0;
 			}
 
 			return output;
 		}
 
-		internal static char[] ConvertToUnicode (ParserOptions options, int codepage, byte[] input, int startIndex, int length, out int charCount)
+		internal static void ConvertToUnicode (ParserOptions options, byte[] input, int startIndex, int length, ref ValueStringBuilder output)
 		{
-			Encoding encoding = null;
+#if NET8_0_OR_GREATER
+			if (output.TryAppendUtf8 (input.AsSpan (startIndex, length)))
+				return;
+#endif
 
-			if (codepage != -1) {
-				try {
-					encoding = GetEncoding (codepage);
-				} catch (NotSupportedException) {
-				} catch (ArgumentException) {
-				}
+			var unicode = ConvertToUnicode (options, input, startIndex, length, out int charCount);
+			output.Append (unicode.AsSpan (0, charCount));
+		}
+
+		internal static void ConvertToUnicode (ParserOptions options, int codepage, byte[] input, int startIndex, int length, ref ValueStringBuilder output)
+		{
+#if NET8_0_OR_GREATER
+			if (codepage == 65001 && output.TryAppendUtf8 (input.AsSpan (startIndex, length)))
+				return;
+#endif
+
+			if (codepage == -1 || !TryGetEncoding (codepage, out var encoding)) {
+				ConvertToUnicode (options, input, startIndex, length, ref output);
+				return;
 			}
 
-			if (encoding is null)
-				return ConvertToUnicode (options, input, startIndex, length, out charCount);
-
-			return ConvertToUnicode (encoding, input, startIndex, length, out charCount);
+			var unicode = ConvertToUnicode (encoding, input, startIndex, length, out int charCount);
+			output.Append (unicode.AsSpan (0, charCount));
 		}
+
 	}
 }
