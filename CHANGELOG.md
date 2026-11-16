@@ -2,6 +2,11 @@
 
 ## Changelog
 
+### 1.6.0
+
+#### PosInformatique.Foundations.EmailAddresses
+- EmailAddresses now uses the vendored MimeKit 5.0.0 source code internally for e-mail address parsing and validation.
+
 ### 1.5.0
 
 #### PosInformatique.Foundations.Linq.Expressions
