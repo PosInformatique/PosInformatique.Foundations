@@ -180,18 +180,6 @@
           "Microsoft.Extensions.Primitives": "10.0.0"
         }
       },
-      "Microsoft.Extensions.Caching.Memory": {
-        "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "krK19MKp0BNiR9rpBDW7PKSrTMLVlifS9am3CVc4O1Jq6GWz0o4F+sw5OSL4L3mVd56W8l6JRgghUa2KB51vOw==",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "10.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
-          "Microsoft.Extensions.Options": "10.0.0",
-          "Microsoft.Extensions.Primitives": "10.0.0"
-        }
-      },
       "Microsoft.Extensions.Configuration.Abstractions": {
         "type": "Transitive",
         "resolved": "10.0.0",
@@ -407,6 +395,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, )",
+          "Microsoft.Extensions.Caching.Memory": "[10.0.0, )",
           "PosInformatique.Foundations.MediaTypes": "[1.0.0, )"
         }
       },
@@ -443,6 +432,19 @@
           "Microsoft.Extensions.Caching.Memory": "10.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.0",
           "Microsoft.Extensions.Logging": "10.0.0"
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "krK19MKp0BNiR9rpBDW7PKSrTMLVlifS9am3CVc4O1Jq6GWz0o4F+sw5OSL4L3mVd56W8l6JRgghUa2KB51vOw==",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "10.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
+          "Microsoft.Extensions.Options": "10.0.0",
+          "Microsoft.Extensions.Primitives": "10.0.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection": {
@@ -666,11 +668,6 @@
         "resolved": "11.0.0",
         "contentHash": "R7QxcmtQLP5np732En6eyzv2DjKevbrRxUUY9jPRQwuLzOSbyDowE5l0KyqdEEySvdHbrdRILg99FlaJTwcPbQ=="
       },
-      "Microsoft.Extensions.Caching.Memory": {
-        "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "w0nn5qRLxZC2T3sSmXj5PhrBFpGFCSFxg7E/zBi4lne0wZcZPY8of3qQDowqGobMZ3PW5qJnM1Q8fmGjL2B6Iw=="
-      },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
         "resolved": "10.0.10",
@@ -847,6 +844,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "[11.0.0, )",
+          "Microsoft.Extensions.Caching.Memory": "[11.0.0, )",
           "PosInformatique.Foundations.MediaTypes": "[1.0.0, )"
         }
       },
@@ -872,6 +870,12 @@
           "Microsoft.Extensions.Caching.Memory": "11.0.0",
           "Microsoft.Extensions.Logging": "11.0.0"
         }
+      },
+      "Microsoft.Extensions.Caching.Memory": {
+        "type": "CentralTransitive",
+        "requested": "[11.0.0, )",
+        "resolved": "11.0.0",
+        "contentHash": "w0nn5qRLxZC2T3sSmXj5PhrBFpGFCSFxg7E/zBi4lne0wZcZPY8of3qQDowqGobMZ3PW5qJnM1Q8fmGjL2B6Iw=="
       },
       "Microsoft.Extensions.DependencyInjection": {
         "type": "CentralTransitive",
@@ -1059,18 +1063,6 @@
         "resolved": "8.0.0",
         "contentHash": "3KuSxeHoNYdxVYfg2IRZCThcrlJ1XJqIXkAWikCsbm5C/bCjv7G0WoKDyuR98Q+T607QT2Zl5GsbGRkENcV2yQ==",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "8.0.0"
-        }
-      },
-      "Microsoft.Extensions.Caching.Memory": {
-        "type": "Transitive",
-        "resolved": "8.0.1",
-        "contentHash": "HFDnhYLccngrzyGgHkjEDU5FMLn4MpOsr5ElgsBMC4yx6lJh4jeWO7fHS8+TXPq+dgxCmUa/Trl8svObmwW4QA==",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
-          "Microsoft.Extensions.Options": "8.0.2",
           "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
@@ -1354,6 +1346,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "[8.0.0, )",
+          "Microsoft.Extensions.Caching.Memory": "[8.0.1, )",
           "PosInformatique.Foundations.MediaTypes": "[1.0.0, )"
         }
       },
@@ -1389,6 +1382,19 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.25",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "HFDnhYLccngrzyGgHkjEDU5FMLn4MpOsr5ElgsBMC4yx6lJh4jeWO7fHS8+TXPq+dgxCmUa/Trl8svObmwW4QA==",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Options": "8.0.2",
+          "Microsoft.Extensions.Primitives": "8.0.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection": {
@@ -1610,18 +1616,6 @@
         "resolved": "9.0.0",
         "contentHash": "FPWZAa9c0H4dvOj351iR1jkUIs4u9ykL4Bm592yhjDyO5lCoWd+TMAHx2EMbarzUvCvgjWjJIoC6//Q9kH6YhA==",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.0"
-        }
-      },
-      "Microsoft.Extensions.Caching.Memory": {
-        "type": "Transitive",
-        "resolved": "9.0.0",
-        "contentHash": "zbnPX/JQ0pETRSUG9fNPBvpIq42Aufvs15gGYyNIMhCun9yhmWihz0WgsI7bSDPjxWTKBf8oX/zv6v2uZ3W9OQ==",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "9.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
-          "Microsoft.Extensions.Options": "9.0.0",
           "Microsoft.Extensions.Primitives": "9.0.0"
         }
       },
@@ -1905,6 +1899,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "[9.0.0, )",
+          "Microsoft.Extensions.Caching.Memory": "[9.0.0, )",
           "PosInformatique.Foundations.MediaTypes": "[1.0.0, )"
         }
       },
@@ -1942,6 +1937,19 @@
           "Microsoft.Extensions.Caching.Memory": "9.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
           "Microsoft.Extensions.Logging": "9.0.0"
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory": {
+        "type": "CentralTransitive",
+        "requested": "[9.0.0, )",
+        "resolved": "9.0.0",
+        "contentHash": "zbnPX/JQ0pETRSUG9fNPBvpIq42Aufvs15gGYyNIMhCun9yhmWihz0WgsI7bSDPjxWTKBf8oX/zv6v2uZ3W9OQ==",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Options": "9.0.0",
+          "Microsoft.Extensions.Primitives": "9.0.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection": {

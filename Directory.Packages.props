@@ -22,6 +22,8 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.25" Condition="'$(TargetFramework)' == 'net8.0'" />
     <PackageVersion Include="Microsoft.Extensions.Azure" Version="1.13.1" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" Condition="'$(TargetFramework)' == 'net8.0'" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotNetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(DotNetVersion)" Condition="'$(TargetFramework)' != 'net8.0'" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" Condition="'$(TargetFramework)' == 'net8.0'" />
