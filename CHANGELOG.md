@@ -4,6 +4,8 @@
 
 ### 1.6.0
 
+- Added support of .NET 11.0 for all the packages.
+
 #### PosInformatique.Foundations.EmailAddresses
 - EmailAddresses now uses the vendored MimeKit 5.0.0 source code internally for e-mail address parsing and validation.
 
