@@ -60,6 +60,7 @@ namespace PosInformatique.Foundations.Text.Templating.Scriban
             {
                 MemberRenamer = r => r.Name,
                 MemberFilter = null,
+                CancellationToken = cancellationToken,
             };
 
             scribanContext.PushGlobal(scriptObject);
@@ -68,7 +69,7 @@ namespace PosInformatique.Foundations.Text.Templating.Scriban
 
             var text = await scribanTemplate.RenderAsync(scribanContext);
 
-            await output.WriteAsync(text);
+            await output.WriteAsync(text.AsMemory(), cancellationToken);
         }
     }
 }

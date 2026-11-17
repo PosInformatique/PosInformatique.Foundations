@@ -29,13 +29,15 @@ namespace PosInformatique.Foundations.Text.Templating.Tests
 
             var context = Mock.Of<ITextTemplateRenderContext>(MockBehavior.Strict);
 
-            using var output = new StringWriter();
+            var output = new Mock<TextWriter>(MockBehavior.Strict);
+            output.Setup(w => w.WriteAsync(It.Is<ReadOnlyMemory<char>>(text => text.ToString() == "The constant text"), cancellationToken))
+                .Returns(Task.CompletedTask);
 
             var template = new ConstantTextTemplate<Model>("The constant text");
 
-            await template.RenderAsync(model, output, context, cancellationToken);
+            await template.RenderAsync(model, output.Object, context, cancellationToken);
 
-            output.ToString().Should().Be("The constant text");
+            output.VerifyAll();
         }
 
         [Fact]

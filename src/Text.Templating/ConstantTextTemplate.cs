@@ -30,7 +30,7 @@ namespace PosInformatique.Foundations.Text.Templating
         [RequiresUnreferencedCode("Model is accessed by text template renderer and may require all members to be preserved.")]
         public override Task RenderAsync(TModel model, TextWriter output, ITextTemplateRenderContext context, CancellationToken cancellationToken = default)
         {
-            return output.WriteAsync(this.text);
+            return output.WriteAsync(this.text.AsMemory(), cancellationToken);
         }
     }
 }

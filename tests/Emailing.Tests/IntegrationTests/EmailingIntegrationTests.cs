@@ -85,7 +85,7 @@ namespace PosInformatique.Foundations.Emailing
 
             public override async Task RenderAsync(TModel model, TextWriter output, ITextTemplateRenderContext context, CancellationToken cancellationToken = default)
             {
-                await output.WriteLineAsync(this.content);
+                await output.WriteLineAsync(this.content.AsMemory(), cancellationToken);
             }
         }
     }
