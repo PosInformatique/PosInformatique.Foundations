@@ -23,7 +23,7 @@ jobs:
           dotnet-version: 11.0.x
 
       - name: Restore dependencies
-        run: dotnet restore PosInformatique.Foundations.slnx
+        run: dotnet restore PosInformatique.Foundations.slnx --locked-mode
 
       - name: Build solution
         run: |
