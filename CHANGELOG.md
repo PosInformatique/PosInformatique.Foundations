@@ -2,6 +2,12 @@
 
 ## Changelog
 
+### 1.7.0
+
+#### PosInformatique.Foundations.Threading
+- Added a new [package](./src/Threading/README.md) with utilities and extensions related to the `System.Threading` APIs of .NET.
+- Added `Debouncer` to debounce asynchronous actions with cooperative cancellation.
+
 ### 1.6.0
 
 - Added support of .NET 11.0 for all the packages.

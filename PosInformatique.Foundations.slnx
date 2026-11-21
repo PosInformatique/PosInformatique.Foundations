@@ -144,4 +144,8 @@
     <Project Path="src/Text.Templating.Scriban/Text.Templating.Scriban.csproj" Id="2a99a660-d100-4fc9-b90e-e48df2acec19" />
     <Project Path="tests/Text.Templating.Scriban.Tests/Text.Templating.Scriban.Tests.csproj" Id="50408388-38e3-4121-b00c-18e0c735d829" />
   </Folder>
+  <Folder Name="/Threading/">
+    <Project Path="src/Threading/Threading.csproj" />
+    <Project Path="tests/Threading.Tests/Threading.Tests.csproj" />
+  </Folder>
 </Solution>
