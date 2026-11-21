@@ -7,6 +7,7 @@
 #### PosInformatique.Foundations.Threading
 - Added a new [package](./src/Threading/README.md) with utilities and extensions related to the `System.Threading` APIs of .NET.
 - Added `Debouncer` to debounce asynchronous actions with cooperative cancellation.
+- Added `SemaphoreSlimExtensions.EnterScopeAsync()` to create an asynchronous `WaitAsync()`/`Release()` scope with cancellation support and idempotent disposal.
 
 ### 1.6.0
 

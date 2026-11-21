@@ -55,14 +55,15 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 |[**Text.Templating**](./src/Text.Templating/README.md) | Abstractions for text templating, including the `TextTemplate<TModel>` base class and `ITextTemplateRenderContext` interface, to be used by concrete templating engine implementations such as Razor-based text templates. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating) |
 |[**Text.Templating.Razor**](./src/Text.Templating.Razor/README.md) | Razor-based text templating using Blazor components, allowing generation of text from Razor views with a strongly-typed Model parameter and full dependency injection integration. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating.Razor)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor) |
 |[**Text.Templating.Scriban**](./src/Text.Templating.Scriban/README.md) | Scriban-based text templating with mustache-style syntax, allowing generation of text from templates using a strongly-typed model and automatic property exposure. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating.Scriban)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban) |
-|[**Threading**](./src/Threading/README.md) | Utilities and extensions related to the `System.Threading` APIs of .NET, including `Debouncer` for asynchronous actions with cooperative cancellation. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Threading)](https://www.nuget.org/packages/PosInformatique.Foundations.Threading) |
+|[**Threading**](./src/Threading/README.md) | Utilities and extensions related to the `System.Threading` APIs of .NET, including `Debouncer` and asynchronous disposable `SemaphoreSlim` scopes. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Threading)](https://www.nuget.org/packages/PosInformatique.Foundations.Threading) |
 
 > Note: Most of the packages are completely independent. You install only what you need.
 
 ### New in v1.7.0
 
 The [Threading](./src/Threading/README.md) package adds utilities related to `System.Threading`,
-starting with `Debouncer` for asynchronous actions. See the [changelog](./CHANGELOG.md) for details.
+including `Debouncer` for asynchronous actions and `SemaphoreSlim.EnterScopeAsync()` for disposable
+Wait/Release scopes. See the [changelog](./CHANGELOG.md) for details.
 
 ## 🚀 Why use PosInformatique.Foundations?
 

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <Description>Provides utilities and extensions related to System.Threading, including Debouncer for asynchronous operations.</Description>
+    <Description>Provides utilities and extensions related to the System.Threading APIs of .NET.</Description>
     <PackageTags>threading;debounce;async;cancellation;foundation;dotnet;posinformatique</PackageTags>
     <PackageReleaseNotes>
       $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
