@@ -4,8 +4,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace System.Linq.Expressions
+namespace PosInformatique.Foundations.Linq.Expressions
 {
+    using System.Linq.Expressions;
+
     /// <summary>
     /// Builds a predicate by combining expressions using short-circuiting logical OR.
     /// </summary>

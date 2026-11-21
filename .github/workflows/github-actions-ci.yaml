@@ -20,10 +20,10 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 11.0.x
 
       - name: Restore dependencies
-        run: dotnet restore PosInformatique.Foundations.slnx
+        run: dotnet restore PosInformatique.Foundations.slnx --locked-mode
 
       - name: Build solution
         run: |
@@ -69,6 +69,19 @@ jobs:
           --report-trx \
           --results-directory ./TestResults \
           --framework net10.0
+
+      - name: Run tests (.NET 11.0)
+        run: |
+          dotnet test \
+          --solution PosInformatique.Foundations.slnx \
+          --configuration Release \
+          --no-build \
+          --coverage \
+          --coverage-output-format cobertura \
+          --coverage-settings CodeCoverage.runsettings \
+          --report-trx \
+          --results-directory ./TestResults \
+          --framework net11.0
   
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2

@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using MimeKit.Utils;
 
@@ -40,6 +41,9 @@ namespace MimeKit {
 	/// Group addresses are rarely used anymore. Typically, if you see a group address,
 	/// it will be of the form: <c>"undisclosed-recipients: ;"</c>.
 	/// </remarks>
+	/// <example>
+	/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="GroupAddress"/>
+	/// </example>
 	internal class GroupAddress : InternetAddress
 	{
 		/// <summary>
@@ -55,10 +59,12 @@ namespace MimeKit {
 		/// <exception cref="System.ArgumentNullException">
 		/// <paramref name="encoding"/> is <see langword="null"/>.
 		/// </exception>
-		public GroupAddress (Encoding encoding, string name, IEnumerable<InternetAddress> addresses) : base (encoding, name)
+		public GroupAddress (Encoding encoding, string? name, IEnumerable<InternetAddress> addresses) : base (encoding, name)
 		{
 			Members = new InternetAddressList (addresses);
+			Members.Changed += MembersChanged;
 		}
+
 
 		/// <summary>
 		/// Initialize a new instance of the <see cref="GroupAddress"/> class.
@@ -72,10 +78,13 @@ namespace MimeKit {
 		/// <exception cref="System.ArgumentNullException">
 		/// <paramref name="encoding"/> is <see langword="null"/>.
 		/// </exception>
-		public GroupAddress (Encoding encoding, string name) : base (encoding, name)
+		public GroupAddress (Encoding encoding, string? name) : base (encoding, name)
 		{
 			Members = new InternetAddressList ();
+			Members.Changed += MembersChanged;
 		}
+
+
 
 		/// <summary>
 		/// Get the members of the group.
@@ -89,9 +98,41 @@ namespace MimeKit {
 		/// anything other than <see cref="MailboxAddress"/> members in order to comply with internet
 		/// standards.</para>
 		/// </remarks>
+		/// <example>
+		/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="GroupAddress"/>
+		/// </example>
 		/// <value>The list of members.</value>
 		public InternetAddressList Members {
 			get; private set;
 		}
+
+
+
+		#region IEquatable implementation
+
+
+		#endregion
+
+		void MembersChanged (InternetAddressList sender, EventArgs e)
+		{
+			OnChanged ();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 }

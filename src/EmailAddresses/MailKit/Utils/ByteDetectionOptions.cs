@@ -1,9 +1,9 @@
 ﻿//
-// IPunycode.cs
+// ByteDetectionOptions.cs
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,23 +24,39 @@
 // THE SOFTWARE.
 //
 
-namespace MimeKit.Encodings {
-	/// <summary>
-	/// An interface for encoding and decoding international domain names.
-	/// </summary>
-	/// <remarks>
-	/// An interface for encoding and decoding international domain names.
-	/// </remarks>
-	internal interface IPunycode
+using System;
+
+namespace MimeKit.Utils {
+	[Flags]
+	enum ByteDetectionOptions
 	{
 		/// <summary>
-		/// Decode a domain name, converting it to a string of Unicode characters.
+		/// Do not detect anything.
+		/// </summary>
+		None = 0,
+
+		/// <summary>
+		/// Detect 8bit characters (high bit set).
+		/// </summary>
+		Detect8Bit = 0x01,
+
+		/// <summary>
+		/// Detect null bytes (0x00).
+		/// </summary>
+		DetectNulls = 0x02,
+
+		/// <summary>
+		/// Detect bare carriage returns (a CR that is not followed by a LF).
 		/// </summary>
 		/// <remarks>
-		/// Decodes a domain name, converting it to Unicode, according to the rules defined by the IDNA standard.
+		/// Only used by the MimeReader header scanner; this must be masked off (using
+		/// <see cref="IndexOfMask"/>) before passing the options to Memory.IndexOf().
 		/// </remarks>
-		/// <param name="domain">The ASCII-encoded domain name.</param>
-		/// <returns>The Unicode domain name.</returns>
-		string Decode (string domain);
+		DetectBareCarriageReturns = 0x04,
+
+		/// <summary>
+		/// The options that are supported by Memory.IndexOf().
+		/// </summary>
+		IndexOfMask = Detect8Bit | DetectNulls
 	}
 }

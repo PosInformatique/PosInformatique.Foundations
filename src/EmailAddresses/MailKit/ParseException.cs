@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,11 +26,6 @@
 
 using System;
 
-#if SERIALIZABLE
-using System.Security;
-using System.Runtime.Serialization;
-#endif
-
 namespace MimeKit {
 	/// <summary>
 	/// A Parse exception as thrown by the various Parse methods in MimeKit.
@@ -42,31 +37,8 @@ namespace MimeKit {
 	/// as a <see cref="ErrorIndex"/> which marks the byte offset where the error
 	/// occurred.
 	/// </remarks>
-#if SERIALIZABLE
-	[Serializable]
-#endif
 	internal class ParseException : FormatException
 	{
-#if SERIALIZABLE
-		/// <summary>
-		/// Initialize a new instance of the <see cref="ParseException"/> class.
-		/// </summary>
-		/// <remarks>
-		/// Creates a new <see cref="ParseException"/>.
-		/// </remarks>
-		/// <param name="info">The serialization info.</param>
-		/// <param name="context">The stream context.</param>
-		/// <exception cref="System.ArgumentNullException">
-		/// <paramref name="info"/> is <see langword="null"/>.
-		/// </exception>
-		[Obsolete ("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
-		protected ParseException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-			TokenIndex = info.GetInt32 ("TokenIndex");
-			ErrorIndex = info.GetInt32 ("ErrorIndex");
-		}
-#endif
-
 		/// <summary>
 		/// Initialize a new instance of the <see cref="ParseException"/> class.
 		/// </summary>
@@ -97,33 +69,6 @@ namespace MimeKit {
 			TokenIndex = tokenIndex;
 			ErrorIndex = errorIndex;
 		}
-
-#if SERIALIZABLE
-		/// <summary>
-		/// When overridden in a derived class, sets the <see cref="System.Runtime.Serialization.SerializationInfo"/>
-		/// with information about the exception.
-		/// </summary>
-		/// <remarks>
-		/// Sets the <see cref="System.Runtime.Serialization.SerializationInfo"/>
-		/// with information about the exception.
-		/// </remarks>
-		/// <param name="info">The serialization info.</param>
-		/// <param name="context">The streaming context.</param>
-		/// <exception cref="System.ArgumentNullException">
-		/// <paramref name="info"/> is <see langword="null"/>.
-		/// </exception>
-		[SecurityCritical]
-#if NET8_0_OR_GREATER
-		[Obsolete ("This API supports obsolete formatter-based serialization. It should not be called or extended by application code.")]
-#endif
-		public override void GetObjectData (SerializationInfo info, StreamingContext context)
-		{
-			base.GetObjectData (info, context);
-
-			info.AddValue ("TokenIndex", TokenIndex);
-			info.AddValue ("ErrorIndex", ErrorIndex);
-		}
-#endif
 
 		/// <summary>
 		/// Get the byte index of the token that was malformed.

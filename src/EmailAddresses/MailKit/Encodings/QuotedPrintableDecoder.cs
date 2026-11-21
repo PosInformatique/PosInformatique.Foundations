@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,8 @@ namespace MimeKit.Encodings {
 	/// </remarks>
 	internal class QuotedPrintableDecoder : IMimeDecoder
 	{
+		const int ScalarScanLength = 16;
+
 		enum QpDecoderState : byte {
 			PassThrough,
 			EqualSign,
@@ -62,22 +64,10 @@ namespace MimeKit.Encodings {
 			this.rfc2047 = rfc2047;
 		}
 
-		/// <summary>
-		/// Estimate the length of the output.
-		/// </summary>
-		/// <remarks>
-		/// Estimates the number of bytes needed to decode the specified number of input bytes.
-		/// </remarks>
-		/// <returns>The estimated output length.</returns>
-		/// <param name="inputLength">The input length.</param>
-		public int EstimateOutputLength (int inputLength)
-		{
-			switch (state) {
-			case QpDecoderState.PassThrough: return inputLength;
-			case QpDecoderState.EqualSign: return inputLength + 1; // add an extra byte in case the '=' character is not the start of a valid hex sequence
-			default: return inputLength + 2; // add an extra 2 bytes in case the =X sequence is not the start of a valid hex sequence
-			}
-		}
+
+
+
+
 
 		/// <summary>
 		/// Decode the specified input into the output buffer.
@@ -92,7 +82,7 @@ namespace MimeKit.Encodings {
 		/// <param name="input">A pointer to the beginning of the input buffer.</param>
 		/// <param name="length">The length of the input buffer.</param>
 		/// <param name="output">A pointer to the beginning of the output buffer.</param>
-		public unsafe int Decode (byte* input, int length, byte* output)
+		internal unsafe int Decode (byte* input, int length, byte* output)
 		{
 			byte* inend = input + length;
 			byte* outptr = output;
@@ -102,17 +92,54 @@ namespace MimeKit.Encodings {
 			while (inptr < inend) {
 				switch (state) {
 				case QpDecoderState.PassThrough:
-					while (inptr < inend) {
+					if (rfc2047) {
+						while (inptr < inend) {
+							c = *inptr++;
+
+							if (c == '=') {
+								state = QpDecoderState.EqualSign;
+								break;
+							} else if (c == '_') {
+								*outptr++ = (byte) ' ';
+							} else {
+								*outptr++ = c;
+							}
+						}
+						break;
+					}
+
+					// Scan the first few bytes one at a time because heavily-encoded content (e.g. non-Latin text)
+					// tends to have very short runs between '=' characters and the fixed overhead of IndexOf()
+					// and MemoryCopy() outweighs their benefit for short runs.
+					byte* scanEnd = inend - inptr > ScalarScanLength ? inptr + ScalarScanLength : inend;
+
+					while (inptr < scanEnd) {
 						c = *inptr++;
 
 						if (c == '=') {
 							state = QpDecoderState.EqualSign;
 							break;
-						} else if (rfc2047 && c == '_') {
-							*outptr++ = (byte) ' ';
-						} else {
-							*outptr++ = c;
 						}
+
+						*outptr++ = c;
+					}
+
+					if (state == QpDecoderState.PassThrough && inptr < inend) {
+						int count = (int) (inend - inptr);
+						int index = new ReadOnlySpan<byte> (inptr, count).IndexOf ((byte) '=');
+
+						if (index != -1) {
+							state = QpDecoderState.EqualSign;
+							count = index;
+						}
+
+						// Note: Buffer.MemoryCopy() handles overlapping buffers, so decoding in-place still works.
+						Buffer.MemoryCopy (inptr, outptr, count, count);
+						outptr += count;
+						inptr += count;
+
+						if (state == QpDecoderState.EqualSign)
+							inptr++;
 					}
 					break;
 				case QpDecoderState.EqualSign:
@@ -168,6 +195,26 @@ namespace MimeKit.Encodings {
 			return (int) (outptr - output);
 		}
 
+
+
+		internal unsafe int Flush (byte* output)
+		{
+			int count = 0;
+
+			if (state != QpDecoderState.PassThrough) {
+				output[count++] = (byte) '=';
+
+				if (state == QpDecoderState.DecodeByte)
+					output[count++] = saved;
+				else if (state == QpDecoderState.SoftBreak)
+					output[count++] = (byte) '\r';
+			}
+
+			Reset ();
+
+			return count;
+		}
+
 		/// <summary>
 		/// Reset the decoder.
 		/// </summary>
@@ -179,5 +226,6 @@ namespace MimeKit.Encodings {
 			state = QpDecoderState.PassThrough;
 			saved = 0;
 		}
+
 	}
 }

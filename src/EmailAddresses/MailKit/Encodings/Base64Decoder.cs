@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,13 +28,6 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-
-#if NET6_0_OR_GREATER
-using System.Buffers.Text;
-using System.Runtime.Intrinsics.X86;
-using System.Runtime.Intrinsics.Arm;
-#endif
-
 namespace MimeKit.Encodings {
 	/// <summary>
 	/// Incrementally decodes content encoded with the base64 encoding.
@@ -46,7 +39,7 @@ namespace MimeKit.Encodings {
 	/// </remarks>
 	internal class Base64Decoder : IMimeDecoder
 	{
-		internal static ReadOnlySpan<byte> base64_rank => new byte[256] {
+		static ReadOnlySpan<byte> base64_rank => new byte[256] {
 			255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 			255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
 			255,255,255,255,255,255,255,255,255,255,255, 62,255,255,255, 63,
@@ -77,40 +70,7 @@ namespace MimeKit.Encodings {
 		/// </remarks>
 		public Base64Decoder ()
 		{
-#if NET9_0_OR_GREATER
-			EnableHardwareAcceleration = Ssse3.IsSupported || AdvSimd.Arm64.IsSupported;
-#elif NET6_0_OR_GREATER
-			EnableHardwareAcceleration = Ssse3.IsSupported || (AdvSimd.Arm64.IsSupported && BitConverter.IsLittleEndian);
-#endif
 		}
-
-#if NET6_0_OR_GREATER
-		/// <summary>
-		/// Get or set whether the <see cref="Base64Decoder"/> should use hardware acceleration when available.
-		/// </summary>
-		/// <remarks>
-		/// Gets or sets whether the <see cref="Base64Decoder"/> should use hardware acceleration when available.
-		/// </remarks>
-		/// <value><see langword="true"/> if hardware acceleration should be enabled; otherwise, <see langword="false"/>.</value>
-		public bool EnableHardwareAcceleration {
-			get; set;
-		}
-#endif
-
-		/// <summary>
-		/// Estimate the length of the output.
-		/// </summary>
-		/// <remarks>
-		/// Estimates the number of bytes needed to decode the specified number of input bytes.
-		/// </remarks>
-		/// <returns>The estimated output length.</returns>
-		/// <param name="inputLength">The input length.</param>
-		public int EstimateOutputLength (int inputLength)
-		{
-			// decoding base64 converts 4 bytes of input into 3 bytes of output
-			return ((inputLength / 4) * 3) + 3;
-		}
-
 #if NET6_0_OR_GREATER
 		[SkipLocalsInit]
 #endif
@@ -161,11 +121,33 @@ namespace MimeKit.Encodings {
 		/// <param name="input">A pointer to the beginning of the input buffer.</param>
 		/// <param name="length">The length of the input buffer.</param>
 		/// <param name="output">A pointer to the beginning of the output buffer.</param>
-		public unsafe int Decode (byte* input, int length, byte* output)
+		internal unsafe int Decode (byte* input, int length, byte* output)
 		{
 			ref byte table = ref MemoryMarshal.GetReference (base64_rank);
 
 			return Decode (ref table, input, input + length, output);
+		}
+
+
+		internal unsafe int Flush (byte* output)
+		{
+			int count = 0;
+
+			if (bytes >= 2) {
+				int first = (previous >> ((bytes - 1) * 8)) & 0xff;
+				int second = (previous >> ((bytes - 2) * 8)) & 0xff;
+
+				if (first != '=' && second != '=') {
+					output[count++] = (byte) (saved >> ((bytes - 2) * 6 + 4));
+
+					if (bytes == 3 && (previous & 0xff) != '=')
+						output[count++] = (byte) (saved >> 2);
+				}
+			}
+
+			Reset ();
+
+			return count;
 		}
 
 		/// <summary>
@@ -180,5 +162,6 @@ namespace MimeKit.Encodings {
 			saved = 0;
 			bytes = 0;
 		}
+
 	}
 }

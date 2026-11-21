@@ -1,9 +1,10 @@
-﻿//
-// Punycode.cs
+//
+// Utf8.cs
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
+// Copyright (c) 2023 SimdUnicode authors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,45 +26,27 @@
 //
 
 using System;
-using System.Globalization;
+using System.Runtime.CompilerServices;
 
-namespace MimeKit.Encodings {
-	/// <summary>
-	/// A class for encoding and decoding international domain names.
-	/// </summary>
-	/// <remarks>
-	/// A class for encoding and decoding international domain names.
-	/// </remarks>
-	internal class Punycode : IPunycode
+
+namespace MimeKit.Utils {
+	static class Utf8
 	{
-		readonly IdnMapping idn;
-
 		/// <summary>
-		/// Initialize a new instance of the <see cref="Punycode"/> class.
+		/// Validate that the value is well-formed UTF-8.
 		/// </summary>
 		/// <remarks>
-		/// Creates a new instance of <see cref="Punycode"/>.
+		/// Validates that the value is well-formed UTF-8.
 		/// </remarks>
-		public Punycode ()
+		/// <param name="value">The byte string.</param>
+		/// <returns><see langword="true"/> if the value is well-formed UTF-8; otherwise, <see langword="false"/>.</returns>
+		[MethodImpl (MethodImplOptions.AggressiveInlining)]
+		public static bool IsValid (ReadOnlySpan<byte> value)
 		{
-			idn = new IdnMapping ();
+#if NET8_0_OR_GREATER
+			return System.Text.Unicode.Utf8.IsValid (value);
+#endif
 		}
 
-		/// <summary>
-		/// Decode a domain name, converting it to a string of Unicode characters.
-		/// </summary>
-		/// <remarks>
-		/// Decodes a domain name, converting it to Unicode, according to the rules defined by the IDNA standard.
-		/// </remarks>
-		/// <param name="ascii">The ASCII-encoded domain name.</param>
-		/// <returns>The Unicode domain name.</returns>
-		public string Decode (string ascii)
-		{
-			try {
-				return idn.GetUnicode (ascii);
-			} catch {
-				return ascii;
-			}
-		}
 	}
 }

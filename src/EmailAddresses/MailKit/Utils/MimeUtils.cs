@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,10 +25,7 @@
 //
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
 
 namespace MimeKit.Utils {
 	/// <summary>
@@ -39,8 +36,6 @@ namespace MimeKit.Utils {
 	/// </remarks>
 	internal static class MimeUtils
 	{
-		static readonly char[] UnquoteChars = new[] { '\r', '\n', '\t', '\\', '"' };
-
 		/// <summary>
 		/// A string comparer that performs a case-insensitive ordinal string comparison.
 		/// </summary>
@@ -58,41 +53,8 @@ namespace MimeKit.Utils {
 #endif
 		}
 
-#if !NET6_0_OR_GREATER
-		internal static void GetRandomBytes (byte[] buffer)
+		internal static void UnquoteTo (ReadOnlySpan<char> text, bool convertTabsToSpaces, ref ValueStringBuilder output)
 		{
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-			RandomNumberGenerator.Fill (buffer);
-#else
-			using (var random = RandomNumberGenerator.Create ())
-				random.GetBytes (buffer);
-#endif
-		}
-#endif
-
-		/// <summary>
-		/// Unquote the specified text.
-		/// </summary>
-		/// <remarks>
-		/// Unquotes the specified text, removing any escaped backslashes within.
-		/// </remarks>
-		/// <returns>The unquoted text.</returns>
-		/// <param name="text">The text to unquote.</param>
-		/// <param name="convertTabsToSpaces"><see langword="true" /> if tab characters should be converted to a space; otherwise, <see langword="false" />.</param>
-		/// <exception cref="System.ArgumentNullException">
-		/// <paramref name="text"/> is <see langword="null"/>.
-		/// </exception>
-		public static string Unquote (string text, bool convertTabsToSpaces = false)
-		{
-			if (text is null)
-				throw new ArgumentNullException (nameof (text));
-
-			int index = text.IndexOfAny (UnquoteChars);
-
-			if (index == -1)
-				return text;
-
-			var builder = new ValueStringBuilder (text.Length);
 			bool escaped = false;
 			bool quoted = false;
 
@@ -103,69 +65,66 @@ namespace MimeKit.Utils {
 					escaped = false;
 					break;
 				case '\t':
-					builder.Append (convertTabsToSpaces ? ' ' : '\t');
+					output.Append (convertTabsToSpaces ? ' ' : '\t');
 					escaped = false;
 					break;
 				case '\\':
 					if (escaped)
-						builder.Append ('\\');
+						output.Append ('\\');
 					escaped = !escaped;
 					break;
 				case '"':
 					if (escaped) {
-						builder.Append ('"');
+						output.Append ('"');
 						escaped = false;
 					} else {
 						quoted = !quoted;
 					}
 					break;
 				default:
-					builder.Append (text[i]);
+					output.Append (text[i]);
 					escaped = false;
 					break;
 				}
 			}
-
-			return builder.ToString ();
 		}
 
-		internal static byte[] Unquote (byte[] text, int startIndex, int length, bool convertTabsToSpaces = false)
+
+		internal static void UnquoteTo (ReadOnlySpan<byte> text, bool convertTabsToSpaces, ref ByteArrayBuilder output)
 		{
-			using var builder = new ByteArrayBuilder (length);
 			bool escaped = false;
 			bool quoted = false;
 
-			for (int i = startIndex; i < startIndex + length; i++) {
+			for (int i = 0; i < text.Length; i++) {
 				switch ((char) text[i]) {
 				case '\r':
 				case '\n':
 					escaped = false;
 					break;
 				case '\t':
-					builder.Append ((byte) (convertTabsToSpaces ? ' ' : '\t'));
+					output.Append ((byte) (convertTabsToSpaces ? ' ' : '\t'));
 					escaped = false;
 					break;
 				case '\\':
 					if (escaped)
-						builder.Append ((byte) '\\');
+						output.Append ((byte) '\\');
 					escaped = !escaped;
 					break;
 				case '"':
 					if (escaped) {
-						builder.Append ((byte) '"');
+						output.Append ((byte) '"');
 						escaped = false;
 					} else {
 						quoted = !quoted;
 					}
 					break;
 				default:
-					builder.Append (text[i]);
+					output.Append (text[i]);
 					escaped = false;
 					break;
 				}
 			}
-
-			return builder.ToArray ();
 		}
+
 	}
 }

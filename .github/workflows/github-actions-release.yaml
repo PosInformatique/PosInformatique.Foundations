@@ -7,7 +7,7 @@ on:
         type: string
         description: The version of the library
         required: true
-        default: 1.5.0
+        default: 1.6.0
       VersionSuffix:
         type: string
         description: The version suffix of the library (for example rc.1)
@@ -26,12 +26,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 11.0.x
       
       - name: Build all the NuGet packages
         run: |
           dotnet pack PosInformatique.Foundations.slnx \
           --configuration Release \
+          --property:RestoreLockedMode=true \
           --property:VersionPrefix=${{ github.event.inputs.VersionPrefix }} \
           --property:VersionSuffix=${{ github.event.inputs.VersionSuffix }} \
           --output ./artifacts

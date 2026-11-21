@@ -29,13 +29,15 @@ namespace PosInformatique.Foundations.Text.Templating.Scriban.Tests
 
             var context = Mock.Of<ITextTemplateRenderContext>(MockBehavior.Strict);
 
-            using var output = new StringWriter();
+            var output = new Mock<TextWriter>(MockBehavior.Strict);
+            output.Setup(w => w.WriteAsync(It.Is<ReadOnlyMemory<char>>(text => text.ToString() == "FirstName='Gilles', LastName='TOURREAU', Age=1234, Subject=The subject"), cancellationToken))
+                .Returns(Task.CompletedTask);
 
             var textTemplating = new ScribanTextTemplate<object>("FirstName='{{FirstName}}', LastName='{{LastName}}', Age={{InnerObject.Age}}, Subject={{Subject}}");
 
-            await textTemplating.RenderAsync(data, output, context, cancellationToken);
+            await textTemplating.RenderAsync(data, output.Object, context, cancellationToken);
 
-            output.ToString().Should().Be("FirstName='Gilles', LastName='TOURREAU', Age=1234, Subject=The subject");
+            output.VerifyAll();
         }
 
         [Fact]

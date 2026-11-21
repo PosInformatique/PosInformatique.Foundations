@@ -3,7 +3,7 @@
 //
 // Author: Jeffrey Stedfast <jestedfa@microsoft.com>
 //
-// Copyright (c) 2013-2025 .NET Foundation and Contributors
+// Copyright (c) 2013-2026 .NET Foundation and Contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,14 +25,7 @@
 //
 
 using System;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-
-#if ENABLE_SNM
-using System.Net.Mail;
-#endif
 
 using MimeKit.Utils;
 
@@ -51,6 +44,9 @@ namespace MimeKit {
 	/// types of addresses. They typically only contain mailbox addresses, but may also
 	/// contain other group addresses.</para>
 	/// </remarks>
+	/// <example>
+	/// <code language="c#" source="Examples\InternetAddressExamples.cs" region="ParseAddressList"/>
+	/// </example>
 	internal class InternetAddressList
 	{
 		readonly List<InternetAddress> list;
@@ -76,6 +72,7 @@ namespace MimeKit {
 				list = new List<InternetAddress> ();
 
 			foreach (var address in addresses) {
+				address.Changed += AddressChanged;
 				list.Add (address);
 			}
 		}
@@ -91,80 +88,84 @@ namespace MimeKit {
 			list = new List<InternetAddress> ();
 		}
 
-		internal static bool TryParse (AddressParserFlags flags, ParserOptions options, byte[] text, ref int index, int endIndex, bool isGroup, int groupDepth, out List<InternetAddress> addresses)
+		// Note: This .ctor gets used by the Parse and TryParse methods and is meant to reduce duplicating an
+		// existing List<InternetAddress> for no reason.
+
+
+		#region IList implementation
+
+
+
+
+
+		#endregion
+
+		#region ICollection implementation
+
+
+
+
+
+
+
+
+
+		#endregion
+
+		#region IEnumerable implementation
+
+
+		#endregion
+
+		#region IEnumerable implementation
+
+
+		#endregion
+
+		#region IEquatable implementation
+
+
+		#endregion
+
+		#region IComparable implementation
+
+
+		#endregion
+
+
+
+
+
+
+
+		internal event EventHandler<InternetAddressList, EventArgs>? Changed;
+
+		void OnChanged ()
 		{
-			bool throwOnError = (flags & AddressParserFlags.ThrowOnError) != 0;
-			var list = new List<InternetAddress> ();
-
-			addresses = null;
-
-			if (!ParseUtils.SkipCommentsAndWhiteSpace (text, ref index, endIndex, throwOnError))
-				return false;
-
-			if (index == endIndex) {
-				if (throwOnError)
-					throw new ParseException ("No addresses found.", index, index);
-
-				return false;
-			}
-
-			while (index < endIndex) {
-				if (isGroup && text[index] == (byte) ';')
-					break;
-
-				if (!InternetAddress.TryParse (flags, options, text, ref index, endIndex, groupDepth, out var address)) {
-					if ((flags & AddressParserFlags.Internal) == 0) {
-						// Note: If flags contains the ThrowOnError flag, then InternetAddress.TryParse() would have thrown.
-						return false;
-					}
-
-					// skip this address...
-					while (index < endIndex && text[index] != (byte) ',' && (!isGroup || text[index] != (byte) ';'))
-						index++;
-				} else {
-					list.Add (address);
-				}
-
-				// Note: we loop here in case there are any extraneous commas
-				bool skippedComma = false;
-
-				do {
-					if (!ParseUtils.SkipCommentsAndWhiteSpace (text, ref index, endIndex, throwOnError))
-						return false;
-
-					if (index >= endIndex)
-						break;
-
-					if (isGroup && text[index] == (byte) ';')
-						break;
-
-					if (text[index] != (byte) ',') {
-						if (skippedComma)
-							break;
-
-						if (options.AddressParserComplianceMode == RfcComplianceMode.Strict) {
-							if (throwOnError) {
-								if (isGroup)
-									throw new ParseException ("Expected ',' between addresses or ';' to denote the end of a group of addresses.", index, index);
-								else
-									throw new ParseException ("Expected ',' between addresses.", index, index);
-							}
-
-							return false;
-						} else {
-							// start of a new address?
-							break;
-						}
-					}
-
-					skippedComma = true;
-					index++;
-				} while (true);
-			}
-
-			addresses = list;
-
-			return true;
+			Changed?.Invoke (this, EventArgs.Empty);
 		}
+
+		void AddressChanged (object? sender, EventArgs e)
+		{
+			OnChanged ();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 }
