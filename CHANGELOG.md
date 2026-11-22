@@ -4,6 +4,12 @@
 
 ### 1.7.0
 
+#### PosInformatique.Foundations.Bcl
+- Added a new [package](./src/Bcl/README.md) with extensions for strings, URIs, time providers, and generic type inspection.
+
+#### PosInformatique.Foundations.Collections
+- Added a new [package](./src/Collections/README.md) with collection and sequence extensions, including `AsSequence()` for a single-element sequence.
+
 #### PosInformatique.Foundations.Threading
 - Added a new [package](./src/Threading/README.md) with utilities and extensions related to the `System.Threading` APIs of .NET.
 - Added `Debouncer` to debounce asynchronous actions with cooperative cancellation.

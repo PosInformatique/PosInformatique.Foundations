@@ -26,6 +26,8 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 
 |Package (prefixed by PosInformatique.Foundations) | Description | NuGet |
 |---------|-------------|-------|
+|[**Bcl**](./src/Bcl/README.md) | Extensions for strings, URIs, time providers, and generic type inspection. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Bcl)](https://www.nuget.org/packages/PosInformatique.Foundations.Bcl) |
+|[**Collections**](./src/Collections/README.md) | Extensions for collections and sequences, including `AsSequence()` for single-element sequences. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Collections)](https://www.nuget.org/packages/PosInformatique.Foundations.Collections) |
 |[**EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization as RFC 5322 compliant. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses) |
 |[**EmailAddresses.EntityFramework**](./src/EmailAddresses.EntityFramework/README.md) | Entity Framework Core integration for the `EmailAddress` value object, including property configuration and value converter for seamless database persistence. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.EntityFramework)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework) |
 |[**EmailAddresses.FluentValidation**](./src/EmailAddresses.FluentValidation/README.md) | FluentValidation integration for the `EmailAddress` value object, providing dedicated validators and rules to ensure RFC 5322 compliant email addresses. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.FluentValidation)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation) |
@@ -61,7 +63,8 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 
 ### New in v1.7.0
 
-The [Threading](./src/Threading/README.md) package adds utilities related to `System.Threading`,
+The [Bcl](./src/Bcl/README.md) and [Collections](./src/Collections/README.md) packages add
+extensions for common .NET types and collections. The [Threading](./src/Threading/README.md) package adds utilities related to `System.Threading`,
 including `Debouncer` for asynchronous actions and `SemaphoreSlim.EnterScopeAsync()` for disposable
 Wait/Release scopes. See the [changelog](./CHANGELOG.md) for details.
 
