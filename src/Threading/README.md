@@ -17,7 +17,7 @@ Both APIs are available in the `PosInformatique.Foundations.Threading` namespace
 ## Install
 
 ```powershell
-dotnet add package PosInformatique.Foundations.Threading --version 1.7.0
+dotnet add package PosInformatique.Foundations.Threading
 ```
 
 ## Debouncer
