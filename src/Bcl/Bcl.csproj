@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Description>Provides extension methods for common .NET types, including strings, URIs, time providers, and types.</Description>
+    <PackageTags>bcl;extensions;string;uri;time;reflection;foundation;dotnet;posinformatique</PackageTags>
+    <PackageReleaseNotes>
+      $([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/CHANGELOG.md"))
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CHANGELOG.md" />
+    <Content Include="CHANGELOG.md" Pack="false" />
+    <Content Include="Icon.png" Pack="true" PackagePath="" />
+    <Content Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

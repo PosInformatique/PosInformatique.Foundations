@@ -39,7 +39,7 @@
     <PackageVersion Include="PosInformatique.AwesomeAssertions.Json" Version="1.0.0" />
     <PackageVersion Include="PosInformatique.Moq.Analyzers" Version="2.2.0" />
     <PackageVersion Include="Scriban" Version="7.2.2" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.36.0.15337" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.37.0.15768" />
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="8.0.2" Condition="'$(TargetFramework)' == 'net8.0'" />
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="9.0.21" Condition="'$(TargetFramework)' == 'net9.0'" />
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" Condition="'$(TargetFramework)' == 'net10.0'" />

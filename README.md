@@ -26,6 +26,8 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 
 |Package (prefixed by PosInformatique.Foundations) | Description | NuGet |
 |---------|-------------|-------|
+|[**Bcl**](./src/Bcl/README.md) | Extensions for strings, URIs, time providers, and generic type inspection. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Bcl)](https://www.nuget.org/packages/PosInformatique.Foundations.Bcl) |
+|[**Collections**](./src/Collections/README.md) | Extensions for collections and sequences, including `AsSequence()` for single-element sequences. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Collections)](https://www.nuget.org/packages/PosInformatique.Foundations.Collections) |
 |[**EmailAddresses**](./src/EmailAddresses/README.md) | Strongly-typed value object representing an email address with validation and normalization as RFC 5322 compliant. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses) |
 |[**EmailAddresses.EntityFramework**](./src/EmailAddresses.EntityFramework/README.md) | Entity Framework Core integration for the `EmailAddress` value object, including property configuration and value converter for seamless database persistence. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.EntityFramework)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.EntityFramework) |
 |[**EmailAddresses.FluentValidation**](./src/EmailAddresses.FluentValidation/README.md) | FluentValidation integration for the `EmailAddress` value object, providing dedicated validators and rules to ensure RFC 5322 compliant email addresses. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.EmailAddresses.FluentValidation)](https://www.nuget.org/packages/PosInformatique.Foundations.EmailAddresses.FluentValidation) |
@@ -55,8 +57,16 @@ You can install any package using the .NET CLI or NuGet Package Manager.
 |[**Text.Templating**](./src/Text.Templating/README.md) | Abstractions for text templating, including the `TextTemplate<TModel>` base class and `ITextTemplateRenderContext` interface, to be used by concrete templating engine implementations such as Razor-based text templates. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating) |
 |[**Text.Templating.Razor**](./src/Text.Templating.Razor/README.md) | Razor-based text templating using Blazor components, allowing generation of text from Razor views with a strongly-typed Model parameter and full dependency injection integration. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating.Razor)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Razor) |
 |[**Text.Templating.Scriban**](./src/Text.Templating.Scriban/README.md) | Scriban-based text templating with mustache-style syntax, allowing generation of text from templates using a strongly-typed model and automatic property exposure. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Text.Templating.Scriban)](https://www.nuget.org/packages/PosInformatique.Foundations.Text.Templating.Scriban) |
+|[**Threading**](./src/Threading/README.md) | Utilities and extensions related to the `System.Threading` APIs of .NET, including `Debouncer` and asynchronous disposable `SemaphoreSlim` scopes. | [![NuGet](https://img.shields.io/nuget/v/PosInformatique.Foundations.Threading)](https://www.nuget.org/packages/PosInformatique.Foundations.Threading) |
 
 > Note: Most of the packages are completely independent. You install only what you need.
+
+### New in v1.7.0
+
+The [Bcl](./src/Bcl/README.md) and [Collections](./src/Collections/README.md) packages add
+extensions for common .NET types and collections. The [Threading](./src/Threading/README.md) package adds utilities related to `System.Threading`,
+including `Debouncer` for asynchronous actions and `SemaphoreSlim.EnterScopeAsync()` for disposable
+Wait/Release scopes. See the [changelog](./CHANGELOG.md) for details.
 
 ## 🚀 Why use PosInformatique.Foundations?
 
@@ -72,7 +82,7 @@ for your convenience, we also provide a consolidated [changelog here](./CHANGELO
 
 ## 📌 .NET and dependency compatibility
 
-All [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages are designed to be compatible with **.NET 8.0**, **.NET 9.0** and **.NET 10.0**.
+All [PosInformatique.Foundations](https://github.com/PosInformatique/PosInformatique.Foundations) packages are designed to be compatible with **.NET 8.0**, **.NET 9.0**, **.NET 10.0** and **.NET 11.0**.
 
 To maximize backward compatibility with existing projects, dependencies on external libraries (such as `Microsoft.Graph`, etc.)
 intentionally target **relatively old versions**. This avoids forcing you to update your entire solution to the
