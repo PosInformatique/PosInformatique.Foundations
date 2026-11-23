@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Threading.Tests
+namespace System.Threading.Tests
 {
     public class SemaphoreSlimExtensionsTest
     {

@@ -12,7 +12,7 @@ Introduced in v1.7.0:
 - `Debouncer` delays an asynchronous action and cancels the previous invocation whenever a new invocation is requested.
 - `SemaphoreSlimExtensions.EnterScopeAsync()` pairs `WaitAsync()` and `Release()` through a disposable scope.
 
-Both APIs are available in the `PosInformatique.Foundations.Threading` namespace.
+`Debouncer` is available in the `PosInformatique.Foundations.Threading` namespace; `SemaphoreSlimExtensions` is available in `System.Threading`.
 
 ## Install
 
@@ -64,7 +64,7 @@ await Task.WhenAll(first, second);
 Use a regular `using` statement with the awaited scope; disposing it calls `Release()` synchronously.
 
 ```csharp
-using PosInformatique.Foundations.Threading;
+using System.Threading;
 
 using var semaphore = new SemaphoreSlim(1, 1);
 

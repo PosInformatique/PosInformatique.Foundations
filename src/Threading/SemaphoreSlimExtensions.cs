@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace PosInformatique.Foundations.Threading
+namespace System.Threading
 {
     /// <summary>
     /// Provides extension methods for the <see cref="SemaphoreSlim"/> class.
