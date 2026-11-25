@@ -29,10 +29,10 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
         }
 
         [Theory]
-        [InlineData(EmailImportance.Low, "5")]
-        [InlineData(EmailImportance.Normal, "3")]
-        [InlineData(EmailImportance.High, "1")]
-        public async Task SendSync(EmailImportance importance, string expectedXPriority)
+        [InlineData(EmailImportance.Low, "5", null, null)]
+        [InlineData(EmailImportance.Normal, "3", "reply@domain.com", "Reply contact")]
+        [InlineData(EmailImportance.High, "1", "support@domain.com", "")]
+        public async Task SendSync(EmailImportance importance, string expectedXPriority, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -52,6 +52,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                 Importance = importance,
             };
 
+            if (replyToEmailAddress != null)
+            {
+                message.ReplyTo = new EmailContact(EmailAddress.Parse(replyToEmailAddress), replyToName);
+            }
+
             var mailjetClient = new Mock<IMailjetClient>(MockBehavior.Strict);
             mailjetClient.Setup(c => c.SendTransactionalEmailAsync(It.IsAny<TransactionalEmail>(), false, true))
                 .Callback((TransactionalEmail m, bool _, bool _) =>
@@ -60,6 +65,16 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
+                    if (replyToEmailAddress != null)
+                    {
+                        m.ReplyTo.Email.Should().Be(replyToEmailAddress);
+                        m.ReplyTo.Name.Should().Be(replyToName);
+                    }
+                    else
+                    {
+                        m.ReplyTo.Should().BeNull();
+                    }
+
                     m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");

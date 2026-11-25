@@ -26,10 +26,10 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
         }
 
         [Theory]
-        [InlineData(EmailImportance.Low, "5", "Low")]
-        [InlineData(EmailImportance.Normal, "3", "Normal")]
-        [InlineData(EmailImportance.High, "1", "High")]
-        public async Task SendSync(EmailImportance importance, string expectedXPriority, string expectedImportance)
+        [InlineData(EmailImportance.Low, "5", "Low", null, null)]
+        [InlineData(EmailImportance.Normal, "3", "Normal", "reply@domain.com", "Reply contact")]
+        [InlineData(EmailImportance.High, "1", "High", "support@domain.com", "")]
+        public async Task SendSync(EmailImportance importance, string expectedXPriority, string expectedImportance, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -48,6 +48,11 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                 },
                 Importance = importance,
             };
+
+            if (replyToEmailAddress != null)
+            {
+                message.ReplyTo = new EmailContact(EmailAddress.Parse(replyToEmailAddress), replyToName);
+            }
 
             var azureClient = new Mock<global::Azure.Communication.Email.EmailClient>(MockBehavior.Strict);
             azureClient.Setup(c => c.SendAsync(global::Azure.WaitUntil.Started, It.IsAny<global::Azure.Communication.Email.EmailMessage>(), cancellationToken))
@@ -72,6 +77,16 @@ namespace PosInformatique.Foundations.Emailing.Azure.Tests
                     m.Recipients.To.Should().ContainSingle();
                     m.Recipients.To[0].Address.Should().Be("recipient@domain.com");
                     m.Recipients.To[0].DisplayName.Should().Be("The recipient");
+                    if (replyToEmailAddress != null)
+                    {
+                        m.ReplyTo.Should().ContainSingle();
+                        m.ReplyTo[0].Address.Should().Be(replyToEmailAddress);
+                        m.ReplyTo[0].DisplayName.Should().Be(replyToName);
+                    }
+                    else
+                    {
+                        m.ReplyTo.Should().BeEmpty();
+                    }
                 })
                 .ReturnsAsync(new global::Azure.Communication.Email.EmailSendOperation("The id", azureClient.Object));
 

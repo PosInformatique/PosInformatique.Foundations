@@ -45,6 +45,7 @@ and one of its concrete implementations (for example
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
 - Support of the *Importance* of the e-mails (**Low**, **Normal** and **High**).
 - Support for sending emails with attachments.
+- Optional Reply-To contact for responses, supported by the Azure, Graph and Mailjet providers.
 
 ## Basic concepts
 
@@ -169,6 +170,7 @@ documentation for an example of provider registration.
 To send an email, you first ask `IEmailManager` to create an `Email<TModel>` from a previously registered template identifier:
 
 ```csharp
+using PosInformatique.Foundations.EmailAddresses;
 using PosInformatique.Foundations.Emailing;
 
 var emailManager = serviceProvider.GetRequiredService<IEmailManager>();
@@ -177,7 +179,10 @@ var emailManager = serviceProvider.GetRequiredService<IEmailManager>();
 var invitationEmail = emailManager.Create(EmailTemplateIdentifiers.Invitation);
 
 invitationEmail.Importance = EmailImportance.High;
+invitationEmail.ReplyTo = new EmailContact(EmailAddress.Parse("support@example.com"), "Support");
 ```
+
+The Reply-To contact is optional. When omitted, replies use the sender address.
 
 At this stage:
 

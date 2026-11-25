@@ -68,6 +68,21 @@ namespace PosInformatique.Foundations.Emailing.Graph
                 ],
             };
 
+            if (message.ReplyTo is not null)
+            {
+                graphMessage.ReplyTo =
+                [
+                    new()
+                    {
+                        EmailAddress = new EmailAddress
+                        {
+                            Address = message.ReplyTo.Email.ToString(),
+                            Name = message.ReplyTo.DisplayName,
+                        },
+                    },
+                ];
+            }
+
             if (message.Attachments.Count > 0)
             {
                 graphMessage.Attachments = new List<Attachment>();

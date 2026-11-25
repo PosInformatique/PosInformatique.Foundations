@@ -104,6 +104,7 @@ namespace PosInformatique.Foundations.Emailing
                         htmlContent)
                     {
                         Importance = email.Importance,
+                        ReplyTo = email.ReplyTo,
                     };
 
                     for (int i = 0; i < email.Attachments.Count; i++)

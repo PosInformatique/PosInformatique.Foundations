@@ -61,6 +61,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
                 TrackOpens = TrackOpens.disabled,
             };
 
+            if (message.ReplyTo is not null)
+            {
+                mailjetMessage.ReplyTo = new SendContact(message.ReplyTo.Email.ToString(), message.ReplyTo.DisplayName);
+            }
+
             if (message.Attachments.Count > 0)
             {
                 mailjetMessage.Attachments = new List<Attachment>();

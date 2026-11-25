@@ -1,4 +1,7 @@
-﻿1.4.0
+﻿1.8.0
+  - Added support for the Reply-To contact.
+
+1.4.0
   - Upgrade the [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph) dependency to version 6.0.3 at minimum to fix security vulnerabilities.
 
 1.3.0

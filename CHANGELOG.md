@@ -2,6 +2,20 @@
 
 ## Changelog
 
+### 1.8.0
+
+#### PosInformatique.Foundations.Emailing
+- Added an optional Reply-To contact to `Email<TModel>` and `EmailMessage`.
+
+#### PosInformatique.Foundations.Emailing.Azure
+- Added support for the Reply-To contact.
+
+#### PosInformatique.Foundations.Emailing.Graph
+- Added support for the Reply-To contact.
+
+#### PosInformatique.Foundations.Emailing.Mailjet
+- Added support for the Reply-To contact.
+
 ### 1.7.0
 
 #### PosInformatique.Foundations.Bcl
