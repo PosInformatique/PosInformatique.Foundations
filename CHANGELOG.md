@@ -15,6 +15,7 @@
 
 #### PosInformatique.Foundations.Emailing.Mailjet
 - Added support for the Reply-To contact.
+- Fixed message-level Mailjet errors other than 403 being silently ignored. All message-level errors now throw an `EmailProviderException`.
 
 ### 1.7.0
 

@@ -63,6 +63,16 @@ services
 4. Add recipients and models.
 5. Call `SendAsync(...)` to send via Mailjet.
 
+## Error handling
+
+When Mailjet returns a message with an `error` status, the provider throws an `EmailProviderException`
+regardless of the error status code. Its message contains the Mailjet error messages, separated by newlines,
+or a generic message if no error details are returned.
+
+Exceptions raised by the Mailjet client are wrapped in an `EmailProviderException` with the original
+exception as its inner exception. A successful send means Mailjet accepted the message; it does not
+guarantee delivery to the recipient.
+
 ## Links
 
 - [NuGet package: Emailing (core library)](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing/)

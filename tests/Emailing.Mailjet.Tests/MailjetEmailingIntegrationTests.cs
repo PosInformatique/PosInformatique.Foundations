@@ -8,6 +8,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
 {
     using System.Text.Json;
     using System.Text.Json.Serialization;
+    using global::Mailjet.Client;
     using global::Mailjet.Client.Exceptions;
     using Microsoft.Extensions.DependencyInjection;
     using PosInformatique.Foundations.EmailAddresses;
@@ -124,6 +125,61 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
 
             await action.Should().ThrowExactlyAsync<EmailProviderException>()
                 .WithMessage("\"wrong-sender-email@example.com\" is not an authorized sender email address for your account.");
+        }
+
+        [Fact]
+        public async Task SendEmailAsync_WithTooLargeAttachment()
+        {
+            if (this.configuration is null)
+            {
+                return;
+            }
+
+            // Mailjet limits the total size of a message (15 MB). The expected failure mode
+            // (per-message "error" status or HTTP error) has to be confirmed by running this test manually.
+            var action = async () => await EmailingIntegrationTests.SendEmailAsync(
+                emailingBuilder => emailingBuilder.UseMailjet(
+                    this.configuration["EMAILING_MAILJET_API_KEY"],
+                    this.configuration["EMAILING_MAILJET_API_SECRET"]),
+                EmailAddress.Parse(this.configuration["EMAILING_MAILJET_SENDER_EMAIL_ADDRESS"]),
+                EmailAddress.Parse(this.configuration["EMAILING_MAILJET_RECIPIENT_EMAIL_ADDRESS"]),
+                attachmentContent: new byte[20 * 1024 * 1024]);
+
+            var innerException = await action.Should().ThrowAsync<EmailProviderException>();
+
+            innerException.WithInnerExceptionExactly<MailjetServerException>()
+                .WithMessage("{\r\n  \"StatusCode\": 413,\r\n  \"ErrorInfo\": \"Request Entity Too Large\"\r\n}");
+        }
+
+        [Fact]
+        public async Task SendEmailAsync_WithEmptyContent()
+        {
+            if (this.configuration is null)
+            {
+                return;
+            }
+
+            // Calls the provider directly because the e-mail manager always renders a non-empty content.
+            // Mailjet answers HTTP 200 with a message "Status" = "error" (no HTTP error).
+            using var httpClient = new HttpClient();
+            httpClient.SetDefaultSettings();
+            httpClient.UseBasicAuthentication(
+                this.configuration["EMAILING_MAILJET_API_KEY"],
+                this.configuration["EMAILING_MAILJET_API_SECRET"]);
+
+            var provider = new MailjetEmailProvider(new MailjetClient(httpClient));
+
+            var message = new EmailMessage(
+                new EmailContact(EmailAddress.Parse(this.configuration["EMAILING_MAILJET_SENDER_EMAIL_ADDRESS"]), "Sender"),
+                new EmailContact(EmailAddress.Parse(this.configuration["EMAILING_MAILJET_RECIPIENT_EMAIL_ADDRESS"]), "Recipient"),
+                "The subject",
+                string.Empty);
+
+            var exception = await provider.Invoking(p => p.SendAsync(message, TestContext.Current.CancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("At least \"HTMLPart\", \"TextPart\" or \"TemplateID\" must be provided.");
+
+            exception.Which.InnerException.Should().BeNull();
         }
 
         [Fact]

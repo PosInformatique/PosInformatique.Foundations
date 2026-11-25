@@ -19,7 +19,8 @@ namespace PosInformatique.Foundations.Emailing
             Action<EmailingBuilder> configure,
             EmailAddress senderEmailAddress,
             EmailAddress recipientEmailAddress,
-            bool manuallyRunOnly = false)
+            bool manuallyRunOnly = false,
+            byte[] attachmentContent = null)
         {
             if (manuallyRunOnly && !Debugger.IsAttached)
             {
@@ -47,7 +48,7 @@ namespace PosInformatique.Foundations.Emailing
             {
                 Attachments =
                 {
-                    new EmailAttachment("Attachment.txt", MimeType.Parse("text/plain"), new MemoryStream(Encoding.UTF8.GetBytes("This is the content of the attachment."))),
+                    new EmailAttachment("Attachment.txt", MimeType.Parse("text/plain"), new MemoryStream(attachmentContent ?? Encoding.UTF8.GetBytes("This is the content of the attachment."))),
                 },
                 Importance = EmailImportance.High,
                 Recipients =
