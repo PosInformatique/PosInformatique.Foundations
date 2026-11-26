@@ -81,9 +81,12 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Theory]
-        [InlineData("sender@domain.com", "sender@domain.com")]
-        [InlineData(null, "")]
-        public async Task SendAsync(string senderDisplayName, string expectedSenderDisplayName)
+        [InlineData(null, "Default sender", "Default sender", "reply@domain.com", "Reply contact")]
+        [InlineData(null, null, "", null, null)]
+        [InlineData("Email sender", "Default sender", "Email sender", null, null)]
+        [InlineData("Email sender", null, "Email sender", null, null)]
+        [InlineData("", "Default sender", "", null, null)]
+        public async Task SendAsync(string emailSenderDisplayName, string senderDisplayName, string expectedSenderDisplayName, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -139,6 +142,12 @@ namespace PosInformatique.Foundations.Emailing.Tests
             var attachment1 = new EmailAttachment("Attachment1", MimeTypes.Application.Pdf, content1);
             var attachment2 = new EmailAttachment("Attachment2", MimeTypes.Application.Docx, content2);
 
+            EmailContact replyTo = null;
+            if (replyToEmailAddress != null)
+            {
+                replyTo = new EmailContact(EmailAddress.Parse(replyToEmailAddress), replyToName);
+            }
+
             var email = new Email<Model>(template)
             {
                 Attachments =
@@ -147,6 +156,8 @@ namespace PosInformatique.Foundations.Emailing.Tests
                     attachment2,
                 },
                 Importance = EmailImportance.High,
+                ReplyTo = replyTo,
+                SenderDisplayName = emailSenderDisplayName,
                 Recipients =
                 {
                     new EmailRecipient<Model>(emailAddressRecipient1, "The display name 1", model1),
@@ -179,6 +190,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().Be(expectedSenderDisplayName);
                     m.Importance.Should().Be(EmailImportance.High);
+                    m.ReplyTo.Should().BeSameAs(replyTo);
                     m.Subject.Should().Be("Subject 1");
                     m.HtmlContent.Should().Be("HTML Content 1");
                     m.To.DisplayName.Should().Be("The display name 1");
@@ -201,6 +213,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                     m.From.Email.Should().BeSameAs(sender);
                     m.From.DisplayName.Should().Be(expectedSenderDisplayName);
                     m.Importance.Should().Be(EmailImportance.High);
+                    m.ReplyTo.Should().BeSameAs(replyTo);
                     m.Subject.Should().Be("Subject 2");
                     m.HtmlContent.Should().Be("HTML Content 2");
                     m.To.DisplayName.Should().Be("The display name 2");

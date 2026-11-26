@@ -29,10 +29,10 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
         }
 
         [Theory]
-        [InlineData(EmailImportance.Low, "5")]
-        [InlineData(EmailImportance.Normal, "3")]
-        [InlineData(EmailImportance.High, "1")]
-        public async Task SendSync(EmailImportance importance, string expectedXPriority)
+        [InlineData(EmailImportance.Low, "5", null, null)]
+        [InlineData(EmailImportance.Normal, "3", "reply@domain.com", "Reply contact")]
+        [InlineData(EmailImportance.High, "1", "support@domain.com", "")]
+        public async Task SendSync(EmailImportance importance, string expectedXPriority, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -52,6 +52,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                 Importance = importance,
             };
 
+            if (replyToEmailAddress != null)
+            {
+                message.ReplyTo = new EmailContact(EmailAddress.Parse(replyToEmailAddress), replyToName);
+            }
+
             var mailjetClient = new Mock<IMailjetClient>(MockBehavior.Strict);
             mailjetClient.Setup(c => c.SendTransactionalEmailAsync(It.IsAny<TransactionalEmail>(), false, true))
                 .Callback((TransactionalEmail m, bool _, bool _) =>
@@ -60,6 +65,16 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                     m.HTMLPart.Should().Be("The HTML content");
                     m.From.Email.Should().Be("sender@domain.com");
                     m.From.Name.Should().Be("Ignored");
+                    if (replyToEmailAddress != null)
+                    {
+                        m.ReplyTo.Email.Should().Be(replyToEmailAddress);
+                        m.ReplyTo.Name.Should().Be(replyToName);
+                    }
+                    else
+                    {
+                        m.ReplyTo.Should().BeNull();
+                    }
+
                     m.To.Should().ContainSingle();
                     m.To[0].Email.Should().Be("recipient@domain.com");
                     m.To[0].Name.Should().Be("The recipient");
@@ -191,7 +206,7 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
         }
 
         [Fact]
-        public async Task SendSync_WithErrorStatusCodeOtherThan403()
+        public async Task SendSync_WithErrorStatusCodeOtherThan403_MultipleErrors()
         {
             var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
             var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
@@ -224,6 +239,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
                                     StatusCode = 500,
                                     ErrorMessage = "The error message",
                                 },
+                                new SendEmailError
+                                {
+                                    StatusCode = 400,
+                                    ErrorMessage = "The second error message",
+                                },
                             ],
                         },
                     ],
@@ -231,7 +251,94 @@ namespace PosInformatique.Foundations.Emailing.Mailjet.Tests
 
             var provider = new MailjetEmailProvider(mailjetClient.Object);
 
-            await provider.SendAsync(message, TestContext.Current.CancellationToken);
+            await provider.Invoking(p => p.SendAsync(message, TestContext.Current.CancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The error message" + Environment.NewLine + "The second error message");
+
+            mailjetClient.VerifyAll();
+        }
+
+        [Theory]
+        [InlineData(400)]
+        [InlineData(500)]
+        public async Task SendSync_WithErrorStatusCodeOtherThan403_SingleError(int statusCode)
+        {
+            var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
+            var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            var mailjetClient = new Mock<IMailjetClient>(MockBehavior.Strict);
+            mailjetClient.Setup(c => c.SendTransactionalEmailAsync(It.IsAny<TransactionalEmail>(), false, true))
+                .Callback((TransactionalEmail m, bool _, bool _) =>
+                {
+                    m.Subject.Should().Be("The subject");
+                    m.From.Email.Should().Be("sender@domain.com");
+                    m.To.Should().ContainSingle();
+                    m.To[0].Email.Should().Be("recipient@domain.com");
+                })
+                .ReturnsAsync(new TransactionalEmailResponse
+                {
+                    Messages =
+                    [
+                        new MessageResult
+                        {
+                            Status = "error",
+                            Errors =
+                            [
+                                new SendEmailError
+                                {
+                                    StatusCode = statusCode,
+                                    ErrorMessage = "The error message",
+                                },
+                            ],
+                        },
+                    ],
+                });
+
+            var provider = new MailjetEmailProvider(mailjetClient.Object);
+
+            await provider.Invoking(p => p.SendAsync(message, TestContext.Current.CancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The error message");
+
+            mailjetClient.VerifyAll();
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task SendSync_WithErrorStatusAndNoErrors(bool nullErrors)
+        {
+            var from = new EmailContact(EmailAddress.Parse("sender@domain.com"), "Ignored");
+            var to = new EmailContact(EmailAddress.Parse("recipient@domain.com"), "The recipient");
+            var message = new EmailMessage(from, to, "The subject", "The HTML content");
+
+            var mailjetClient = new Mock<IMailjetClient>(MockBehavior.Strict);
+            mailjetClient.Setup(c => c.SendTransactionalEmailAsync(It.IsAny<TransactionalEmail>(), false, true))
+                .Callback((TransactionalEmail m, bool _, bool _) =>
+                {
+                    m.Subject.Should().Be("The subject");
+                    m.From.Email.Should().Be("sender@domain.com");
+                    m.To.Should().ContainSingle();
+                    m.To[0].Email.Should().Be("recipient@domain.com");
+                })
+                .ReturnsAsync(new TransactionalEmailResponse
+                {
+                    Messages =
+                    [
+                        new MessageResult
+                        {
+                            Status = "error",
+                            Errors = nullErrors ? null : [],
+                        },
+                    ],
+                });
+
+            var provider = new MailjetEmailProvider(mailjetClient.Object);
+
+            await provider.Invoking(p => p.SendAsync(message, TestContext.Current.CancellationToken))
+                .Should().ThrowExactlyAsync<EmailProviderException>()
+                .WithMessage("The Mailjet emailing provider returned an unknown error.");
 
             mailjetClient.VerifyAll();
         }

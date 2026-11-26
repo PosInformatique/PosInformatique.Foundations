@@ -40,9 +40,20 @@ namespace PosInformatique.Foundations.Emailing
         public EmailImportance Importance { get; set; }
 
         /// <summary>
+        /// Gets or sets the contact to which replies should be sent, or <see langword="null"/> to use the sender.
+        /// </summary>
+        public EmailContact? ReplyTo { get; set; }
+
+        /// <summary>
         /// Gets the collection of the recipients which the e-mail have to be send.
         /// </summary>
         public EmailRecipientCollection<TModel> Recipients { get; }
+
+        /// <summary>
+        /// Gets or sets the sender display name, or <see langword="null"/> to use
+        /// <see cref="EmailingOptions.SenderDisplayName"/> (or an empty string if it is also <see langword="null"/>).
+        /// </summary>
+        public string? SenderDisplayName { get; set; }
 
         /// <summary>
         /// Gets the e-mail template used to generate the e-mail to send.

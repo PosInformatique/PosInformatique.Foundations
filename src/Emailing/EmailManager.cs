@@ -53,11 +53,7 @@ namespace PosInformatique.Foundations.Emailing
                 throw new ArgumentException("The email must have at least one recipient.", nameof(email));
             }
 
-            var senderDisplayName = this.options.Value.SenderDisplayName;
-            if (senderDisplayName is null)
-            {
-                senderDisplayName = string.Empty;
-            }
+            var senderDisplayName = email.SenderDisplayName ?? this.options.Value.SenderDisplayName ?? string.Empty;
 
             var senderEmailAddress = this.options.Value.SenderEmailAddress!;
 
@@ -104,6 +100,7 @@ namespace PosInformatique.Foundations.Emailing
                         htmlContent)
                     {
                         Importance = email.Importance,
+                        ReplyTo = email.ReplyTo,
                     };
 
                     for (int i = 0; i < email.Attachments.Count; i++)

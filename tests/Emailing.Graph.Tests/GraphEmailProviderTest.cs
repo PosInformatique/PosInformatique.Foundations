@@ -32,10 +32,10 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
         }
 
         [Theory]
-        [InlineData(EmailImportance.Low, Importance.Low)]
-        [InlineData(EmailImportance.Normal, Importance.Normal)]
-        [InlineData(EmailImportance.High, Importance.High)]
-        public async Task SendAsync_WithNoAttachment(EmailImportance importance, Importance expectedImportance)
+        [InlineData(EmailImportance.Low, Importance.Low, null, null)]
+        [InlineData(EmailImportance.Normal, Importance.Normal, "reply@domain.com", "Reply contact")]
+        [InlineData(EmailImportance.High, Importance.High, "support@domain.com", "")]
+        public async Task SendAsync_WithNoAttachment(EmailImportance importance, Importance expectedImportance, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -63,6 +63,17 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
                     jsonMessage.Message.BccRecipients.Should().BeNull();
                     jsonMessage.Message.CcRecipients.Should().BeNull();
                     jsonMessage.Message.Importance.Should().Be(expectedImportance);
+                    if (replyToEmailAddress != null)
+                    {
+                        jsonMessage.Message.ReplyTo.Should().ContainSingle();
+                        jsonMessage.Message.ReplyTo[0].EmailAddress.Address.Should().Be(replyToEmailAddress);
+                        jsonMessage.Message.ReplyTo[0].EmailAddress.Name.Should().Be(replyToName);
+                    }
+                    else
+                    {
+                        jsonMessage.Message.ReplyTo.Should().BeNull();
+                    }
+
                     jsonMessage.Message.ToRecipients.Should().ContainSingle();
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Address.Should().Be("recipient@domain.com");
                     jsonMessage.Message.ToRecipients[0].EmailAddress.Name.Should().Be("The recipient");
@@ -81,6 +92,11 @@ namespace PosInformatique.Foundations.Emailing.Graph.Tests
             {
                 Importance = importance,
             };
+
+            if (replyToEmailAddress != null)
+            {
+                message.ReplyTo = new EmailContact(EmailAddresses.EmailAddress.Parse(replyToEmailAddress), replyToName);
+            }
 
             await client.SendAsync(message, cancellationToken);
 

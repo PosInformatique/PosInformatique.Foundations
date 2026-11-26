@@ -23,6 +23,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
             email.Attachments.Should().BeEmpty();
             email.Importance.Should().Be(EmailImportance.Normal);
             email.Recipients.Should().BeEmpty();
+            email.SenderDisplayName.Should().BeNull();
             email.Template.Should().BeSameAs(template);
         }
 
@@ -51,6 +52,21 @@ namespace PosInformatique.Foundations.Emailing.Tests
             email.Importance = EmailImportance.High;
 
             email.Importance.Should().Be(EmailImportance.High);
+        }
+
+        [Fact]
+        public void SenderDisplayName_ValueChanged()
+        {
+            var subject = Mock.Of<TextTemplate<Model>>(MockBehavior.Strict);
+            var htmlContent = Mock.Of<TextTemplate<Model>>(MockBehavior.Strict);
+
+            var template = new EmailTemplate<Model>(subject, htmlContent);
+
+            var email = new Email<Model>(template);
+
+            email.SenderDisplayName = "The display name";
+
+            email.SenderDisplayName.Should().Be("The display name");
         }
 
         internal sealed class Model

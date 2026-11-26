@@ -59,6 +59,11 @@ namespace PosInformatique.Foundations.Emailing.Azure
                 },
             };
 
+            if (message.ReplyTo is not null)
+            {
+                azureMessage.ReplyTo.Add(new global::Azure.Communication.Email.EmailAddress(message.ReplyTo.Email, message.ReplyTo.DisplayName));
+            }
+
             foreach (var attachment in message.Attachments)
             {
                 var attachmentContent = await BinaryData.FromStreamAsync(attachment.Content, cancellationToken);

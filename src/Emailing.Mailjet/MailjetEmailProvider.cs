@@ -9,7 +9,6 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
     using global::Mailjet.Client;
     using global::Mailjet.Client.Exceptions;
     using global::Mailjet.Client.TransactionalEmails;
-    using global::Mailjet.Client.TransactionalEmails.Response;
 
     /// <summary>
     /// Implementation of the <see cref="IEmailProvider"/> to send the e-mail using
@@ -61,6 +60,11 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
                 TrackOpens = TrackOpens.disabled,
             };
 
+            if (message.ReplyTo is not null)
+            {
+                mailjetMessage.ReplyTo = new SendContact(message.ReplyTo.Email.ToString(), message.ReplyTo.DisplayName);
+            }
+
             if (message.Attachments.Count > 0)
             {
                 mailjetMessage.Attachments = new List<Attachment>();
@@ -93,43 +97,15 @@ namespace PosInformatique.Foundations.Emailing.Mailjet
 
                 if (responseMessage.Status == "error")
                 {
-                    var exception = ProcessError(responseMessage);
+                    var errors = responseMessage.Errors?.Select(e => e.ErrorMessage).ToArray() ?? [];
 
-                    if (exception is not null)
-                    {
-                        throw exception;
-                    }
+                    throw new EmailProviderException(errors.Length > 0 ? string.Join(Environment.NewLine, errors) : "The Mailjet emailing provider returned an unknown error.");
                 }
             }
             catch (MailjetException exception)
             {
                 throw new EmailProviderException(exception.Message, exception);
             }
-        }
-
-        private static EmailProviderException? ProcessError(MessageResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                var exception = ProcessError(error);
-
-                if (exception is not null)
-                {
-                    return exception;
-                }
-            }
-
-            return null;
-        }
-
-        private static EmailProviderException? ProcessError(SendEmailError error)
-        {
-            if (error.StatusCode == 403)
-            {
-                return new EmailProviderException(error.ErrorMessage);
-            }
-
-            return null;
         }
     }
 }

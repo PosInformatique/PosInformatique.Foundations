@@ -45,6 +45,7 @@ and one of its concrete implementations (for example
 - Pluggable `IEmailProvider` to send the final `EmailMessage` (transport-agnostic design).
 - Support of the *Importance* of the e-mails (**Low**, **Normal** and **High**).
 - Support for sending emails with attachments.
+- Optional Reply-To contact for responses, supported by the Azure, Graph and Mailjet providers.
 
 ## Basic concepts
 
@@ -127,7 +128,7 @@ services.AddEmailing(options =>
     // Required: sender email address used for all outgoing emails
     options.SenderEmailAddress = EmailAddress.Parse("no-reply@myapp.com");
 
-    // Optional: display name of the sender used for all outgoing emails
+    // Optional: default display name of the sender for outgoing emails
     options.SenderDisplayName = "My Application";
 
     // Register templates with their identifiers
@@ -137,7 +138,7 @@ services.AddEmailing(options =>
 ```
 
 > **Note:**
-> The `SenderDisplayName` value is ignored when using the [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
+> The sender display name (configured globally or per email) is ignored when using the [PosInformatique.Foundations.Emailing.Azure](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Azure/)
 > or [PosInformatique.Foundations.Emailing.Graph](https://www.nuget.org/packages/PosInformatique.Foundations.Emailing.Graph/) providers, since the display name
 > in this case depends on the configuration of the Azure Communication Service or Microsoft Graph mailbox used to send the emails.
 
@@ -169,6 +170,7 @@ documentation for an example of provider registration.
 To send an email, you first ask `IEmailManager` to create an `Email<TModel>` from a previously registered template identifier:
 
 ```csharp
+using PosInformatique.Foundations.EmailAddresses;
 using PosInformatique.Foundations.Emailing;
 
 var emailManager = serviceProvider.GetRequiredService<IEmailManager>();
@@ -177,7 +179,14 @@ var emailManager = serviceProvider.GetRequiredService<IEmailManager>();
 var invitationEmail = emailManager.Create(EmailTemplateIdentifiers.Invitation);
 
 invitationEmail.Importance = EmailImportance.High;
+invitationEmail.ReplyTo = new EmailContact(EmailAddress.Parse("support@example.com"), "Support");
+invitationEmail.SenderDisplayName = "Invitations";
 ```
+
+The Reply-To contact is optional. When omitted, replies use the sender address.
+The optional `SenderDisplayName` overrides the default in `EmailingOptions` for this email.
+When it is `null`, the configured default is used, or an empty string if that is also `null`.
+An explicitly empty string overrides the default.
 
 At this stage:
 
@@ -245,7 +254,7 @@ Under the hood:
 1. `IEmailManager` iterates over all recipients.
 2. For each recipient, it applies the associated model to the template’s subject and HTML body.
 3. It builds an `EmailMessage` with:
-   - The configured sender (`EmailingOptions.SenderEmailAddress`).
+   - The configured sender address (`EmailingOptions.SenderEmailAddress`) and resolved sender display name.
    - The recipient address and display name.
    - The generated subject and HTML content.
    - The importance.

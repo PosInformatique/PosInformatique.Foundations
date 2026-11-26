@@ -2,6 +2,22 @@
 
 ## Changelog
 
+### 1.8.0
+
+#### PosInformatique.Foundations.Emailing
+- Added an optional sender display name to `Email<TModel>` to override the default configured in `EmailingOptions`.
+- Added an optional Reply-To contact to `Email<TModel>` and `EmailMessage`.
+
+#### PosInformatique.Foundations.Emailing.Azure
+- Added support for the Reply-To contact.
+
+#### PosInformatique.Foundations.Emailing.Graph
+- Added support for the Reply-To contact.
+
+#### PosInformatique.Foundations.Emailing.Mailjet
+- Added support for the Reply-To contact.
+- Fixed message-level Mailjet errors other than 403 being silently ignored. All message-level errors now throw an `EmailProviderException`.
+
 ### 1.7.0
 
 #### PosInformatique.Foundations.Bcl

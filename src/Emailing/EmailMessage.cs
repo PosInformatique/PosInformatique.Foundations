@@ -67,5 +67,10 @@ namespace PosInformatique.Foundations.Emailing
         /// Gets or sets the importance of the e-mail message.
         /// </summary>
         public EmailImportance Importance { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contact to which replies should be sent, or <see langword="null"/> to use the sender.
+        /// </summary>
+        public EmailContact? ReplyTo { get; set; }
     }
 }
