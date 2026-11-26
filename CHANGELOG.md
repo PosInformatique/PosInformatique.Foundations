@@ -5,6 +5,7 @@
 ### 1.8.0
 
 #### PosInformatique.Foundations.Emailing
+- Added an optional sender display name to `Email<TModel>` to override the default configured in `EmailingOptions`.
 - Added an optional Reply-To contact to `Email<TModel>` and `EmailMessage`.
 
 #### PosInformatique.Foundations.Emailing.Azure

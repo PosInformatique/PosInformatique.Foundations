@@ -1,4 +1,5 @@
 ﻿1.8.0
+  - Added an optional sender display name to `Email<TModel>` to override the default configured in `EmailingOptions`.
   - Added an optional Reply-To contact to `Email<TModel>` and `EmailMessage`.
 
 1.4.0

@@ -50,6 +50,12 @@ namespace PosInformatique.Foundations.Emailing
         public EmailRecipientCollection<TModel> Recipients { get; }
 
         /// <summary>
+        /// Gets or sets the sender display name, or <see langword="null"/> to use
+        /// <see cref="EmailingOptions.SenderDisplayName"/> (or an empty string if it is also <see langword="null"/>).
+        /// </summary>
+        public string? SenderDisplayName { get; set; }
+
+        /// <summary>
         /// Gets the e-mail template used to generate the e-mail to send.
         /// </summary>
         public EmailTemplate<TModel> Template { get; }

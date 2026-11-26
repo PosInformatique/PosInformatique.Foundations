@@ -81,9 +81,12 @@ namespace PosInformatique.Foundations.Emailing.Tests
         }
 
         [Theory]
-        [InlineData("sender@domain.com", "sender@domain.com", "reply@domain.com", "Reply contact")]
-        [InlineData(null, "", null, null)]
-        public async Task SendAsync(string senderDisplayName, string expectedSenderDisplayName, string replyToEmailAddress, string replyToName)
+        [InlineData(null, "Default sender", "Default sender", "reply@domain.com", "Reply contact")]
+        [InlineData(null, null, "", null, null)]
+        [InlineData("Email sender", "Default sender", "Email sender", null, null)]
+        [InlineData("Email sender", null, "Email sender", null, null)]
+        [InlineData("", "Default sender", "", null, null)]
+        public async Task SendAsync(string emailSenderDisplayName, string senderDisplayName, string expectedSenderDisplayName, string replyToEmailAddress, string replyToName)
         {
             var cancellationToken = new CancellationTokenSource().Token;
 
@@ -154,6 +157,7 @@ namespace PosInformatique.Foundations.Emailing.Tests
                 },
                 Importance = EmailImportance.High,
                 ReplyTo = replyTo,
+                SenderDisplayName = emailSenderDisplayName,
                 Recipients =
                 {
                     new EmailRecipient<Model>(emailAddressRecipient1, "The display name 1", model1),
